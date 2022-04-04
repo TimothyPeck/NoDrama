@@ -86,6 +86,11 @@ ApplicationWindow {
                     radius: 10
                     color: loginButton.down?'#b2a7f9':'#a8c6fa'
                 }
+                onClicked: {
+                    var component = Qt.createComponent("./infoPage.qml")
+                    var window = component.createObject(loginWindow)
+                    window.show()
+                }
             }
         }
     }

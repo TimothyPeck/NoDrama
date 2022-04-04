@@ -18,6 +18,7 @@ qt_add_executable(appNoDrama
     resources.qrc
     main.cpp
     createaccount.cpp
+    infopage.h infopage.cpp
 )
 
 qt_add_qml_module(appNoDrama
@@ -25,6 +26,7 @@ qt_add_qml_module(appNoDrama
     VERSION 1.0
     QML_FILES main.qml 
     QML_FILES createAccount.qml
+    QML_FILES infoPage.qml
 )
 
 set_target_properties(appNoDrama PROPERTIES
