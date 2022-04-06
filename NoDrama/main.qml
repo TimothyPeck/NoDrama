@@ -23,7 +23,7 @@ ApplicationWindow {
 
             Image {
                 id: logo
-                source: ":/images/images/NoDramaTranparent.PNG"
+                source: ":/images/logo"
             }
 
             TextField {
