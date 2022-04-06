@@ -1,6 +1,8 @@
+import QtQuick
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.3
 import QtQuick.Layouts 1.13
 
 ApplicationWindow {
@@ -21,6 +23,9 @@ ApplicationWindow {
             id: inputs
             spacing: 6
 
+            Image {
+                id: logo
+                source: ":/images/images/NoDramaTranparent.PNG"
             Rectangle{
                 Layout.preferredHeight: 200
                 Layout.minimumWidth: 100
@@ -68,6 +73,23 @@ ApplicationWindow {
                 }
             }
 
+           Button {
+                id: createAccountButton
+                Layout.minimumWidth: 150
+                Layout.preferredWidth: 150
+                Layout.minimumHeight: 45
+                Layout.alignment: Qt.AlignHCenter
+                text: qsTr("Create Account")
+                background: Rectangle {
+                    radius: 10
+                    color: createAccountButton.down?'#b2a7f9':'#a8c6fa'
+                }
+                onClicked: {
+                    var component = Qt.createComponent("./createAccount.qml")
+                    var window = component.createObject(loginWindow)
+                    window.show()
+                }
+            }
             Button {
                  id: createAccountButton
                  Layout.minimumWidth: 150
