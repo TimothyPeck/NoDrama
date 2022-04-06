@@ -21,9 +21,22 @@ ApplicationWindow {
             id: inputs
             spacing: 6
 
-            Image {
-                id: logo
-                source: ":/images/images/NoDramaTranparent.PNG"
+            Rectangle{
+                Layout.preferredHeight: 200
+                Layout.minimumWidth: 100
+                Layout.preferredWidth: 300
+
+                color: 'white'
+                Image {
+                    id: logo
+                    Layout.preferredWidth: 300
+                    fillMode: Image.PreserveAspectFit
+                    source: ":/images/logo"
+                }
+            }
+
+            Rectangle{
+                height: 75
             }
 
             TextField {
@@ -73,6 +86,10 @@ ApplicationWindow {
                 }
             }
 
+
+           Rectangle{
+               height: 80
+           }
 
             Button {
                 id: loginButton
