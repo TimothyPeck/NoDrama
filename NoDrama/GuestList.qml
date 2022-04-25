@@ -10,4 +10,19 @@ ListModel {
     ListElement {
         name: "Tim"
     }
+    ListElement {
+        name: "Titus"
+    }
+    ListElement {
+        name: "Migi"
+    }
+    ListElement {
+        name: "Ivan"
+    }
+    ListElement {
+        name: "Rui"
+    }
+    ListElement {
+        name: "Luca"
+    }
 }

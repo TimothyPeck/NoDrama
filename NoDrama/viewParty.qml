@@ -61,36 +61,54 @@ ApplicationWindow {
                     radius: 3
                     color: "#a8c6fa"
                 }
+            }
 
-                Component { /*marche pas a travailler*/
-                                id: guestDelegate
-                                Item {
-                                    width: 180; height: 40
-                                    Row {
-                                        Text { text: name}
-                                        Button {
-                                            text: qsTr("-")
-                                        }
-                                    }
+            Component {
+                            id: guestDelegate
+                            Item {
+                                width: 180;
+                                height: 25;
+                                Row {
+                                    Text { text: name }
                                 }
                             }
+                        }
 
-                            ScrollView
-                            {
-                                width: 180
-                                height: 200
+                        ScrollView
+                        {
+                            width: 180
+                            height: 100
 
-                                ListView{
-                                    anchors.fill: parent
-                                    model: GuestModel {} //TO-DO
-                                    delegate: guestDelegate
-                                    highlight: Rectangle { color: "lightsteelblue" }
-                                    focus: true
-                                }
+                            ListView{
+                                anchors.fill: parent
+                                model: GuestList {} //TO-DO
+                                delegate: guestDelegate
+                                highlight: Rectangle { color: "lightsteelblue" }
+                                focus: true
                             }
+                        }
 
-/*ferme raw*/}
-        }
+                        Button {
+                             id: back
+                             Layout.minimumWidth: 50
+                             Layout.preferredWidth: 50
+                             Layout.minimumHeight: 25
+                             Layout.alignment: Qt.AlignRight
+                             text: qsTr("<--")
+                             background: Rectangle {
+                                 radius: 10
+                                 color: createAccountButton.down?'#b2a7f9':'#a8c6fa'
+                             }
+                             /*
+                             onClicked: {
+                                 var component = Qt.createComponent("./calendrier.qml")
+                                 var window = component.createObject(loginWindow)
+                                 window.show()
+                             }
+                             */
+
+                         }
+/*ferme column*/ }
 
 
     }

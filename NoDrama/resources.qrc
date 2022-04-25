@@ -6,5 +6,6 @@
         <file>infoPage.qml</file>
         <file>createAccount.qml</file>
         <file>GuestList.qml</file>
+        <file>FrigoModel.qml</file>
     </qresource>
 </RCC>
