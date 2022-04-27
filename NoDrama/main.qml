@@ -68,23 +68,23 @@ ApplicationWindow {
                 }
             }
 
-           Button {
-                id: createAccountButton
-                Layout.minimumWidth: 150
-                Layout.preferredWidth: 150
-                Layout.minimumHeight: 45
-                Layout.alignment: Qt.AlignHCenter
-                text: qsTr("Create Account")
-                background: Rectangle {
-                    radius: 10
-                    color: createAccountButton.down?'#b2a7f9':'#a8c6fa'
-                }
-                onClicked: {
-                    var component = Qt.createComponent("./createAccount.qml")
-                    var window = component.createObject(loginWindow)
-                    window.show()
-                }
-            }
+            Button {
+                 id: createAccountButton
+                 Layout.minimumWidth: 150
+                 Layout.preferredWidth: 150
+                 Layout.minimumHeight: 45
+                 Layout.alignment: Qt.AlignHCenter
+                 text: qsTr("Create Account")
+                 background: Rectangle {
+                     radius: 10
+                     color: createAccountButton.down?'#b2a7f9':'#a8c6fa'
+                 }
+                 onClicked: {
+                     var component = Qt.createComponent("./createAccount.qml")
+                     var window = component.createObject(loginWindow)
+                     window.show()
+                 }
+             }
 
 
            Rectangle{
@@ -104,7 +104,7 @@ ApplicationWindow {
                     color: loginButton.down?'#b2a7f9':'#a8c6fa'
                 }
                 onClicked: {
-                    var component = Qt.createComponent("./infoPage.qml")
+                    var component = Qt.createComponent("./viewParty.qml")
                     var window = component.createObject(loginWindow)
                     window.show()
                 }

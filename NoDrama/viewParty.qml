@@ -11,11 +11,11 @@ ApplicationWindow {
     title: qsTr("Hello World")
     color: "#232323"
 
-    RowLayout{
+    RowLayout{ //une seul ligne
         id: rowLayout
         anchors.fill: parent
         Layout.alignment: Qt.AlignCenter
-        ColumnLayout {
+        ColumnLayout { // une seul colonne mais plusieur ligne
 
             Layout.alignment: Qt.AlignCenter
             id: inputs
@@ -64,53 +64,83 @@ ApplicationWindow {
             }
 
             Component {
-                            id: guestDelegate
-                            Item {
-                                width: 180;
-                                height: 25;
-                                Row {
-                                    Text { text: name }
-                                }
-                            }
-                        }
-
-                        ScrollView
-                        {
-                            width: 180
-                            height: 100
-
-                            ListView{
-                                anchors.fill: parent
-                                model: GuestList {} //TO-DO
-                                delegate: guestDelegate
-                                highlight: Rectangle { color: "lightsteelblue" }
-                                focus: true
-                            }
-                        }
-
-                        Button {
-                             id: back
-                             Layout.minimumWidth: 50
-                             Layout.preferredWidth: 50
-                             Layout.minimumHeight: 25
-                             Layout.alignment: Qt.AlignRight
-                             text: qsTr("<--")
-                             background: Rectangle {
-                                 radius: 10
-                                 color: createAccountButton.down?'#b2a7f9':'#a8c6fa'
-                             }
-                             /*
-                             onClicked: {
-                                 var component = Qt.createComponent("./calendrier.qml")
-                                 var window = component.createObject(loginWindow)
-                                 window.show()
-                             }
-                             */
-
+                   id: guestDelegate
+                   Item {
+                      width: 180;
+                      height: 25; // chaque element
+                      Row {
+                          Label{
+                              text: name;
+                              background: Rectangle{color: wrapper.ListView.isCurrentItem ? "lightsteelblue" : "lightsteelblue"}
+                              width: 150
+                              height: 20
+                          }
                          }
-/*ferme column*/ }
+                   }
+           }
 
+            ScrollView {
+                width: 180
+                height: 50
+                ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+                ListView{
+                    anchors.fill: parent
+                    model: GuestList {} //TO-DO
+                    delegate: guestDelegate
+                    highlight: Rectangle { color: "lightsteelblue" }
+                    focus: true
+                }
+            }
 
-    }
+            RowLayout
+            {
+                id: gridLayout
+                Layout.alignment: Qt.AlignCenter
+                Button {
+                    id: btnDelete
+                    Layout.minimumWidth: 50
+                    Layout.preferredWidth: 50
+                    Layout.minimumHeight: 25
+                    Layout.alignment: Qt.AlignLeft
+                    text: qsTr("Delete")
+                    background: Rectangle {
+                        radius: 10
+                        color: createAccountButton.down?'#b2a7f9':'red'
+                    }
+                                 /*
+                                 onClicked: {
+                                     var component = Qt.createComponent("./calendrier.qml")
+                                     var window = component.createObject(loginWindow)
+                                     window.show()
+                                 }
+                                 */
 
-}
+                }
+
+                Button {
+                    id: back
+                    Layout.minimumWidth: 50
+                    Layout.preferredWidth: 50
+                    Layout.minimumHeight: 25
+                    Layout.alignment: Qt.AlignRight
+                    text: qsTr("<--")
+                    background: Rectangle {
+                        radius: 10
+                        color: createAccountButton.down?'#b2a7f9':'#a8c6fa'
+                    }
+                    /*
+                                 onClicked: {
+                                     var component = Qt.createComponent("./calendrier.qml")
+                                     var window = component.createObject(loginWindow)
+                                     window.show()
+                                 }
+                                 */
+
+                }
+            }
+
+        } // ferme colonne
+    }// ferme row
+
+} //ferme appli
