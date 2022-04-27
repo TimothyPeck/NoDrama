@@ -13,5 +13,8 @@
     </qresource>
     <qresource prefix="/">
         <file>createParty.qml</file>
+        <file>addguests.qml</file>
+        <file>viewparty.qml</file>
+        <file>addfriend.qml</file>
     </qresource>
 </RCC>

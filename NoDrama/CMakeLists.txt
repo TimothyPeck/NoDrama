@@ -25,6 +25,7 @@ qt_add_executable(appNoDrama
     resources.qrc
     main.cpp
     createaccount.cpp
+    createparty.cpp
 set(PROJECT_SOURCES
         resources.qrc
         main.cpp
@@ -45,6 +46,13 @@ qt_add_qml_module(appNoDrama
     VERSION 1.0
     QML_FILES main.qml 
     QML_FILES createAccount.qml
+    QML_FILES createParty.qml
+    QML_FILES main.qml 
+    QML_FILES createAccount.qml
+
+
+
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
