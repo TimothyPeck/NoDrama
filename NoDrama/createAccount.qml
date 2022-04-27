@@ -14,6 +14,7 @@ ApplicationWindow {
         id: rowLayout
         anchors.fill: parent
         Layout.alignment: Qt.AlignCenter
+
         ColumnLayout {
 
             Layout.alignment: Qt.AlignCenter
