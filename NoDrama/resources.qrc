@@ -7,5 +7,6 @@
         <file>addguests.qml</file>
         <file>viewparty.qml</file>
         <file>addfriend.qml</file>
+        <file>addGuest.qml</file>
     </qresource>
 </RCC>
