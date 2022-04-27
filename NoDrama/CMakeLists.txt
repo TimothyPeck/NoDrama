@@ -8,12 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
 
-#qt_add_resources(appNoDrama "images"
-#    PREFIX "/"
-#    FILES
-#        images/NoDramaTranparent.PNG
-#)
-
 qt_add_executable(appNoDrama
     resources.qrc
     main.cpp
@@ -21,12 +15,21 @@ qt_add_executable(appNoDrama
     createparty.cpp
 )
 
+qt_add_resources(appNoDrama "images"
+    PREFIX "/"
+    FILES
+        images/NoDramaTranparent.PNG
+)
+
 qt_add_qml_module(appNoDrama
     URI NoDrama
     VERSION 1.0
-    QML_FILES main.qml 
-    QML_FILES createAccount.qml
-    QML_FILES createParty.qml
+    QML_FILES
+        main.qml
+        createAccount.qml
+        createParty.qml
+        addguests.qml
+        viewparty.qml
 )
 
 set_target_properties(appNoDrama PROPERTIES
