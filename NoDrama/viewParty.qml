@@ -70,26 +70,28 @@ ApplicationWindow {
                       height: 25; // chaque element
                       Row {
                           Label{
-                              text: name;
-                              background: Rectangle{color: wrapper.ListView.isCurrentItem ? "lightsteelblue" : "lightsteelblue"}
+                              text: name
+                              horizontalAlignment: TextInput.AlignHCenter
+                              background: Rectangle{
+                                  radius: 3
+                                  color: "#a8c6fa" }
                               width: 150
                               height: 20
                           }
-                         }
-                   }
+                      }
+                  }
            }
 
             ScrollView {
                 width: 180
-                height: 50
+                height:200
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-                ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+                background: Rectangle { color: "#c9f1fd" }
+
                 ListView{
                     anchors.fill: parent
                     model: GuestList {} //TO-DO
                     delegate: guestDelegate
-                    highlight: Rectangle { color: "lightsteelblue" }
-                    focus: true
                 }
             }
 
@@ -106,7 +108,7 @@ ApplicationWindow {
                     text: qsTr("Delete")
                     background: Rectangle {
                         radius: 10
-                        color: createAccountButton.down?'#b2a7f9':'red'
+                        color: btnDelete.down?'#b2a7f9':'red'
                     }
                                  /*
                                  onClicked: {

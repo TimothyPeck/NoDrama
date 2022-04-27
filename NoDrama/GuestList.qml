@@ -74,62 +74,7 @@ ListModel {
         name: "Luca"
     }
     ListElement {
-        name: "Luca"
+        name: "Bertran"
     }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-
 
 }
