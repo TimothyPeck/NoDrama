@@ -11,6 +11,21 @@ ApplicationWindow {
     title: qsTr("Hello World")
     color: "#232323"
 
+    /* Si tu veux voir comment c'est senser marcher
+    ScrollView {
+        width: 180
+        height:200
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        background: Rectangle { color: "#c9f1fd" }
+
+        ListView{
+            anchors.fill: parent
+            model: GuestList {} //TO-DO
+            delegate: guestDelegate
+        }
+    }
+    */
+
     RowLayout{ //une seul ligne
         id: rowLayout
         anchors.fill: parent
@@ -82,7 +97,7 @@ ApplicationWindow {
                   }
            }
 
-            ScrollView {
+            ScrollView {  // bonne place, mais pas les bons comportements dans un layout
                 width: 180
                 height:200
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
