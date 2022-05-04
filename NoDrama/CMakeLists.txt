@@ -1,4 +1,3 @@
-```cmake
 cmake_minimum_required(VERSION 3.16)
 
 project(NoDrama VERSION 0.1 LANGUAGES CXX)
@@ -70,4 +69,3 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_import_qml_plugins(NoDrama)
     qt_finalize_executable(NoDrama)
 endif()
-```
