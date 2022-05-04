@@ -26,6 +26,22 @@ ApplicationWindow {
                 source: ":/images/images/NoDramaTranparent.PNG"
             }
 
+            RowLayout{
+                Text {
+                    id: userActiveText
+                    text: qsTr("Current user: ")
+                    font.pointSize: 25
+                    color: 'white'
+                }
+
+                Text {
+                    id: userActive
+                    text: qsTr(" blablabla")
+                    font.pointSize: 20
+                    color: 'white'
+                }
+            }
+
             Text {
                 id: infoHeader
                 text: qsTr("NoDrama Team")
