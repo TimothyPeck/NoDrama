@@ -18,13 +18,17 @@ Database* Database::getInstance(){
 }
 
  QSqlDatabase Database::getDatabase(){
-    return this->db;
+    return db;
 }
 
 bool Database::openDatabase(){
-    return this->db.isOpen() ? true : this->db.open();
+    return db.isOpen() ? true : db.open();
 }
 
 bool Database::isOpen(){
-    return this->db.isOpen();
+    return db.isOpen();
+}
+
+Database::~Database(){
+    free(instance);
 }

@@ -37,6 +37,14 @@ public:
         return username <= other.username;
     }
 
+    bool operator==(const User& other) const{
+        return username==other.username;
+    }
+
+    bool operator=(const User& other) const{
+        return username==other.username;
+    }
+
 private:
     int id;
     std::string username;

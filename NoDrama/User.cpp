@@ -1,9 +1,13 @@
 #include "User.h"
 
 void User::getDatabase(){
-    this->db = db->getInstance();
+    if(this->db==nullptr){
+        this->db = db->getInstance();
 
-    this->query = QSqlQuery(db->getDatabase());
+        this->query = QSqlQuery(db->getDatabase());
+
+        this->db->openDatabase();
+    }
 }
 
 User::User(){
@@ -254,7 +258,7 @@ int User::testLoginEmail(std::string email, std::string password)
 QMap<User, int> User::getFriends()
 {
     // return all friends of user
-    return this->friends;
+    return friends;
 }
 
 /**
@@ -306,5 +310,5 @@ std::string User::getEmail()
 
 User::~User()
 {
-    free(db);
+    //free(db);
 }

@@ -1,7 +1,7 @@
-import QtQuick 2.0
-import QtQuick.Window 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
+import QtQuick
+import QtQuick.Window
+import QtQuick.Controls
+import QtQuick.Layouts
 
 ApplicationWindow {
     width: 640
@@ -14,6 +14,7 @@ ApplicationWindow {
         id: rowLayout
         anchors.fill: parent
         Layout.alignment: Qt.AlignCenter
+
         ColumnLayout {
 
             Layout.alignment: Qt.AlignCenter

@@ -6,6 +6,7 @@ class infoPage
 {
 public:
     infoPage();
+    ~infoPage();
 };
 
 #endif // INFOPAGE_H
