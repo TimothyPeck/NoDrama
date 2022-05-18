@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.5)
 
 project(NoDrama VERSION 0.1 LANGUAGES CXX)
 
@@ -65,7 +65,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 #    set_property(TARGET NoDrama APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-else()
+#else()
     if(ANDROID)
         add_library(NoDrama SHARED
             ${PROJECT_SOURCES}
@@ -77,13 +77,13 @@ else()
           ${PROJECT_SOURCES}
         )
     endif()
-endif()
+#sendif()
 
 set_target_properties(appNoDrama PROPERTIES
 target_compile_definitions(NoDrama
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(NoDrama
-  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt${QT_VERSION_MAJOR}::Sql)
+  PRIVATE Qt5::Core Qt5::Quick Qt5::Sql)
 
 set_target_properties(NoDrama PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
