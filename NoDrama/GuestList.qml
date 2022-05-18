@@ -11,70 +11,87 @@ ListModel {
         name: "Tim"
     }
     ListElement {
-        name: "Titus"
+        name: "Jeanne"
     }
     ListElement {
-        name: "Migi"
+        name: "Dorian"
     }
     ListElement {
-        name: "Ivan"
+        name: "Tim"
     }
     ListElement {
-        name: "Rui"
+        name: "Jeanne"
     }
     ListElement {
-        name: "Luca"
+        name: "Dorian"
     }
     ListElement {
-        name: "Luca"
+        name: "Tim"
     }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
+    //    ListElement {
+    //        name: "Titus"
+    //    }
+    //    ListElement {
+    //        name: "Migi"
+    //    }
+    //    ListElement {
+    //        name: "Ivan"
+    //    }
+    //    ListElement {
+    //        name: "Rui"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
+    //    ListElement {
+    //        name: "Luca"
+    //    }
     ListElement {
         name: "Bertran"
     }
-
 }

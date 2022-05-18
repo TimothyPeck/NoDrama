@@ -1,13 +1,17 @@
 <RCC>
     <qresource prefix="/images">
+        <file>images/NoDramaTranparent.PNG</file>
         <file alias="logo">images/NoDramaTranparent.PNG</file>
     </qresource>
+
     <qresource prefix="/">
         <file>infoPage.qml</file>
         <file>createAccount.qml</file>
         <file>GuestList.qml</file>
         <file>FrigoModel.qml</file>
-        <file>viewParty.qml</file>
         <file>main.qml</file>
+        <file>createParty.qml</file>
+        <file>addGuest.qml</file>
+        <file>UsersList.qml</file>
     </qresource>
 </RCC>

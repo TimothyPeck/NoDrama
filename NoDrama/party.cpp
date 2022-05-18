@@ -34,7 +34,7 @@ Party::Party(const Party& party){
 }
 
 Party::~Party(){
-    free(db);
+    //free(db);
 }
 
 /*
