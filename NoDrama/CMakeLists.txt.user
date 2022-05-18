@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<!-- Written by QtCreator 7.0.0, 2022-04-04T10:02:25. -->
 <!-- Written by QtCreator 7.0.1, 2022-05-16T12:32:01. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
+  <value type="QByteArray">{7643b5ed-6d51-47c3-ad45-d4948ed6cd3a}</value>
   <value type="QByteArray">{f0884b58-6ed9-4a99-a8f8-a97eef1b3122}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
+  <value type="qlonglong">0</value>
   <value type="qlonglong">1</value>
  </data>
  <data>
@@ -93,9 +96,13 @@
    <value type="QString" key="DeviceType">Android.Device.Type</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Android Qt 6.2.4 Clang arm64-v8a</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Android Qt 6.2.4 Clang arm64-v8a</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{a293a2cd-99f0-4f74-9d08-3ae3faf12d81}</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Android Qt 6.2.4 Clang arm64-v8a</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Android Qt 6.2.4 Clang arm64-v8a</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{d2c2883c-44b3-4cd4-84d1-f57c60d28e10}</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">-1</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="QString" key="CMake.Build.Type">Debug</value>
@@ -107,6 +114,9 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=arm64-v8a
 -DANDROID_NDK:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670
 -DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
 -DANDROID_ABI:STRING=arm64-v8a
@@ -114,6 +124,8 @@
 -DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
 -DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_arm64_v8a-Debug</value>
 -DANDROID_SDK_ROOT:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\HES\p2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_arm64_v8a-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
@@ -168,6 +180,9 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=arm64-v8a
 -DANDROID_NDK:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670
 -DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
 -DANDROID_ABI:STRING=arm64-v8a
@@ -175,6 +190,8 @@
 -DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
 -DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_arm64_v8a-Release</value>
 -DANDROID_SDK_ROOT:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\HES\p2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_arm64_v8a-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
@@ -229,6 +246,9 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=arm64-v8a
 -DANDROID_NDK:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670
 -DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
 -DANDROID_ABI:STRING=arm64-v8a
@@ -236,6 +256,8 @@
 -DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
 -DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_arm64_v8a-RelWithDebInfo</value>
 -DANDROID_SDK_ROOT:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\HES\p2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_arm64_v8a-RelWithDebInfo</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
@@ -290,6 +312,9 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=arm64-v8a
 -DANDROID_NDK:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670
 -DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
 -DANDROID_ABI:STRING=arm64-v8a
@@ -297,6 +322,8 @@
 -DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
 -DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_arm64_v8a-MinSizeRel</value>
 -DANDROID_SDK_ROOT:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\HES\p2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_arm64_v8a-MinSizeRel</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
@@ -359,13 +386,1274 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.AndroidDeployConfiguration2</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.DeployConfigurationCount">1</value>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.0">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="QString">0</value>
+     <value type="QString">1</value>
+     <value type="QString">2</value>
+     <value type="QString">3</value>
+     <value type="QString">4</value>
+     <value type="QString">5</value>
+     <value type="QString">6</value>
+     <value type="QString">7</value>
+     <value type="QString">8</value>
+     <value type="QString">9</value>
+     <value type="QString">10</value>
+     <value type="QString">11</value>
+     <value type="QString">12</value>
+     <value type="QString">13</value>
+     <value type="QString">14</value>
+    </valuelist>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">0</value>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </valuemap>
  </data>
  <data>
   <variable>ProjectExplorer.Project.Target.1</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Android.Device.Type</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Android Qt 6.2.4 Clang armeabi-v7a</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Android Qt 6.2.4 Clang armeabi-v7a</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{b8074908-d67e-4f01-b24e-28892909d24d}</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
+    <value type="QString" key="CMake.Build.Type">Debug</value>
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
+-DCMAKE_BUILD_TYPE:STRING=Debug
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
+-DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
+-DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
+-DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
+-DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=armeabi-v7a
+-DANDROID_STL:STRING=c++_shared
+-DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
+-DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_armeabi_v7a-Debug</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">all</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+      <value type="QString" key="BuildTargetSdk">android-32</value>
+      <value type="QString" key="KeystoreLocation"></value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build Android APK</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.AndroidBuildApkStep</value>
+      <value type="bool" key="VerboseOutput">false</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">clean</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.CustomParsers"/>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ParseStandardOutput">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Debug</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
+    <value type="QString" key="CMake.Build.Type">Release</value>
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
+-DCMAKE_BUILD_TYPE:STRING=Release
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
+-DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
+-DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
+-DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
+-DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=armeabi-v7a
+-DANDROID_STL:STRING=c++_shared
+-DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
+-DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_armeabi_v7a-Release</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">all</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+      <value type="QString" key="BuildTargetSdk">android-32</value>
+      <value type="QString" key="KeystoreLocation"></value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build Android APK</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.AndroidBuildApkStep</value>
+      <value type="bool" key="VerboseOutput">false</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">clean</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.CustomParsers"/>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ParseStandardOutput">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Release</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
+    <value type="QString" key="CMake.Build.Type">RelWithDebInfo</value>
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
+-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
+-DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
+-DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
+-DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
+-DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=armeabi-v7a
+-DANDROID_STL:STRING=c++_shared
+-DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
+-DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_armeabi_v7a-RelWithDebInfo</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">all</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+      <value type="QString" key="BuildTargetSdk">android-32</value>
+      <value type="QString" key="KeystoreLocation"></value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build Android APK</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.AndroidBuildApkStep</value>
+      <value type="bool" key="VerboseOutput">false</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">clean</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.CustomParsers"/>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ParseStandardOutput">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Release with Debug Information</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.3">
+    <value type="QString" key="CMake.Build.Type">MinSizeRel</value>
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
+-DCMAKE_BUILD_TYPE:STRING=MinSizeRel
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
+-DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
+-DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
+-DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
+-DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=armeabi-v7a
+-DANDROID_STL:STRING=c++_shared
+-DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
+-DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_armeabi_v7a-MinSizeRel</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">all</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+      <value type="QString" key="BuildTargetSdk">android-32</value>
+      <value type="QString" key="KeystoreLocation"></value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build Android APK</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.AndroidBuildApkStep</value>
+      <value type="bool" key="VerboseOutput">false</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">clean</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.CustomParsers"/>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ParseStandardOutput">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Minimum Size Release</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
+   </valuemap>
+   <value type="qlonglong" key="ProjectExplorer.Target.BuildConfigurationCount">4</value>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.DeployConfiguration.0">
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.AndroidDeployQtStep</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Deploy</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Deploy</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Deploy</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">1</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.DeployConfiguration.CustomData"/>
+    <value type="bool" key="ProjectExplorer.DeployConfiguration.CustomDataEnabled">false</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.AndroidDeployConfiguration2</value>
+   </valuemap>
+   <value type="qlonglong" key="ProjectExplorer.Target.DeployConfigurationCount">1</value>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.0">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="QString">0</value>
+     <value type="QString">1</value>
+     <value type="QString">2</value>
+     <value type="QString">3</value>
+     <value type="QString">4</value>
+     <value type="QString">5</value>
+     <value type="QString">6</value>
+     <value type="QString">7</value>
+     <value type="QString">8</value>
+     <value type="QString">9</value>
+     <value type="QString">10</value>
+     <value type="QString">11</value>
+     <value type="QString">12</value>
+     <value type="QString">13</value>
+     <value type="QString">14</value>
+    </valuelist>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.Target.2</variable>
+  <valuemap type="QVariantMap">
+   <value type="QString" key="DeviceType">Android.Device.Type</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Android Qt 6.2.4 Clang x86</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Android Qt 6.2.4 Clang x86</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{f9ac1e5b-61f0-4a25-be2f-0b79002bf43f}</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
+    <value type="QString" key="CMake.Build.Type">Debug</value>
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
+-DCMAKE_BUILD_TYPE:STRING=Debug
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
+-DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
+-DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
+-DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
+-DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=x86
+-DANDROID_STL:STRING=c++_shared
+-DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
+-DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86-Debug</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">all</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+      <value type="QString" key="BuildTargetSdk">android-32</value>
+      <value type="QString" key="KeystoreLocation"></value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build Android APK</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.AndroidBuildApkStep</value>
+      <value type="bool" key="VerboseOutput">false</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">clean</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.CustomParsers"/>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ParseStandardOutput">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Debug</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
+    <value type="QString" key="CMake.Build.Type">Release</value>
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
+-DCMAKE_BUILD_TYPE:STRING=Release
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
+-DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
+-DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
+-DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
+-DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=x86
+-DANDROID_STL:STRING=c++_shared
+-DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
+-DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86-Release</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">all</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+      <value type="QString" key="BuildTargetSdk">android-32</value>
+      <value type="QString" key="KeystoreLocation"></value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build Android APK</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.AndroidBuildApkStep</value>
+      <value type="bool" key="VerboseOutput">false</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">clean</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.CustomParsers"/>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ParseStandardOutput">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Release</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
+    <value type="QString" key="CMake.Build.Type">RelWithDebInfo</value>
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
+-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
+-DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
+-DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
+-DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
+-DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=x86
+-DANDROID_STL:STRING=c++_shared
+-DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
+-DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86-RelWithDebInfo</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">all</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+      <value type="QString" key="BuildTargetSdk">android-32</value>
+      <value type="QString" key="KeystoreLocation"></value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build Android APK</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.AndroidBuildApkStep</value>
+      <value type="bool" key="VerboseOutput">false</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">clean</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.CustomParsers"/>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ParseStandardOutput">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Release with Debug Information</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.3">
+    <value type="QString" key="CMake.Build.Type">MinSizeRel</value>
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Ninja
+-DCMAKE_BUILD_TYPE:STRING=MinSizeRel
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
+-DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
+-DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
+-DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
+-DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=x86
+-DANDROID_STL:STRING=c++_shared
+-DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
+-DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
+-DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86-MinSizeRel</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">all</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
+      <value type="QString" key="BuildTargetSdk">android-32</value>
+      <value type="QString" key="KeystoreLocation"></value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build Android APK</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.AndroidBuildApkStep</value>
+      <value type="bool" key="VerboseOutput">false</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">2</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
+       <value type="QString">clean</value>
+      </valuelist>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.MakeStep</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.CustomParsers"/>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ParseStandardOutput">false</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Minimum Size Release</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
+   </valuemap>
+   <value type="qlonglong" key="ProjectExplorer.Target.BuildConfigurationCount">4</value>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.DeployConfiguration.0">
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.AndroidDeployQtStep</value>
+     </valuemap>
+     <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Deploy</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Deploy</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Deploy</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">1</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.DeployConfiguration.CustomData"/>
+    <value type="bool" key="ProjectExplorer.DeployConfiguration.CustomDataEnabled">false</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.AndroidDeployConfiguration2</value>
+   </valuemap>
+   <value type="qlonglong" key="ProjectExplorer.Target.DeployConfigurationCount">1</value>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.0">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="QString">0</value>
+     <value type="QString">1</value>
+     <value type="QString">2</value>
+     <value type="QString">3</value>
+     <value type="QString">4</value>
+     <value type="QString">5</value>
+     <value type="QString">6</value>
+     <value type="QString">7</value>
+     <value type="QString">8</value>
+     <value type="QString">9</value>
+     <value type="QString">10</value>
+     <value type="QString">11</value>
+     <value type="QString">12</value>
+     <value type="QString">13</value>
+     <value type="QString">14</value>
+    </valuelist>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.Target.3</variable>
+  <valuemap type="QVariantMap">
+   <value type="QString" key="DeviceType">Android.Device.Type</value>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Android Qt 6.2.4 Clang x86_64</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Android Qt 6.2.4 Clang x86_64</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{8920e158-53ff-446e-aa4d-a823fd98b07c}</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Android Qt 6.2.4 Clang x86_64</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Android Qt 6.2.4 Clang x86_64</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{2ab04059-b99a-4218-9109-c6ba19c3f8f5}</value>
@@ -382,6 +1670,9 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=x86_64
 -DANDROID_NDK:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670
 -DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
 -DANDROID_ABI:STRING=x86_64
@@ -389,6 +1680,8 @@
 -DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
 -DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86_64-Debug</value>
 -DANDROID_SDK_ROOT:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\HES\p2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86_64-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
@@ -445,6 +1738,9 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=x86_64
 -DANDROID_NDK:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670
 -DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
 -DANDROID_ABI:STRING=x86_64
@@ -452,6 +1748,8 @@
 -DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
 -DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86_64-Release</value>
 -DANDROID_SDK_ROOT:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\HES\p2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86_64-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
@@ -506,6 +1804,9 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=x86_64
 -DANDROID_NDK:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670
 -DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
 -DANDROID_ABI:STRING=x86_64
@@ -513,6 +1814,8 @@
 -DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
 -DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86_64-RelWithDebInfo</value>
 -DANDROID_SDK_ROOT:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\HES\p2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86_64-RelWithDebInfo</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
@@ -567,6 +1870,9 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DANDROID_NATIVE_API_LEVEL:STRING=23
+-DANDROID_NDK:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
+-DANDROID_ABI:STRING=x86_64
 -DANDROID_NDK:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670
 -DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk/ndk/22.1.7171670/build/cmake/android.toolchain.cmake
 -DANDROID_ABI:STRING=x86_64
@@ -574,6 +1880,8 @@
 -DCMAKE_FIND_ROOT_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DQT_NO_GLOBAL_APK_TARGET_PART_OF_ALL:BOOL=ON
 -DQT_HOST_PATH:PATH=%{Qt:QT_HOST_PREFIX}
+-DANDROID_SDK_ROOT:PATH=C:/Users/timothy.peck/AppData/Local/Android/Sdk</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\DEV\deuxieme_2\P2_2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86_64-MinSizeRel</value>
 -DANDROID_SDK_ROOT:PATH=C:/Users/jeanne.michel1/AppData/Local/Android/Sdk</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\HES\p2\g4\build-NoDrama-Android_Qt_6_2_4_Clang_x86_64-MinSizeRel</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
@@ -671,8 +1979,11 @@
      <value type="QString"></value>
     </valuelist>
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <value type="int" key="PE.EnvironmentAspect.Base">0</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">NoDrama</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.AndroidRunConfiguration:NoDrama</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">NoDrama</value>
@@ -686,6 +1997,7 @@
  </data>
  <data>
   <variable>ProjectExplorer.Project.TargetCount</variable>
+  <value type="qlonglong">4</value>
   <value type="qlonglong">2</value>
  </data>
  <data>

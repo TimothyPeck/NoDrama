@@ -3,6 +3,7 @@
         <file>images/NoDramaTranparent.PNG</file>
         <file alias="logo">images/NoDramaTranparent.PNG</file>
     </qresource>
+
     <qresource prefix="/">
         <file>infoPage.qml</file>
         <file>createAccount.qml</file>
