@@ -7,6 +7,7 @@ class createAccount
 {
 public:
     createAccount();
+    ~createAccount();
 };
 
 #endif // CREATEACCOUNT_H

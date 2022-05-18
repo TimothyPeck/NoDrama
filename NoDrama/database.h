@@ -2,6 +2,7 @@
 #define DATABASE_H
 
 #include <QSqlDatabase>
+#include <stdexcept>
 
 class Database
 {
@@ -23,6 +24,7 @@ public:
     QSqlDatabase getDatabase();
     bool openDatabase();
     bool isOpen();
+    ~Database();
 };
 
 #endif // DATABASE_H

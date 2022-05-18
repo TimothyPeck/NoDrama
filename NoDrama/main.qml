@@ -1,9 +1,7 @@
 import QtQuick
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
-import QtQuick.Layouts 1.13
+import QtQuick.Window
+import QtQuick.Controls
+import QtQuick.Layouts
 
 ApplicationWindow {
     id: loginWindow
@@ -17,8 +15,8 @@ ApplicationWindow {
         id: rowLayout
         anchors.fill: parent
         Layout.alignment: Qt.AlignCenter
-        ColumnLayout {
 
+        ColumnLayout {
             Layout.alignment: Qt.AlignCenter
             id: inputs
             spacing: 6
@@ -33,7 +31,7 @@ ApplicationWindow {
 
                 color: 'white'
                 Image {
-                    id: logo
+                    id: logo_
                     Layout.preferredWidth: 300
                     fillMode: Image.PreserveAspectFit
                     source: ":/images/logo"
@@ -91,7 +89,7 @@ ApplicationWindow {
                 }
             }
             Button {
-                 id: createAccountButton
+                 id: createAccountButton_
                  Layout.minimumWidth: 150
                  Layout.preferredWidth: 150
                  Layout.minimumHeight: 45
@@ -133,4 +131,5 @@ ApplicationWindow {
             }
         }
     }
+}
 }

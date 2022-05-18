@@ -4,3 +4,7 @@ infoPage::infoPage()
 {
 
 }
+
+infoPage::~infoPage(){
+
+}
