@@ -3,7 +3,6 @@
         <file>images/NoDramaTranparent.PNG</file>
         <file alias="logo">images/NoDramaTranparent.PNG</file>
     </qresource>
-
     <qresource prefix="/">
         <file>infoPage.qml</file>
         <file>createAccount.qml</file>
@@ -13,5 +12,9 @@
         <file>createParty.qml</file>
         <file>addGuest.qml</file>
         <file>UsersList.qml</file>
+        <file>friendsPage.qml</file>
+        <file>viewParties.qml</file>
+        <file>viewParty.qml</file>
+        <file>PartiesList.qml</file>
     </qresource>
 </RCC>

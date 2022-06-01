@@ -7,14 +7,12 @@ ApplicationWindow {
     width: 360
     height: 640
     visible: true
-    title: qsTr("Add guests")
+    title: qsTr("Friends")
     color: "#232323"
 
     ColumnLayout {
         id: mainLayout
         anchors.fill: parent
-        //Layout.alignment: Qt.AlignHCenter
-        //spacing: 5
 
         // Search bar
         Rectangle {
@@ -30,7 +28,7 @@ ApplicationWindow {
 
             TextField {
                 id: lineEdit
-                placeholderText: qsTr("Search...")
+                placeholderText: qsTr("Search user or friend...")
                 background: Item {}
                 font.pixelSize: 14
                 font.bold: false
@@ -75,16 +73,25 @@ ApplicationWindow {
 
                         Button {
                             background: Rectangle{
-                                width:40 ;
-                                height:40;
+                                width: 40;
+                                height: 40;
                                 color: "lightblue" ;
                                 border.color: "lightsteelblue";
-                                border.width:0.5
+                                border.width: 0.5
                             }
-                            text: "+"
-                            height: 40
-                            width: 40
+
+                            ComboBox {
+                                id: affinity
+                                width: 40
+                                height: 40
+                                model: 11
+                                //Layout.alignment: Qt.AlignCenter
+                                delegate: ItemDelegate {
+                                    text: index
+                                }
+                            }
                         }
+
                     }
 
                 }

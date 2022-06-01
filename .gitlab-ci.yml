@@ -1,25 +1,25 @@
-# This file is a template, and might need editing before it works on your project.
-# To contribute improvements to CI/CD templates, please follow the Development guide at:
-# https://docs.gitlab.com/ee/development/cicd/templates.html
-# This specific template is located at:
-# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
-
-# This is a sample GitLab CI/CD configuration file that should run without any modifications.
-# It demonstrates a basic 3 stage CI/CD pipeline. Instead of real tests or scripts,
-# it uses echo commands to simulate the pipeline execution.
-#
-# A pipeline is composed of independent jobs that run scripts, grouped into stages.
-# Stages run in sequential order, but jobs within stages run in parallel.
-#
-# For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
+variables:
+  DOCKER_DRIVER: overlay2
 
 before_script:
   - apt-get update --yes
+  - apt clean all
+  - apt-get install -y python3-pip
+  - pip install cmake --upgrade
   - apt-get install --yes ninja-build
-  - apt-get install --yes cmake
   - apt-get install --yes build-essential libgl1-mesa-dev
   - apt-get install doxygen --assume-yes
-  - apt-get update -yq && apt-get install -y qt5-qmake qttools5-dev qtchooser g++ qtdeclarative5-dev qtquickcontrols2-5-dev
+  #- apt-get update -yq && apt-get install -y qt5-qmake qttools5-dev qtchooser g++ qtdeclarative5-dev qtquickcontrols2-5-dev # possibly not needed anymore
+  - apt-get install g++
+  - wget https://download.qt.io/official_releases/qt/6.2/6.2.0/single/qt-everywhere-src-6.2.0.tar.xz
+  - tar xf qt-everywhere-src-6.2.0.tar.xz
+  - cd qt-everywhere-src-6.2.0
+  - ./configure -prefix /usr/local/Qt6 # Put the wanted features here, might speed the whole process up
+  - cmake --build .
+  - cmake --install .
+  - cd ..
+  - PATH=/usr/local/Qt6/bin:$PATH
+  - export PATH
 
 image: gcc
 
@@ -30,8 +30,12 @@ build-job:       # This job runs in the build stage, which runs first.
   stage: build
   tags:
     - alpine-docker
+  artifacts:
+    paths:
+      - ./CMakeFiles
+    expire_in: 1 week
   script:
     - mkdir BUILD
     - cd BUILD
-    - cmake -G "Ninja" ../NoDrama
+    - cmake -G "Ninja" ../NoDrama -D CMAKE_PREFIX_PATH="/usr/local/Qt6/lib/cmake/Qt6/"
     - ninja
