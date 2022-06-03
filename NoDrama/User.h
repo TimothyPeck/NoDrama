@@ -1,14 +1,6 @@
 #ifndef QTUSERTEST_H
 #define QTUSERTEST_H
 
-//#include "QtUserTest_global.h"
-
-// Production includes
-#include <string>
-#include <vector>
-#include <map>
-
-//#include <QtCore/qglobal.h>
 #include <QObject>
 #include <QSqlQuery>
 #include <QSqlDatabase>
@@ -16,10 +8,14 @@
 #include <QRegularExpression>
 #include <QMap>
 #include "database.h"
+#include "qqmlregistration.h"
 
-class User
+class User : public QObject
 {
+    Q_OBJECT
+    QML_ELEMENT
 public:
+
     struct cmpByUsernameLength
     {
         bool operator()(const User& lhs, const User& rhs) const
@@ -41,50 +37,54 @@ public:
         return username==other.username;
     }
 
+    bool operator!=(const User& other) const{
+        return username!=other.username;
+    }
+
     bool operator=(const User& other) const{
         return username==other.username;
     }
 
 private:
     int id;
-    std::string username;
-    std::string password;
-    std::string email;
+    QString username;
+    QString password;
+    QString email;
 
     Database* db;
     QSqlQuery query;
 
-    QMap<User, int> friends;
+    QMap<User, int> *friends;
 
     QRegularExpression re;
 
-    bool userExists(std::string);
+    bool userExists(QString);
 
     void getDatabase();
 
 public:
     User();
-    User(std::string username, std::string password, std::string email);
-    User(int, std::string, std::string, std::string);
+    User(QString username, QString password, QString email);
+    User(int, QString, QString, QString);
     User(const User&);
     ~User();
 
     int getId();
-    std::string getUsername();
-    std::string getEmail();
+    QString getUsername();
+    QString getEmail();
 
 
     void setAffinity(User, int);
-    static User createUser(std::string, std::string, std::string);
+    static User createUser(QString, QString, QString);
     void addFriend(User, int);
     static User getUserById(int);
-    static User getUserByUsername(std::string);
-    static User getUserByEmail(std::string);
+    static User getUserByUsername(QString);
+    static User getUserByEmail(QString);
 
-    static int testLoginUsername(std::string username, std::string password);
-    static int testLoginEmail(std::string email, std::string password);
+    Q_INVOKABLE static int testLoginUsername(QString username, QString password);
+    static int testLoginEmail(QString email, QString password);
 
-    QMap<User, int> getFriends();
+    QMap<User, int> *getFriends();
     QMap<User, int> getFriendsByAffinity(int);
 };
 

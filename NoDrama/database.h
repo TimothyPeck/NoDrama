@@ -11,11 +11,11 @@ private:
 
     Database();
 
-    QString dbDriver = "QPSQL";
+    QString dbDriver = "QMYSQL ";
     QString dbHostname="localhost";
     QString dbName = "NoDrama";
-    QString dbUsername="postgres";
-    QString dbPassword="pass";
+    QString dbUsername="root";
+    QString dbPassword="root";
     int dbPort=5432;
 
     QSqlDatabase db;

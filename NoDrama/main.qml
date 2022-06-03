@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
     id: loginWindow
@@ -13,6 +14,10 @@ ApplicationWindow {
     visible: true
     title: qsTr("Hello World")
     color: "#232323"
+
+    User {
+        id:user
+    }
 
     RowLayout{
         id: rowLayout
@@ -28,6 +33,7 @@ ApplicationWindow {
             Image {
                 id: logo
                 source: ":/images/images/NoDramaTranparent.PNG"
+            }
             Rectangle{
                 Layout.preferredHeight: 200
                 Layout.minimumWidth: 100
@@ -75,25 +81,8 @@ ApplicationWindow {
                 }
             }
 
-           Button {
-                id: createAccountButton
-                Layout.minimumWidth: 150
-                Layout.preferredWidth: 150
-                Layout.minimumHeight: 45
-                Layout.alignment: Qt.AlignHCenter
-                text: qsTr("Create Account")
-                background: Rectangle {
-                    radius: 10
-                    color: createAccountButton.down?'#b2a7f9':'#a8c6fa'
-                }
-                onClicked: {
-                    var component = Qt.createComponent("./createAccount.qml")
-                    var window = component.createObject(loginWindow)
-                    window.show()
-                }
-            }
             Button {
-                 id: createAccountButton_
+                 id: createAccountButton
                  Layout.minimumWidth: 150
                  Layout.preferredWidth: 150
                  Layout.minimumHeight: 45
@@ -128,12 +117,13 @@ ApplicationWindow {
                     color: loginButton.down?'#b2a7f9':'#a8c6fa'
                 }
                 onClicked: {
-                    var component = Qt.createComponent("./viewParty.qml")
-                    var window = component.createObject(loginWindow)
-                    window.show()
+                    console.log("Logged : " + user.testLoginUsername(username.text, password.text))
+                    //var component = Qt.createComponent("./viewParty.qml")
+                    //var window = component.createObject(loginWindow)
+                    //window.show()
                 }
             }
         }
     }
 }
-}
+

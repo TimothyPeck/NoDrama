@@ -8,7 +8,7 @@ ApplicationWindow {
     width: 360
     height: 640
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("My parties")
     color: "#232323"
 
     RowLayout
