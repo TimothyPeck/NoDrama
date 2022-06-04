@@ -8,6 +8,8 @@ void User::getDatabase(){
     if(this->db==nullptr){
         this->db = db->getInstance();
 
+
+
         this->query = QSqlQuery(db->getDatabase());
 
         this->db->openDatabase();
@@ -63,7 +65,7 @@ void User::setAffinity(User user, int affinity)
         this->friends->find(user).value() = affinity;
 
     db->getDatabase().transaction();
-    this->query.prepare("UPDATE nodrama.Affinities SET affinity = :affinity WHERE fk_user1 = :user_one_id AND fk_user2 = :user_two_id");
+    this->query.prepare("UPDATE nodrama.affinities SET affinity = :affinity WHERE fk_user1 = :user_one_id AND fk_user2 = :user_two_id");
     this->query.bindValue(":user_one_id", QVariant::fromValue(this->id));
     this->query.bindValue(":user_two_id", QVariant::fromValue(user.getId()));
     this->query.bindValue(":affinity", QVariant::fromValue(affinity));
@@ -78,7 +80,7 @@ void User::addFriend(User user, int affinity)
 
 
     db->getDatabase().transaction();
-    this->query.prepare("INSERT INTO nodrama.Affinities(fk_user1, fk_user2, affinity) VALUES(:user_one_id, :user_two_id, :affinity)");
+    this->query.prepare("INSERT INTO nodrama.affinities(fk_user1, fk_user2, affinity) VALUES(:user_one_id, :user_two_id, :affinity)");
     this->query.bindValue(":user_one_id", QVariant::fromValue(this->id));
     this->query.bindValue(":user_two_id", QVariant::fromValue(user.getId()));
     this->query.bindValue(":affinity", QVariant::fromValue(affinity));
@@ -95,12 +97,12 @@ void User::addFriend(User user, int affinity)
  */
 User User::createUser(QString username, QString password, QString email)
 {
-    QString expression=R"([a-zA-Z0-9!#$%&'*+-/?^_`{|}~]+@[a-zA-Z0-9!#$%&'*+-/?^_`{|}~]+(\.[a-zA-Z0-9!#$%&'*+-/?^_`{|}~]{2,})+)";
-    QRegularExpression re = QRegularExpression(expression, QRegularExpression::CaseInsensitiveOption);
+    //QString expression=R"([a-zA-Z0-9!#$%&'*+-/?^_`{|}~]+@[a-zA-Z0-9!#$%&'*+-/?^_`{|}~]+(\.[a-zA-Z0-9!#$%&'*+-/?^_`{|}~]{2,})+)";
+    //QRegularExpression re = QRegularExpression(expression, QRegularExpression::CaseInsensitiveOption);
 
     email = email.toLower();
 
-    Database* db = db->getInstance();
+    Database* db = Database::getInstance();
 
     if(!db->isOpen())
         db->openDatabase();
@@ -110,7 +112,7 @@ User User::createUser(QString username, QString password, QString email)
     if(username != "" && password != "" && email != ""){
         db->getDatabase().transaction();
 
-        query.prepare("INSERT INTO nodrama.Users(username, email, password) VALUES (:username, :email, :password)");
+        query.prepare("INSERT INTO nodrama.users(username, email, password) VALUES (:username, :email, :password)");
         query.bindValue(":username", username);
         query.bindValue(":email", email);
         query.bindValue(":password", password);
@@ -118,20 +120,21 @@ User User::createUser(QString username, QString password, QString email)
 
         int id = query.lastInsertId().toInt();
 
-        std::cout<<query.lastError().text().toStdString()<<std::endl;
-
-        db->getDatabase().commit();
-        query.finish();
-        return User(id, username, password,email);
+        if(query.lastError().type()==0){
+            db->getDatabase().commit();
+            query.finish();
+            return User(id, username, password,email);
+        }
     }
 
     query.finish();
     db->getDatabase().rollback();
-    return User(username, password, email);
+    return User(-1, username, password, email);
 }
 
 bool User::userExists(QString username){
-    this->query.prepare("SELECT * FROM Users WHERE username = :username");
+    getDatabase();
+    this->query.prepare("SELECT * FROM users WHERE username = :username");
     query.bindValue(":username", QVariant::fromValue((username)));
     query.exec();
 
@@ -155,16 +158,19 @@ User User::getUserById(int id)
 
     QSqlQuery query = QSqlQuery(db->getDatabase());
 
+    if(!db->isOpen())
+        db->openDatabase();
+
     if(std::isdigit(id)){
         // find user in database by id
-        query.prepare("SELECT * FROM nodrama.Users WHERE id_user = :id");
+        query.prepare("SELECT * FROM nodrama.users WHERE id_user = :id");
         query.bindValue(":id", QVariant::fromValue(id));
         query.exec();
 
         if(query.size() == 1)
             ret = User(query.value(0).toInt(), query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
 
-        query.prepare("SELECT * FROM nodrama.Affinities WHERE fk_user1 = :user_one_id");
+        query.prepare("SELECT * FROM nodrama.affinities WHERE fk_user1 = :user_one_id");
         query.bindValue(":user_one_id", id);
         query.exec();
 
@@ -190,16 +196,19 @@ User User::getUserByUsername(QString username)
 
     QSqlQuery query = QSqlQuery(db->getDatabase());
 
+    if(!db->isOpen())
+        db->openDatabase();
+
     if(username!=""){
         // find user in database by username
-        query.prepare("SELECT * FROM nodrama.Users WHERE username = :username");
+        query.prepare("SELECT * FROM nodrama.users WHERE username = :username");
         query.bindValue(":username", QVariant::fromValue((username)));
         query.exec();
 
         if(query.size() == 1)
             ret = User(query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
 
-        query.prepare("SELECT * FROM nodrama.Affinities WHERE fk_user1 = :user_one_id");
+        query.prepare("SELECT * FROM nodrama.affinities WHERE fk_user1 = :user_one_id");
         query.bindValue(":user_one_id", ret.getId());
         query.exec();
 
@@ -224,16 +233,19 @@ User User::getUserByEmail(QString email)
 
     QSqlQuery query = QSqlQuery(db->getDatabase());
 
+    if(!db->isOpen())
+        db->openDatabase();
+
     if(email!=""){
         // find user in database by email
-        query.prepare("SELECT * FROM nodrama.Users WHERE email = :email");
+        query.prepare("SELECT * FROM nodrama.users WHERE email = :email");
         query.bindValue(":email", email);
         query.exec();
 
         if(query.size() == 1)
             ret = User(query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
 
-        query.prepare("SELECT * FROM nodrama.Affinities WHERE fk_user1 = :user_one_id");
+        query.prepare("SELECT * FROM nodrama.affinities WHERE fk_user1 = :user_one_id");
         query.bindValue(":user_one_id", ret.getId());
         query.exec();
 
@@ -248,17 +260,23 @@ int User::testLoginUsername(QString username, QString password)
 {
     Database* db = db->getInstance();
 
-    QString name=(username);
-    QString pass=(password);
 
-    std::cout<<"Is Open: " << db->openDatabase()<<std::endl;
 
     QSqlQuery query = QSqlQuery(db->getDatabase());
 
-    query.prepare("SELECT * FROM nodrama.Users WHERE username = :username AND password = :password");
+    if(!db->isOpen())
+        db->openDatabase();
 
-    query.bindValue(":username", name);
-    query.bindValue(":password", pass);
+    //qDebug() << QSqlDatabase::drivers();
+
+    //qDebug() << db->getDatabase().lastError();
+
+    //qDebug() << "Open? "<<db->isOpen();
+
+    query.prepare("SELECT * FROM nodrama.users WHERE username = :username AND password = :password");
+
+    query.bindValue(":username", username);
+    query.bindValue(":password", password);
 
     query.exec();
 
@@ -274,16 +292,23 @@ int User::testLoginEmail(QString email, QString password)
 {
     Database* db = db->getInstance();
 
+    QString name=(email);
+    QString pass=(password);
+
     QSqlQuery query = QSqlQuery(db->getDatabase());
 
-    query.prepare("SELECT * FROM nodrama.Users WHERE email = :email AND password = :password");
+    if(!db->isOpen())
+        db->openDatabase();
 
-    query.bindValue(":email", QVariant::fromValue(email));
-    query.bindValue(":password", QVariant::fromValue(password));
+    query.prepare("SELECT * FROM nodrama.users WHERE email = :email AND password = :password");
+
+    query.bindValue(":email", name);
+    query.bindValue(":password", pass);
 
     query.exec();
 
     if(query.size()==1){
+        query.first();
         return query.value(0).toInt();
     }
 
@@ -299,19 +324,8 @@ QMap<User, int> *User::getFriends()
 /**
  * @brief User::getFriendsByAffinity Returns all the friends of the current user where the affinity is greater or equal to the minimum affinity provided.
  * @param minAffinity The minimum affinity for the users to be returned
- * @return A std::map of the <user, affinity> pairs.
+ * @return A QMap of the <user, affinity> pairs.
  */
-/*std::map<User, int, const User::cmpByUsernameLength> User::getFriendsByAffinity(int minAffinity) {
-    std::map<User, int, const User::cmpByUsernameLength> friendsWithAffinity;
-
-    for (auto it = friends.begin(); it !=friends.end(); ++it)
-    {
-        if (it->second >= minAffinity)
-            friendsWithAffinity.insert(std::pair<User, int>(it->first, it->second));
-    }
-
-    return friendsWithAffinity;
-}*/
 
 QMap<User, int> User::getFriendsByAffinity(int minAffinity) {
     QMap<User, int> friendsWithAffinity;

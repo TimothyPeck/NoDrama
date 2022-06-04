@@ -1,10 +1,10 @@
 import QtQuick
-import QtQuick.Window 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
+import QtQuick.Window
+import QtQuick.Controls
+import QtQuick.Layouts
 
 ApplicationWindow {
-    id: loginWindow
+    id: viewParties
     width: 360
     height: 640
     visible: true
@@ -27,6 +27,12 @@ ApplicationWindow {
                 radius: 10
                 color: friends.down?'#b2a7f9':'#a8c6fa'
             }
+
+            onClicked: {
+                var component = Qt.createComponent("./friendsPage.qml")
+                var window = component.createObject(viewParties)
+                window.show()
+            }
         }
 
         Button {
@@ -38,7 +44,13 @@ ApplicationWindow {
             text: qsTr("Create party")
             background: Rectangle {
                 radius: 10
-                color: friends.down?'#b2a7f9':'#a8c6fa'
+                color: createParty.down?'#b2a7f9':'#a8c6fa'
+            }
+
+            onClicked: {
+                var component=Qt.createComponent("./createParty.qml")
+                var window = component.createObject(viewParties)
+                window.show()
             }
         }
     }

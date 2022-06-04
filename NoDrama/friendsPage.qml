@@ -4,11 +4,18 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 ApplicationWindow {
+    id: friendsPage
     width: 360
     height: 640
     visible: true
     title: qsTr("Friends")
     color: "#232323"
+
+    onClosing: {
+        var component = Qt.createComponent("./viewParties.qml")
+        var window = component.createObject(friendsPage)
+        window.show()
+    }
 
     ColumnLayout {
         id: mainLayout

@@ -9,10 +9,10 @@ import com.myself 1.0
 
 ApplicationWindow {
     id: loginWindow
-    //width: 640
-    //height: 480
+    width: 640
+    height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("NoDrama Login")
     color: "#232323"
 
     User {
@@ -32,9 +32,9 @@ ApplicationWindow {
 
             Image {
                 id: logo
-                source: ":/images/images/NoDramaTranparent.PNG"
+                source: ":/images/logo"
             }
-            Rectangle{
+            /*Rectangle{
                 Layout.preferredHeight: 200
                 Layout.minimumWidth: 100
                 Layout.preferredWidth: 300
@@ -46,7 +46,7 @@ ApplicationWindow {
                     fillMode: Image.PreserveAspectFit
                     source: ":/images/logo"
                 }
-            }
+            }*/
 
             Rectangle{
                 height: 75
@@ -82,27 +82,27 @@ ApplicationWindow {
             }
 
             Button {
-                 id: createAccountButton
-                 Layout.minimumWidth: 150
-                 Layout.preferredWidth: 150
-                 Layout.minimumHeight: 45
-                 Layout.alignment: Qt.AlignHCenter
-                 text: qsTr("Create Account")
-                 background: Rectangle {
-                     radius: 10
-                     color: createAccountButton.down?'#b2a7f9':'#a8c6fa'
-                 }
-                 onClicked: {
-                     var component = Qt.createComponent("./createAccount.qml")
-                     var window = component.createObject(loginWindow)
-                     window.show()
-                 }
-             }
+                id: createAccountButton
+                Layout.minimumWidth: 150
+                Layout.preferredWidth: 150
+                Layout.minimumHeight: 45
+                Layout.alignment: Qt.AlignHCenter
+                text: qsTr("Create Account")
+                background: Rectangle {
+                    radius: 10
+                    color: createAccountButton.down?'#b2a7f9':'#a8c6fa'
+                }
+                onClicked: {
+                    var component = Qt.createComponent("./createAccount.qml")
+                    var window = component.createObject(loginWindow)
+                    window.show()
+                }
+            }
 
 
-           Rectangle{
-               height: 80
-           }
+            Rectangle{
+                height: 80
+            }
 
             Button {
                 id: loginButton
@@ -117,10 +117,12 @@ ApplicationWindow {
                     color: loginButton.down?'#b2a7f9':'#a8c6fa'
                 }
                 onClicked: {
-                    console.log("Logged : " + user.testLoginUsername(username.text, password.text))
-                    //var component = Qt.createComponent("./viewParty.qml")
-                    //var window = component.createObject(loginWindow)
-                    //window.show()
+                    let id = user.testLoginUsername(username.text, password.text)
+                    if(id > 0){
+                        var component = Qt.createComponent("./viewParties.qml")
+                        var window = component.createObject(loginWindow)
+                        window.show()
+                    }
                 }
             }
         }

@@ -28,7 +28,3 @@ bool Database::openDatabase(){
 bool Database::isOpen(){
     return db.isOpen();
 }
-
-Database::~Database(){
-    free(instance);
-}

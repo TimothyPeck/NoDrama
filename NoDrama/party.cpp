@@ -89,7 +89,7 @@ void Party::createParty(){
 
     this->query = QSqlQuery(db->getDatabase());
 
-    this->query.prepare("INSERT INTO Parties(name, date, affinity_grade, max_people, host_id) VALUES(:name, :date, :aff, :maxPeps, :host_id");
+    this->query.prepare("INSERT INTO nodrama.Parties(name, date, affinity_grade, max_people, host_id) VALUES(:name, :date, :aff, :maxPeps, :host_id");
     this->query.bindValue(":name", this->partyName);
     this->query.bindValue(":date", this->partyDate);
     this->query.bindValue(":aff", this->minAffinity);
@@ -102,7 +102,7 @@ void Party::createParty(){
 
     this->partyID=partyId;
 
-    this->query.prepare("INSERT INTO Guests(fk_party, fk_user) VALUES(:partyID, :guestID)");
+    this->query.prepare("INSERT INTO nodrama.Guests(fk_party, fk_user) VALUES(:partyID, :guestID)");
 
     this->query.bindValue(":partyID", partyId);
 
@@ -120,7 +120,7 @@ Party Party::getPartyById(int id)
 
     QSqlQuery query=QSqlQuery(db->getDatabase());
 
-    query.prepare("SELECT * FROM Parties WHERE id_party = :id");
+    query.prepare("SELECT * FROM nodrama.Parties WHERE id_party = :id");
     query.bindValue(":id", id);
 
     query.exec();
@@ -146,7 +146,7 @@ QList<User> Party::getGuestsByPartyId(int id)
 
     QSqlQuery query=QSqlQuery(db->getDatabase());
 
-    query.prepare("SELECT * FROM Guests WHERE fk_party = :id");
+    query.prepare("SELECT * FROM nodrama.Guests WHERE fk_party = :id");
 
     query.exec();
 
