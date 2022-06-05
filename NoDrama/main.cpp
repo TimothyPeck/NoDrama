@@ -20,13 +20,19 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     Database *db=Database::getInstance();
-    qDebug() << "database : ";
+    qDebug() << "database : " << db->getDatabase().databaseName();
 
     QString a = QString::fromLocal8Bit(db->getDatabase().lastError().text().toStdString());
-    qDebug() << a;
-    qDebug() << "end";
-    int tmp=User::testLoginUsername("Jeanne", "coucou123");
+
+    db->openDatabase();
+    qDebug() << "last error : " << a;
+
+    int tmp=User::testLoginUsername("A", "A");
     qDebug() << tmp;
+
+    User* u = User::getUserById(tmp);
+    u->setCurrentUser(u);
+    qDebug() << u->getCurrentUser()->getUsername();
 
     qmlRegisterType<User>("com.myself", 1, 0, "User");
 

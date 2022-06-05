@@ -13,9 +13,9 @@ private:
 
     QString dbDriver = "QPSQL"; // QSQLITE
     QString dbHostname="localhost"; //157.26.106.45
-    QString dbName = "nodrama"; //
+    QString dbName = "NoDrama"; //
     QString dbUsername="postgres"; //root
-    QString dbPassword="pass"; //root
+    QString dbPassword="postgres"; //root
     int dbPort = 5432; //3306
 
     QSqlDatabase db;

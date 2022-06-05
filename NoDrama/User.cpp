@@ -212,7 +212,7 @@ User *User::getUserById(int id)
     if (!db->isOpen())
         db->openDatabase();
 
-    if (std::isdigit(id))
+    //if (std::isdigit(id))
     {
         // find user in database by id
         query.prepare("SELECT * FROM nodrama.users WHERE id_user = :id");
@@ -329,11 +329,11 @@ int User::testLoginUsername(QString username, QString password)
     if (!db->isOpen())
         db->openDatabase();
 
-    // qDebug() << QSqlDatabase::drivers();
+    qDebug() << QSqlDatabase::drivers();
 
-    // qDebug() << db->getDatabase().lastError();
+    qDebug() << db->getDatabase().lastError();
 
-    // qDebug() << "Open? "<<db->isOpen();
+    qDebug() << "Open? "<<db->isOpen();
 
     query.prepare("SELECT * FROM nodrama.users WHERE username = :username AND password = :password");
 

@@ -41,13 +41,13 @@ ApplicationWindow {
 
                 Text {
                     id: userActive
-                    text: ""
+                    text: user.getCurrentUser()
                     font.pointSize: 20
                     color: 'white'
                 }
 
                 onParentChanged: {
-                    console.log(loggedUser.username)
+                    //console.log(loggedUser.username)
                 }
             }
 
