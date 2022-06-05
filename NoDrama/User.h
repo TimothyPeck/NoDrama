@@ -15,7 +15,6 @@ class User : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString username READ getUsername() CONSTANT)
-    Q_PROPERTY(User *currentUser READ getCurrentUser() WRITE setCurrentUser())
     QML_ELEMENT
 public:
 
@@ -44,7 +43,7 @@ public:
         return username!=other.username;
     }
 
-    bool operator=(const User& other) const{
+    Q_INVOKABLE bool operator=(const User& other) const{
         return username==other.username;
     }
 
@@ -66,14 +65,12 @@ private:
     void getDatabase();
 
 public:
-    User *currentUser;
-    Q_INVOKABLE User* getCurrentUser(){ return currentUser; }
-    Q_INVOKABLE void setCurrentUser(User* u) { currentUser = u; }
-
     Q_INVOKABLE User();
     Q_INVOKABLE User(QString username, QString password, QString email);
     Q_INVOKABLE User(int, QString, QString, QString);
     Q_INVOKABLE User(const User&);
+    Q_INVOKABLE User(User*);
+    Q_INVOKABLE void constructor(User*);
     ~User();
 
     Q_INVOKABLE int getId();

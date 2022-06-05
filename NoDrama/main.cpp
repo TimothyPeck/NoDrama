@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include <QDateTime>
+#include <QQmlContext>
 
 Database *Database::instance = 0;
 
@@ -31,20 +32,21 @@ int main(int argc, char *argv[])
     qDebug() << tmp;
 
     User* u = User::getUserById(tmp);
-    u->setCurrentUser(u);
-    qDebug() << u->getCurrentUser()->getUsername();
+    qDebug() << u->getUsername();
 
     qmlRegisterType<User>("com.myself", 1, 0, "User");
+    User *currentUser = new User();
 
-    //const QUrl url(u"qrc:/NoDrama/main.qml"_qs);
     const QUrl url(u"qrc:/main.qml"_qs);
-    //const QUrl url("qrc:/main.qml");
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
+
+    QQmlContext* rootContext = engine.rootContext();
+    rootContext->setContextProperty("currentUser", currentUser);
 
     return app.exec();
 }

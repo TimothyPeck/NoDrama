@@ -41,7 +41,7 @@ ApplicationWindow {
 
                 Text {
                     id: userActive
-                    text: user.getCurrentUser()
+                    text: currentUser.getUsername()
                     font.pointSize: 20
                     color: 'white'
                 }

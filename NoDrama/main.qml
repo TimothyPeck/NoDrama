@@ -18,7 +18,7 @@ ApplicationWindow {
     color: "#232323"
 
     User {
-        id:user
+        id: user
     }
 
     RowLayout{
@@ -122,10 +122,10 @@ ApplicationWindow {
                     var id = user.testLoginUsername(username.text, password.text);
                     console.log("Logged : " +  id);
                     if(id > -1){
-                        var user_ = user.getUserById(id)
-                        console.log("user : " + user_);
-                        user.setCurrentUser(user_);
-                        console.log("currentUser : " + user.getCurrentUser().getUsername());
+                        console.log("user : " + user.getUserById(id));
+                        currentUser.constructor(user.getUserById(id));
+                        console.log(currentUser);
+                        console.log("username : " + currentUser.getUsername());
                         var component = Qt.createComponent("./viewParties.qml")
                         var window = component.createObject(loginWindow)
                         window.show()
