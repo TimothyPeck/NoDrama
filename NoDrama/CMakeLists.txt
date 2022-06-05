@@ -82,7 +82,7 @@ if(NOT DOXYGEN_FOUND)
 message(FATAL_ERROR "Doxygen is needed to build the documentation.")
 endif()
 
-cmake_path(GET ${CMAKE_CURRENT_SOURCE_DIR} PARENT_PATH PARENT_DIR)
+get_filename_component(PARENT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/.. ABSOLUTE)
 
 set(doxyfile ${PARENT_DIR}/Doxyfile)
 
