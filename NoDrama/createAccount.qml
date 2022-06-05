@@ -6,8 +6,8 @@ import com.myself 1.0
 
 ApplicationWindow {
     id: createAccount
-    width: 640
-    height: 480
+    width: 360
+    height: 640
     visible: true
     title: qsTr("Hello World")
     color: "#232323"
@@ -99,8 +99,16 @@ ApplicationWindow {
 
                 onClicked: {
                     if(username.text != "" && email.text !="" && password.text!="" && passwordVerif.text!="" && password.text==passwordVerif.text){
-                        user.createUser(username.text, password.text, email.text)
-                        createAccount.close()
+                        var newUser = user.createUser(username.text, password.text, email.text)
+                        if(newUser.getId() > -1){
+                            currentUser.constructor(newUser);
+                            var component = Qt.createComponent("./viewParties.qml")
+                            var window = component.createObject(loginWindow)
+                            window.show()
+                            createAccount.close()
+                        } else {
+                            console.log("error");
+                        }
                     }
                 }
             }

@@ -98,6 +98,7 @@ ApplicationWindow {
                      var component = Qt.createComponent("./createAccount.qml")
                      var window = component.createObject(loginWindow)
                      window.show()
+                     loginWindow.close()
                  }
              }
 
@@ -120,20 +121,16 @@ ApplicationWindow {
                 }
                 onClicked: {
                     var id = user.testLoginUsername(username.text, password.text);
-                    console.log("Logged : " +  id);
                     if(id > -1){
-                        console.log("user : " + user.getUserById(id));
                         currentUser.constructor(user.getUserById(id));
-                        console.log(currentUser);
-                        console.log("username : " + currentUser.getUsername());
+
                         var component = Qt.createComponent("./viewParties.qml")
                         var window = component.createObject(loginWindow)
                         window.show()
-
+                        loginWindow.close()
                     }else {
                         console.log("error");
                     }
-
                 }
             }
         }

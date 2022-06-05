@@ -79,7 +79,7 @@ public:
 
 
     Q_INVOKABLE void setAffinity(User, int);
-    Q_INVOKABLE static User createUser(QString, QString, QString);
+    Q_INVOKABLE static User* createUser(QString, QString, QString);
     Q_INVOKABLE void addFriend(User, int);
     Q_INVOKABLE static User* getUserById(int);
     Q_INVOKABLE static User* getUserByUsername(QString);

@@ -159,7 +159,7 @@ void User::addFriend(User user, int affinity)
  * @param password The user's entered password assumes password is pre-encrypted
  * @param email The user's email
  */
-User User::createUser(QString username, QString password, QString email)
+User* User::createUser(QString username, QString password, QString email)
 {
     // QString expression=R"([a-zA-Z0-9!#$%&'*+-/?^_`{|}~]+@[a-zA-Z0-9!#$%&'*+-/?^_`{|}~]+(\.[a-zA-Z0-9!#$%&'*+-/?^_`{|}~]{2,})+)";
     // QRegularExpression re = QRegularExpression(expression, QRegularExpression::CaseInsensitiveOption);
@@ -189,13 +189,15 @@ User User::createUser(QString username, QString password, QString email)
         {
             db->getDatabase().commit();
             query.finish();
-            return User(id, username, password, email);
+            User* u = new User(id, username, password, email);
+            return u;
         }
     }
 
     query.finish();
     db->getDatabase().rollback();
-    return User(-1, username, password, email);
+    User* u = new User(-1, username, password, email);
+    return u;
 }
 
 /**
