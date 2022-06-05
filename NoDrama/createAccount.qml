@@ -102,7 +102,7 @@ ApplicationWindow {
                         var newUser = user.createUser(username.text, password.text, email.text)
                         if(newUser.getId() > -1){
                             currentUser.constructor(newUser);
-                            var component = Qt.createComponent("./viewParties.qml")
+                            var component = Qt.createComponent("./main.qml")
                             var window = component.createObject(loginWindow)
                             window.show()
                             createAccount.close()

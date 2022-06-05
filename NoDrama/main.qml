@@ -98,7 +98,7 @@ ApplicationWindow {
                      var component = Qt.createComponent("./createAccount.qml")
                      var window = component.createObject(loginWindow)
                      window.show()
-                     loginWindow.close()
+                     //loginWindow.close()
                  }
              }
 
@@ -127,7 +127,6 @@ ApplicationWindow {
                         var component = Qt.createComponent("./viewParties.qml")
                         var window = component.createObject(loginWindow)
                         window.show()
-                        loginWindow.close()
                     }else {
                         console.log("error");
                     }

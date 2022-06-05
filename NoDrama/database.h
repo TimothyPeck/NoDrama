@@ -11,12 +11,12 @@ private:
 
     Database();
 
-    QString dbDriver = "QPSQL"; // QSQLITE
-    QString dbHostname="localhost"; //157.26.106.45
-    QString dbName = "NoDrama"; //
-    QString dbUsername="postgres"; //root
-    QString dbPassword="postgres"; //root
-    int dbPort = 5432; //3306
+    QString dbDriver = "QPSQL"; //
+    QString dbHostname="localhost"; //
+    QString dbName = "nodrama"; // NoDrama
+    QString dbUsername="postgres"; //
+    QString dbPassword="pass"; //postgres
+    int dbPort = 5432; //
 
     QSqlDatabase db;
 public:
