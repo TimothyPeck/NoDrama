@@ -71,3 +71,22 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_import_qml_plugins(NoDrama)
     qt_finalize_executable(NoDrama)
 endif()
+
+###############################################################################
+##########           DOXYGEN
+###############################################################################
+
+find_package(Doxygen)
+
+if(NOT DOXYGEN_FOUND)
+message(FATAL_ERROR "Doxygen is needed to build the documentation.")
+endif()
+
+set(doxyfile ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile)
+
+add_custom_target(BuildDoc ALL
+    COMMAND ${DOXYGEN_EXECUTABLE} ${doxyfile}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT "Generating Doxygen documentation"
+    VERBATIM
+)
