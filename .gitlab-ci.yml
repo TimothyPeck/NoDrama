@@ -36,7 +36,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - alpine-docker
   artifacts:
     paths:
-      - ./CMakeFiles
+      - ./Documentation
     expire_in: 1 week
   script:
     - mkdir BUILD
