@@ -44,3 +44,4 @@ build-job:       # This job runs in the build stage, which runs first.
     - cmake -G "Ninja" ../NoDrama -D CMAKE_PREFIX_PATH="/usr/local/Qt6/lib/cmake/Qt6/"
     - ninja
     - cmake --build . --target BuildDoc
+    - ls
