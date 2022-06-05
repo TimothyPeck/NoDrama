@@ -2,14 +2,19 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
     id: loginWindow
-    //width: 640
-    //height: 480
+    width: 640
+    height: 640
     visible: true
     title: qsTr("Hello World")
     color: "#232323"
+
+    User{
+        id: user
+    }
 
     RowLayout{
         id: rowLayout
@@ -36,9 +41,13 @@ ApplicationWindow {
 
                 Text {
                     id: userActive
-                    text: qsTr(" blablabla")
+                    text: ""
                     font.pointSize: 20
                     color: 'white'
+                }
+
+                onParentChanged: {
+                    console.log(loggedUser.username)
                 }
             }
 
@@ -51,14 +60,14 @@ ApplicationWindow {
 
             Text {
                 id: memberOne
-                text: qsTr("Michel Jeanne Thèrèse")
+                text: qsTr("Michel Jeanne")
                 font.pointSize: 25
                 color: 'white'
             }
 
             Text {
                 id: memberTwo
-                text: qsTr("Peck Timothy Roy")
+                text: qsTr("Peck Timothy")
                 font.pointSize: 25
                 color: 'white'
             }

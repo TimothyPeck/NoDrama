@@ -4,10 +4,24 @@
  * Constructors
  */
 
+/**
+ * @brief Construct a new empty Party object
+ * 
+ */
 Party::Party(){
 
 }
 
+/**
+ * @brief Construct a new Party object
+ * 
+ * @param name The name of the party
+ * @param dateTime The date and time of the party
+ * @param minAffinity The minimum affinity required to be invited to the party
+ * @param maxPeople The maximum number of people that can be invited to the party
+ * @param predeterminedGuests The guests that the host has decided must be invited, does not follow the minAffinity of the party
+ * @param host The user obect of the host of the party
+ */
 Party::Party(QString name, QDateTime dateTime, int minAffinity, int maxPeople, QList<User> predeterminedGuests, User host)
 {
     this->partyName=name;
@@ -22,8 +36,15 @@ Party::Party(QString name, QDateTime dateTime, int minAffinity, int maxPeople, Q
     }
 
     this->host = host;
+
+    this->createParty();
 }
 
+/**
+ * @brief Construct a new Party object from another Party object
+ * 
+ * @param party The party to copy
+ */
 Party::Party(const Party& party){
     this->partyDate=party.partyDate;
     this->partyName=party.partyName;
@@ -33,6 +54,10 @@ Party::Party(const Party& party){
     this->minAffinity=party.minAffinity;
 }
 
+/**
+ * @brief Destroy the Party object
+ * 
+ */
 Party::~Party(){
     //free(db);
 }
@@ -41,36 +66,71 @@ Party::~Party(){
  * Getters
  */
 
+/**
+ * @brief Returns the name of the party
+ * 
+ * @return const QString& 
+ */
 const QString &Party::getPartyName() const
 {
     return partyName;
 }
 
+/**
+ * @brief returns the date and time of the party
+ * 
+ * @return const QDateTime& 
+ */
 const QDateTime &Party::getPartyDate() const
 {
     return partyDate;
 }
 
+/**
+ * @brief Returns the minimum affinity required to be invited to the party
+ * 
+ * @return int 
+ */
 int Party::getMinAffinity() const
 {
     return minAffinity;
 }
 
+/**
+ * @brief Returns the maximum number of people that can be invited to the party
+ * 
+ * @return int 
+ */
 int Party::getMaxPeople() const
 {
     return maxPeople;
 }
 
+/**
+ * @brief Returns the user object of the host of the party
+ * 
+ * @return const User& 
+ */
 const User &Party::getHost() const
 {
     return host;
 }
 
+/**
+ * @brief returns the guests of the party
+ * 
+ * @return const QList<User>& 
+ */
 const QList<User> &Party::getGuests() const
 {
     return guests;
 }
 
+/**
+ * @brief Returns the ID of the party
+ * 
+ * @return int 
+ */
 int Party::getPartyID() const
 {
     return partyID;
@@ -80,10 +140,19 @@ int Party::getPartyID() const
  * Public functions
  */
 
+/**
+ * @brief Adds a guest to the party
+ * 
+ * @param guest 
+ */
 void Party::addGuest(User guest){
     this->guests.append(guest);
 }
 
+/**
+ * @brief Uses the current party object to create a new party in the database
+ * 
+ */
 void Party::createParty(){
     this->db = db->getInstance();
 
@@ -114,6 +183,12 @@ void Party::createParty(){
     }
 }
 
+/**
+ * @brief returns the party with the given ID in the database
+ * 
+ * @param id The id of the party
+ * @return Party 
+ */
 Party Party::getPartyById(int id)
 {
     Database* db=db->getInstance();
@@ -132,13 +207,19 @@ Party Party::getPartyById(int id)
                     query.value(3).toInt(),
                     query.value(4).toInt(),
                     Party::getGuestsByPartyId(id),
-                    User::getUserById(query.value(5).toInt())
+                    *User::getUserById(query.value(5).toInt())
                 );
     }
 
     return Party();
 }
 
+/**
+ * @brief Returns the users of the party with the given ID
+ * 
+ * @param id 
+ * @return QList<User> 
+ */
 QList<User> Party::getGuestsByPartyId(int id)
 {
     QList<User> guests = QList<User>();
@@ -151,7 +232,7 @@ QList<User> Party::getGuestsByPartyId(int id)
     query.exec();
 
     while(query.next()){
-        guests.append(User::getUserById(query.value(1).toInt()));
+        guests.append(*User::getUserById(query.value(1).toInt()));
     }
 
     return guests;

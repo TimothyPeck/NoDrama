@@ -8,11 +8,13 @@
 #include <QRegularExpression>
 #include <QMap>
 #include "database.h"
-#include "qqmlregistration.h"
+//#include "qqmlregistration.h"
+#include <QtQml/qqmlregistration.h>
 
 class User : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString username READ getUsername() CONSTANT)
     QML_ELEMENT
 public:
 
@@ -63,29 +65,29 @@ private:
     void getDatabase();
 
 public:
-    User();
-    User(QString username, QString password, QString email);
-    User(int, QString, QString, QString);
-    User(const User&);
+    Q_INVOKABLE User();
+    Q_INVOKABLE User(QString username, QString password, QString email);
+    Q_INVOKABLE User(int, QString, QString, QString);
+    Q_INVOKABLE User(const User&);
     ~User();
 
-    int getId();
-    QString getUsername();
-    QString getEmail();
+    Q_INVOKABLE int getId();
+    Q_INVOKABLE QString getUsername();
+    Q_INVOKABLE QString getEmail();
 
 
-    void setAffinity(User, int);
+    Q_INVOKABLE void setAffinity(User, int);
     Q_INVOKABLE static User createUser(QString, QString, QString);
-    void addFriend(User, int);
-    static User getUserById(int);
-    static User getUserByUsername(QString);
-    static User getUserByEmail(QString);
+    Q_INVOKABLE void addFriend(User, int);
+    Q_INVOKABLE static User* getUserById(int);
+    Q_INVOKABLE static User* getUserByUsername(QString);
+    Q_INVOKABLE static User* getUserByEmail(QString);
 
     Q_INVOKABLE static int testLoginUsername(QString username, QString password);
-    static int testLoginEmail(QString email, QString password);
+    Q_INVOKABLE static int testLoginEmail(QString email, QString password);
 
-    QMap<User, int> *getFriends();
-    QMap<User, int> getFriendsByAffinity(int);
+    Q_INVOKABLE QMap<User, int> *getFriends();
+    Q_INVOKABLE QMap<User, int> getFriendsByAffinity(int);
 };
 
 #endif // QTUSERTEST_H

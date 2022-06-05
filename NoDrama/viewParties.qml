@@ -53,6 +53,26 @@ ApplicationWindow {
                 window.show()
             }
         }
+
+        Button{
+            id: viewInfo
+            Layout.minimumWidth: 25
+            Layout.preferredWidth: 25
+            Layout.minimumHeight: 25
+            Layout.alignment: Qt.AlignRight
+            text: qsTr("?")
+
+            background: Rectangle {
+                radius: 10
+                color: viewInfo.down?'#b2a7f9':'#a8c6fa'
+            }
+
+            onClicked: {
+                var component=Qt.createComponent("./infoPage.qml")
+                var window = component.createObject(viewParties)
+                window.show()
+            }
+        }
     }
 
     ColumnLayout { // une seul colonne mais plusieur ligne

@@ -55,4 +55,30 @@ compile_commands.json
 
 *.lnk
 
-BUILD/*
+*BUILD*
+
+/Documentation*
+
+# DOXYGEN
+*~
+.*sw?
+\#*
+.DS_Store
+
+*.rej
+*.orig
+
+*.pro
+/packages/rpm/doxygen.spec
+*.idb
+*.pdb
+
+/doxygen_docs
+/doxygen.tag
+/build*
+/qtools_docs
+/warnings.log
+
+tags
+
+.idea

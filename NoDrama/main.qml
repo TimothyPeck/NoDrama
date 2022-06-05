@@ -19,6 +19,8 @@ ApplicationWindow {
         id:user
     }
 
+    property User loggedUser
+
     RowLayout{
         id: rowLayout
         anchors.fill: parent
@@ -119,6 +121,8 @@ ApplicationWindow {
                 onClicked: {
                     let id = user.testLoginUsername(username.text, password.text)
                     if(id > 0){
+                        loggedUser = user.getUserById(id)
+                        console.log(loggedUser.getId())
                         var component = Qt.createComponent("./viewParties.qml")
                         var window = component.createObject(loginWindow)
                         window.show()
