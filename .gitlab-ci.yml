@@ -45,3 +45,5 @@ build-job:       # This job runs in the build stage, which runs first.
     - ninja
     - cmake --build . --target BuildDoc
     - ls ..
+    - ls ../BUILD
+    - ls ../NoDrama
