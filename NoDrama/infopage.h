@@ -1,7 +1,9 @@
 #ifndef INFOPAGE_H
 #define INFOPAGE_H
 
-
+/**
+ * @brief The infoPage class
+ */
 class infoPage
 {
 public:

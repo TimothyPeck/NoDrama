@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
     width: 360
@@ -10,6 +11,8 @@ ApplicationWindow {
     visible: true
     title: qsTr("Create party")
     color: "#232323"
+
+
 
     ColumnLayout{
         spacing: 8
@@ -192,6 +195,9 @@ ApplicationWindow {
             background: Rectangle {
                 radius: 10
                 color: createParty.down?'#b2a7f9':'#a8c6fa'
+            }
+            onClicked: {
+
             }
         }
     }

@@ -3,6 +3,9 @@
 
 #include <QObject>
 
+/**
+ * @brief The createAccount class
+ */
 class createAccount
 {
 public:

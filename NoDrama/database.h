@@ -4,6 +4,9 @@
 #include <QSqlDatabase>
 #include <stdexcept>
 
+/**
+ * @brief The Database class, contains the information to connect to and open the nodrama database. Bad pratice to keep it like this but choices and time are limited.
+ */
 class Database
 {
 private:

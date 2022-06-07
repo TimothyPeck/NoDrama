@@ -9,7 +9,7 @@ ApplicationWindow {
     width: 640
     height: 640
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Information page")
     color: "#232323"
 
     User{
@@ -26,9 +26,37 @@ ApplicationWindow {
             id: inputs
             spacing: 6
 
-            Image {
-                id: logo
-                source: ":/images/images/NoDramaTranparent.PNG"
+            RowLayout{
+                Rectangle{
+                    Layout.preferredHeight: 100
+                    Layout.minimumWidth: 100
+                    Layout.preferredWidth: 100
+
+                    color: "#232323"
+
+                    Image {
+                        id: logo_
+                        width: 100
+                        //Layout.fillWidth: true
+                        fillMode: Image.PreserveAspectFit
+                        source: "qrc:/images/logo"
+                    }
+                }
+                Rectangle{
+                    Layout.preferredHeight: 100
+                    Layout.minimumWidth: 100
+                    Layout.preferredWidth: 200
+
+                    color: "#232323"
+
+                    Image {
+                        id: logo_arc
+                        width: 200
+                        //Layout.fillWidth: true
+                        fillMode: Image.PreserveAspectFit
+                        source: "qrc:/images/logo_arc"
+                    }
+                }
             }
 
             RowLayout{

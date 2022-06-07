@@ -28,6 +28,7 @@ CREATE TABLE Parties(
     affinity_grade int NOT NULL,
     max_people INT NOT NULL,
     host_id int NOT NULL,
+    location VARCHAR(255) NOT NULL,
     FOREIGN KEY (host_id) REFERENCES Users(id_user)
 );
 

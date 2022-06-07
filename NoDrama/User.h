@@ -11,6 +11,9 @@
 //#include "qqmlregistration.h"
 #include <QtQml/qqmlregistration.h>
 
+/**
+ * @brief The User class
+ */
 class User : public QObject
 {
     Q_OBJECT
@@ -18,31 +21,66 @@ class User : public QObject
     QML_ELEMENT
 public:
 
+    /**
+     * @brief The cmpByUsernameLength struct, used to compare two users by their usernames. Name is not a good representation of implementation, does not really compare by length
+     */
     struct cmpByUsernameLength
     {
+        /**
+         * @brief operator () compares two users by their username
+         * @param lhs
+         * @param rhs
+         * @return
+         */
         bool operator()(const User& lhs, const User& rhs) const
         {
             return (lhs.username <= rhs.username);
         }
     };
 
+    /**
+     * @brief operator () compares two users by their username @see cmpByUsernameLength
+     * @param lhs
+     * @param rhs
+     * @return
+     */
     inline bool operator()(const User& lhs, const User& rhs) const
     {
         return (lhs.username <= rhs.username);
     }
 
+    /**
+     * @brief operator < Compares users, uses the username
+     * @param other
+     * @return
+     */
     bool operator<(const User& other) const{
         return username <= other.username;
     }
 
+    /**
+     * @brief operator == Equality operator for the user class, uses the username
+     * @param other
+     * @return
+     */
     bool operator==(const User& other) const{
         return username==other.username;
     }
 
+    /**
+     * @brief operator != Inequality operator for the user class, uses the username
+     * @param other
+     * @return
+     */
     bool operator!=(const User& other) const{
         return username!=other.username;
     }
 
+    /**
+     * @brief operator = same as @see operator==
+     * @param other
+     * @return
+     */
     Q_INVOKABLE bool operator=(const User& other) const{
         return username==other.username;
     }

@@ -21,21 +21,22 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     Database *db=Database::getInstance();
-    qDebug() << "database : " << db->getDatabase().databaseName();
+    //qDebug() << "database : " << db->getDatabase().databaseName();
 
-    QString a = QString::fromLocal8Bit(db->getDatabase().lastError().text().toStdString());
+    //QString a = QString::fromLocal8Bit(db->getDatabase().lastError().text().toStdString());
 
     db->openDatabase();
-    qDebug() << "last error : " << a;
+    //qDebug() << "last error : " << a;
 
-    int tmp=User::testLoginUsername("A", "A");
-    qDebug() << tmp;
+    //int tmp=User::testLoginUsername("A", "A");
+    //qDebug() << tmp;
 
-    User* u = User::getUserById(tmp);
-    qDebug() << u->getUsername();
+    //User* u = User::getUserById(tmp);
+    //qDebug() << u->getUsername();
 
     // -> utilisé pour créer une instance d'un objet qml du type "User" -> portée seulement le fichier ou l'objet est instancié
     qmlRegisterType<User>("com.myself", 1, 0, "User");
+    //qmlRegisterType<Party>("com.myself", 1, 0, "Party");
     User *currentUser = new User();
 
     const QUrl url(u"qrc:/main.qml"_qs);

@@ -90,6 +90,10 @@ User::User(const User &user)
     this->friends->detach();
 }
 
+/**
+ * @brief User::User Copy constructor for user class @see User(const User &user)
+ * @param u
+ */
 User::User(User* u)
 {
     this->id = u->getId();
@@ -101,6 +105,10 @@ User::User(User* u)
     this->friends->detach();
 }
 
+/**
+ * @brief User::constructor Same as copy constructor @see User(User* u)
+ * @param u
+ */
 void User::constructor(User* u)
 {
     this->id = u->id;
