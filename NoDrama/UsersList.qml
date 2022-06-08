@@ -1,37 +1,34 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.15
+import com.myself 1.0
 
-ListModel {
-    ListElement {
-        name: "Jeanne"
+Container {
+    ListModel {
+        id: usersListModel
+
+        Component.onCompleted: {
+            update();
+        }
     }
-    ListElement {
-        name: "Dorian"
+
+    function createListElement(n, a){
+        return {
+            name: n,
+            affi: a
+        }
     }
-    ListElement {
-        name: "Tim"
+
+    function justOneElement(n, a){
+        usersListModel.clear();
+        usersListModel.append(createListElement(n,a));
     }
-    ListElement {
-        name: "Titus"
-    }
-    ListElement {
-        name: "Migi"
-    }
-    ListElement {
-        name: "Ivan"
-    }
-    ListElement {
-        name: "Rui"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Luca"
-    }
-    ListElement {
-        name: "Bertran"
+
+    function update(){
+        var friends = currentUser.getFriends();
+        for(var friend in friends){
+            console.log(friend);
+        }
     }
 }
+
+

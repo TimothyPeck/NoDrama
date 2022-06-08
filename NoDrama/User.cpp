@@ -21,7 +21,7 @@ void User::getDatabase()
 
 /**
  * @brief Construct a new empty User object
- * 
+ *
  */
 User::User()
 {
@@ -33,8 +33,8 @@ User::User()
 }
 
 /**
- * @brief OBSOLETE. Construct a new User object with the given username and password. Does not add to the database. 
- * 
+ * @brief OBSOLETE. Construct a new User object with the given username and password. Does not add to the database.
+ *
  * @param username The username of the user
  * @param password  The user's password
  * @param email The user's email
@@ -56,7 +56,7 @@ User::User(QString username, QString password, QString email)
 
 /**
  * @brief Construct a new User object with the id, username, password, and email.
- * 
+ *
  * @param id The user's id in the database
  * @param username The username of the user
  * @param password The user's password
@@ -75,7 +75,7 @@ User::User(int id, QString username, QString password, QString email)
 
 /**
  * @brief Copy constructor for User
- * 
+ *
  * @param user The User to copy
  */
 User::User(const User &user)
@@ -122,7 +122,7 @@ void User::constructor(User* u)
 
 /**
  * @brief Sets the affinity in the database for the user and the given friend.
- * 
+ *
  * @param user The friend whose affinity is to be updated
  * @param affinity The affinity to set
  */
@@ -130,6 +130,11 @@ void User::setAffinity(User user, int affinity)
 {
     if (affinity <= 10 && affinity >= 0)
         this->friends->find(user).value() = affinity;
+
+    Database *db = Database::getInstance();
+
+    if (!db->isOpen())
+        db->openDatabase();
 
     db->getDatabase().transaction();
     this->query.prepare("UPDATE nodrama.affinities SET affinity = :affinity WHERE fk_user1 = :user_one_id AND fk_user2 = :user_two_id");
@@ -142,23 +147,29 @@ void User::setAffinity(User user, int affinity)
 
 /**
  * @brief Adds a frind to the user and the database with the given affinity.
- * 
+ *
  * @param user The user to add as a friend
  * @param affinity The affinity of the friend
  */
 void User::addFriend(User user, int affinity)
 {
-    if (affinity >= 0 && affinity <= 10)
+    if (affinity >= 0 && affinity <= 10){
         this->friends->insert(user, affinity);
 
-    db->getDatabase().transaction();
-    this->query.prepare("INSERT INTO nodrama.affinities(fk_user1, fk_user2, affinity) VALUES(:user_one_id, :user_two_id, :affinity)");
-    this->query.bindValue(":user_one_id", QVariant::fromValue(this->id));
-    this->query.bindValue(":user_two_id", QVariant::fromValue(user.getId()));
-    this->query.bindValue(":affinity", QVariant::fromValue(affinity));
-    this->query.exec();
+        Database *db = Database::getInstance();
 
-    db->getDatabase().commit();
+        if (!db->isOpen())
+            db->openDatabase();
+
+        db->getDatabase().transaction();
+        this->query.prepare("INSERT INTO nodrama.affinities(fk_user1, fk_user2, affinity) VALUES(:user_one_id, :user_two_id, :affinity)");
+        this->query.bindValue(":user_one_id", QVariant::fromValue(this->id));
+        this->query.bindValue(":user_two_id", QVariant::fromValue(user.getId()));
+        this->query.bindValue(":affinity", QVariant::fromValue(affinity));
+        this->query.exec();
+
+        db->getDatabase().commit();
+    }
 }
 
 /**
@@ -208,9 +219,21 @@ User* User::createUser(QString username, QString password, QString email)
     return u;
 }
 
+void User::addFriendOrUpdateAffinity(QString username, int affinity)
+{
+    User *u;
+    u = User::getUserByUsername(username);
+
+    if(this->friends->contains(u)){
+        this->setAffinity(u, affinity);
+    }else{
+        this->addFriend(u, affinity);
+    }
+}
+
 /**
  * @brief Checks if the user exists in the database
- * 
+ *
  * @param username The username to of the user to check
  * @return true If user exists
  * @return false If user doesn't exist
@@ -257,9 +280,9 @@ User *User::getUserById(int id)
             ret = new User(query.value(0).toInt(), query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
         }
 
-//        if (query.size() == 1){
-//            ret = new User(query.value(0).toInt(), query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
-//        }
+        //        if (query.size() == 1){
+        //            ret = new User(query.value(0).toInt(), query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
+        //        }
 
         query.prepare("SELECT * FROM nodrama.affinities WHERE fk_user1 = :user_one_id");
         query.bindValue(":user_one_id", id);
@@ -295,15 +318,16 @@ User *User::getUserByUsername(QString username)
     {
         // find user in database by username
         query.prepare("SELECT * FROM nodrama.users WHERE username = :username");
-        query.bindValue(":username", QVariant::fromValue((username)));
+        query.bindValue(":username", username);
         query.exec();
 
         while(query.next()){
-            qDebug() << query.value(0);
+            query.first();
+            ret = new User(query.value(0).toInt() ,query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
         }
 
-        if (query.size() == 1)
-            ret = new User(query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
+        //        if (query.size() == 1)
+        //            ret = new User(query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
 
         query.prepare("SELECT * FROM nodrama.affinities WHERE fk_user1 = :user_one_id");
         query.bindValue(":user_one_id", ret->getId());
@@ -311,6 +335,7 @@ User *User::getUserByUsername(QString username)
 
         while (query.next())
         {
+            qDebug() << query.value(0).toInt() << query.value(1).toInt() << query.value(2).toInt();;
             ret->friends->insert(*getUserById(query.value(1).toInt()), query.value(2).toInt());
         }
     }
@@ -358,7 +383,7 @@ User *User::getUserByEmail(QString email)
 
 /**
  * @brief Attempts to login with the given username and password, returns the id of the user if the atttempt was successful, -1 otherwise
- * 
+ *
  * @param username The username to try
  * @param password The password of the user
  * @return int Id of the user if exists, -1 otherwise
@@ -395,7 +420,7 @@ int User::testLoginUsername(QString username, QString password)
 
 /**
  * @brief Attempts to login with the given email and password, returns the id of the user if the atttempt was successful, -1 otherwise
- * 
+ *
  * @param email The email of the user to try
  * @param password The password of the user
  * @return int Id of the user if exists, -1 otherwise
@@ -430,7 +455,7 @@ int User::testLoginEmail(QString email, QString password)
 
 /**
  * @brief Returns the friends of the user
- * 
+ *
  * @return QMap<User, int>* A pointer to the friends of the user
  */
 QMap<User, int> *User::getFriends()
@@ -462,7 +487,7 @@ QMap<User, int> User::getFriendsByAffinity(int minAffinity)
 
 /**
  * @brief Returns the id of the user
- * 
+ *
  * @return int The id
  */
 int User::getId()
@@ -472,7 +497,7 @@ int User::getId()
 
 /**
  * @brief Returns the username of the user
- * 
+ *
  * @return QString The username
  */
 QString User::getUsername()
@@ -482,7 +507,7 @@ QString User::getUsername()
 
 /**
  * @brief Returns the email of the user
- * 
+ *
  * @return QString The email
  */
 QString User::getEmail()
@@ -492,7 +517,7 @@ QString User::getEmail()
 
 /**
  * @brief Destroy the User:: User object
- * 
+ *
  */
 User::~User()
 {
