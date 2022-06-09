@@ -298,10 +298,6 @@ User *User::getUserByUsername(QString username)
         query.bindValue(":username", QVariant::fromValue((username)));
         query.exec();
 
-        while(query.next()){
-            qDebug() << query.value(0);
-        }
-
         if (query.size() == 1)
             ret = new User(query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
 
@@ -371,12 +367,6 @@ int User::testLoginUsername(QString username, QString password)
 
     if (!db->isOpen())
         db->openDatabase();
-
-    qDebug() << QSqlDatabase::drivers();
-
-    qDebug() << db->getDatabase().lastError();
-
-    qDebug() << "Open? "<<db->isOpen();
 
     query.prepare("SELECT * FROM nodrama.users WHERE username = :username AND password = :password");
 

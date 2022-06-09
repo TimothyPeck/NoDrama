@@ -36,8 +36,10 @@ int main(int argc, char *argv[])
 
     // -> utilisé pour créer une instance d'un objet qml du type "User" -> portée seulement le fichier ou l'objet est instancié
     qmlRegisterType<User>("com.myself", 1, 0, "User");
-    //qmlRegisterType<Party>("com.myself", 1, 0, "Party");
+    qmlRegisterType<Party>("com.myself", 1, 0, "Party");
     User *currentUser = new User();
+    Party *currentParty = new Party();
+    User *tmpUser = new User();
 
     const QUrl url(u"qrc:/main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -50,6 +52,8 @@ int main(int argc, char *argv[])
     QQmlContext* rootContext = engine.rootContext();
     // Utilisé pour transmettre une instance d'un objet à la partie QML -> portée dans tous les fichiers
     rootContext->setContextProperty("currentUser", currentUser);
+    rootContext->setContextProperty("tmpUser", tmpUser);
+    rootContext->setContextProperty("currentParty", currentParty);
 
     return app.exec();
 }

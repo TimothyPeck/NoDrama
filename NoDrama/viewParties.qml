@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
     id: viewParties
@@ -10,6 +11,40 @@ ApplicationWindow {
     visible: true
     title: qsTr("My parties")
     color: "#232323"
+
+    Party{
+        id: party
+    }
+
+    ListModel {
+
+        id: partyModel
+
+        function createListParty(part){
+            console.log("Current party id: " + part)
+            currentParty.constructor(party.getPartyById(part))
+            console.log("Current party name: " + currentParty.getPartyName())
+            //tmpUser = currentParty.getHost()
+            console.log(currentParty.getHost())
+            tmpUser.constructor(currentParty.getHost());
+            console.log(tmpUser.getUsername())
+            return{
+                name: currentParty.getPartyName(),
+                date: currentParty.getPartyDate(),
+                time: currentParty.getPartyDate(),
+                organiser: tmpUser.getUsername(),
+                place: currentParty.getPartyLocation()
+            };
+        }
+
+        Component.onCompleted: {
+            var parties = party.getPartyIdsForUser(currentUser)
+            console.log(parties.length)
+            for(let i=0; i<parties.length; i++){
+                append(createListParty(parties[i]))
+            }
+        }
+    }
 
     RowLayout
     {
@@ -94,7 +129,7 @@ ApplicationWindow {
                 anchors.topMargin: 10
                 anchors.fill: parent
                 focus: true
-                model: PartiesList {}
+                model: partyModel
                 delegate:
                     Item {
                     id: wrapper

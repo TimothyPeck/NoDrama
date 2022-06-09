@@ -43,6 +43,35 @@ Party::Party(QString name, QDateTime dateTime, int minAffinity, int maxPeople, Q
 }
 
 /**
+ * @brief Construct a new Party object
+ *
+ * @param name The name of the party
+ * @param dateTime The date and time of the party
+ * @param minAffinity The minimum affinity required to be invited to the party
+ * @param maxPeople The maximum number of people that can be invited to the party
+ * @param predeterminedGuests The guests that the host has decided must be invited, does not follow the minAffinity of the party
+ * @param host The user obect of the host of the party
+ * @param location The location at which the party will be held
+ */
+Party::Party(int id, QString name, QDateTime dateTime, int minAffinity, int maxPeople, QList<User> predeterminedGuests, User host, QString location)
+{
+    this->partyID=id;
+    this->partyName=name;
+    this->partyDate=dateTime;
+    this->minAffinity=minAffinity;
+    this->maxPeople=maxPeople;
+    this->location=location;
+
+    this->guests=QList<User>(maxPeople);
+
+    for(qsizetype i=0;i<predeterminedGuests.size();++i){
+        this->guests.append(predeterminedGuests.at(i));
+    }
+
+    this->host = host;
+}
+
+/**
  * @brief Construct a new Party object from another Party object
  *
  * @param party The party to copy
@@ -55,6 +84,21 @@ Party::Party(const Party& party){
     this->maxPeople=party.maxPeople;
     this->minAffinity=party.minAffinity;
     this->location=party.location;
+}
+
+/**
+ * @brief Party::constructor Same as copy constructor @see Party(const Party&)
+ * @param party
+ */
+void Party::constructor(Party *party)
+{
+    this->partyDate=party->partyDate;
+    this->partyName=party->partyName;
+    this->guests=party->guests;
+    this->host=party->host;
+    this->maxPeople=party->maxPeople;
+    this->minAffinity=party->minAffinity;
+    this->location=party->location;
 }
 
 /**
@@ -112,7 +156,7 @@ int Party::getMaxPeople() const
 /**
  * @brief Returns the user object of the host of the party
  *
- * @return const User&
+ * @return const User*
  */
 const User &Party::getHost() const
 {
@@ -198,11 +242,15 @@ void Party::createParty(){
  * @param id The id of the party
  * @return Party
  */
-Party Party::getPartyById(int id)
+Party* Party::getPartyById(int id)
 {
+    Party* part=nullptr;
     Database* db=db->getInstance();
 
     QSqlQuery query=QSqlQuery(db->getDatabase());
+
+    if(!db->isOpen())
+        db->openDatabase();
 
     query.prepare("SELECT * FROM nodrama.Parties WHERE id_party = :id");
     query.bindValue(":id", id);
@@ -210,9 +258,10 @@ Party Party::getPartyById(int id)
     query.exec();
 
     if(query.size()==1){
-        return Party(
+        query.first();
+        part = new Party(
                     query.value(1).toString(),
-                    QDateTime::fromString(query.value(2).toString()),
+                    query.value(2).toDateTime(),
                     query.value(3).toInt(),
                     query.value(4).toInt(),
                     Party::getGuestsByPartyId(id),
@@ -220,8 +269,7 @@ Party Party::getPartyById(int id)
                     query.value(6).toString()
                     );
     }
-
-    return Party();
+    return part;
 }
 
 /**
@@ -253,23 +301,59 @@ QList<User> Party::getGuestsByPartyId(int id)
  * @param user The user whose parties are requested
  * @return QList<Party> The list of parties to which the user has been invited
  */
-QList<Party> Party::getPartiesForUser(User *user)
+QList<Party>* Party::getPartiesForUser(User *user)
 {
     int userID=user->getId();
-    QList<Party> parties = QList<Party>();
+    QList<Party>* parties = new QList<Party>();
 
     Database* db=db->getInstance();
 
     QSqlQuery query=QSqlQuery(db->getDatabase());
 
-    query.prepare("SELECT name, date, affinity_grade, max_people, host_id, location FROM Parties, Guests WHERE Parties.id_party=Guests.fk_party AND Guests.fk_user = :id");
+    if(!db->isOpen())
+        db->openDatabase();
+    //                          0     1         2               3       4           5
+    query.prepare("SELECT name, date, affinity_grade, max_people, host_id, location FROM nodrama.Parties, nodrama.Guests WHERE Parties.id_party=Guests.fk_party AND Guests.fk_user = :id");
 
     query.bindValue(":id", userID);
 
     query.exec();
 
-    qDebug()<<query.size();
-    qDebug()<<query.lastError();
+    while(query.next()){
+        QDateTime partyDate = query.value(1).toDateTime();
+        QList<User> guests = QList<User>();
+        parties->append(Party(query.value(0).toString(),partyDate, query.value(2).toInt(), query.value(3).toInt(), guests, User::getUserById(query.value(4).toInt()), query.value(5).toString()));
+    }
+
+    return parties;
+}
+
+/**
+ * @brief Party::getPartyIdsForUser returns a list of the IDs of the parties to which a user is invited
+ * @param user The invited user
+ * @return QList<int> The list of ids of the parties to which to userr is inveited
+ */
+QList<int> Party::getPartyIdsForUser(User *user)
+{
+    int userID=user->getId();
+    QList<int> parties = QList<int>();
+
+    Database* db=db->getInstance();
+
+    QSqlQuery query=QSqlQuery(db->getDatabase());
+
+    if(!db->isOpen())
+        db->openDatabase();
+
+    query.prepare("SELECT id_party FROM nodrama.Parties, nodrama.Guests WHERE Parties.id_party=Guests.fk_party AND Guests.fk_user = :id");
+
+    query.bindValue(":id", userID);
+
+    query.exec();
+
+    while(query.next()){
+        parties.append(query.value(0).toInt());
+    }
 
     return parties;
 }
