@@ -12,8 +12,6 @@ ApplicationWindow {
     title: qsTr("Create party")
     color: "#232323"
 
-
-
     ColumnLayout{
         spacing: 8
         anchors.topMargin: 30
@@ -43,7 +41,7 @@ ApplicationWindow {
             Label {
                 anchors.leftMargin: 40
                 //Layout.alignment: Qt.AlignLeft
-                text: "Number of people"
+                text: "Max number of people"
                 color: "#c9f1fd"
             }
             SpinBox {

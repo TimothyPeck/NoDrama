@@ -14,7 +14,7 @@ ApplicationWindow {
     width: 360
     height: 640
     visible: true
-    title: qsTr("NoDrama login")
+    title: qsTr("Hello World")
     color: "#232323"
 
     User {
@@ -32,23 +32,21 @@ ApplicationWindow {
             id: inputs
             spacing: 6
 
-            /*Image {
+            Image {
                 id: logo
-                source: "qrc:/images/logo"
-            }*/
+                source: ":/images/images/NoDramaTranparent.PNG"
+            }
             Rectangle{
                 Layout.preferredHeight: 200
                 Layout.minimumWidth: 100
                 Layout.preferredWidth: 300
 
-                color: "#232323"
-
+                color: 'white'
                 Image {
                     id: logo_
-                    width: 300
-                    //Layout.fillWidth: true
+                    Layout.preferredWidth: 300
                     fillMode: Image.PreserveAspectFit
-                    source: "qrc:/images/logo"
+                    source: ":/images/logo"
                 }
             }
 
@@ -129,6 +127,7 @@ ApplicationWindow {
                         var component = Qt.createComponent("./viewParties.qml")
                         var window = component.createObject(loginWindow)
                         window.show()
+                        //loginWindow.close()
                     }else {
                         console.log("error");
                     }

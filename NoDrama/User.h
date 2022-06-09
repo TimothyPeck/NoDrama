@@ -118,6 +118,7 @@ public:
 
     Q_INVOKABLE void setAffinity(User, int);
     Q_INVOKABLE static User* createUser(QString, QString, QString);
+    Q_INVOKABLE void addFriendOrUpdateAffinity(QString username, int affinity);
     Q_INVOKABLE void addFriend(User, int);
     Q_INVOKABLE static User* getUserById(int);
     Q_INVOKABLE static User* getUserByUsername(QString);
@@ -127,6 +128,7 @@ public:
     Q_INVOKABLE static int testLoginEmail(QString email, QString password);
 
     Q_INVOKABLE QMap<User, int> *getFriends();
+    //Q_INVOKABLE QList<User> getUsers();
     Q_INVOKABLE QMap<User, int> getFriendsByAffinity(int);
 };
 

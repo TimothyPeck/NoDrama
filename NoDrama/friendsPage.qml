@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
     id: friendsPage
@@ -15,6 +16,41 @@ ApplicationWindow {
         var component = Qt.createComponent("./viewParties.qml")
         var window = component.createObject(friendsPage)
         window.show()
+    }
+
+    User {
+        id: user
+    }
+
+    ListModel {
+        id: usersListModel
+        Component.onCompleted: {
+            update();
+        }
+    }
+    function createListElement(n, a){
+        return {
+            name: n,
+            affi: a
+        }
+    }
+    function justOneElement(n, a){
+        if(n !== null){
+            a = (a === null ? "" : a);
+            //console.log(n);
+            //console.log(a);
+            usersListModel.clear();
+            usersListModel.append(createListElement(n,a));
+        }
+    }
+    function update(){
+        console.log("update")
+        usersListModel.clear();
+        var friends = currentUser.getFriends();
+        lineEdit.text = "";
+        for(var friend in friends){
+            console.log(friend);
+        }
     }
 
     ColumnLayout {
@@ -39,6 +75,14 @@ ApplicationWindow {
                 background: Item {}
                 font.pixelSize: 14
                 font.bold: false
+                onEditingFinished: {
+                    var user_ = user.getUserByUsername(lineEdit.text);
+                    //console.log(user_.getUsername());
+                    if(user_ !== null)
+                    {
+                        justOneElement(user_.getUsername(), null);
+                    }
+                }
             }
         }
 
@@ -57,7 +101,7 @@ ApplicationWindow {
             ListView{
                 anchors.fill: parent
                 focus: true
-                model: UsersList { }
+                model: usersListModel
                 delegate:
                     Item {
                     id: wrapper
@@ -66,6 +110,7 @@ ApplicationWindow {
 
                     Row{
                         Label {
+                            id: labelName
                             leftPadding: 15
                             verticalAlignment: Text.AlignVCenter
                             text: name;
@@ -91,16 +136,18 @@ ApplicationWindow {
                                 id: affinity
                                 width: 40
                                 height: 40
-                                model: 11
-                                //Layout.alignment: Qt.AlignCenter
-                                delegate: ItemDelegate {
-                                    text: index
+                                model: ['', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                onActivated: {
+                                    console.log("label name : " + labelName.text)
+                                    console.log("value : " + currentValue)
+
+                                    currentUser.addFriendOrUpdateAffinity(labelName.text, currentValue);
+                                    console.log("affinity added");
+                                    update();
                                 }
                             }
                         }
-
                     }
-
                 }
             }
         }
