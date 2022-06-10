@@ -128,8 +128,17 @@ void User::constructor(User* u)
  */
 void User::setAffinity(User user, int affinity)
 {
-    if (affinity <= 10 && affinity >= 0)
-        this->friends->find(user).value() = affinity;
+    if (affinity <= 10 && affinity >= 0){
+        QMap<User,int>::iterator i;
+        for(i = this->friends->begin(); i != friends->end(); i++)
+        {
+            if(i.key().username == user.getUsername()){
+                i.value() = affinity;
+                qDebug() << i.key().username << " : " << i.value();
+            }
+        }
+        //this->friends->find(user).value() = affinity;
+    }
 
     Database *db = Database::getInstance();
 
@@ -143,6 +152,8 @@ void User::setAffinity(User user, int affinity)
     this->query.bindValue(":affinity", QVariant::fromValue(affinity));
     this->query.exec();
     db->getDatabase().commit();
+
+    qDebug() << "set affinity : " << db->getDatabase().lastError();
 }
 
 /**
@@ -169,6 +180,8 @@ void User::addFriend(User user, int affinity)
         this->query.exec();
 
         db->getDatabase().commit();
+
+        qDebug() << "add friends last error : " << db->getDatabase().lastError();
     }
 }
 
@@ -228,11 +241,17 @@ void User::addFriendOrUpdateAffinity(QString username, int affinity)
     User *u;
     u = User::getUserByUsername(username);
 
-    if(this->friends->contains(u)){
-        this->setAffinity(u, affinity);
-    }else{
-        this->addFriend(u, affinity);
+    QMap<User,int>::iterator i;
+    for(i = this->friends->begin(); i != friends->end(); i++)
+    {
+        qDebug() << i.key().username << " : " << i.value();
+        if(i.key().username == u->getUsername()){
+            this->setAffinity(u, affinity);
+            return;
+        }
     }
+
+    this->addFriend(u, affinity);
 }
 
 /**
@@ -300,6 +319,7 @@ User *User::getUserById(int id)
 
         while (query.next())
         {
+            qDebug() << query.value(1).toInt() << query.value(2).toInt();
             ret->friends->insert(*getUserById(query.value(1).toInt()), query.value(2).toInt());
         }
     }
@@ -466,6 +486,21 @@ QMap<User, int> *User::getFriends()
 {
     // return all friends of user
     return friends;
+}
+
+QVariantList User::getFriendsForDisplay()
+{
+    QVariantList list;
+
+    QMap<User,int>::iterator i;
+    for(i = this->friends->begin(); i != friends->end(); i++)
+    {
+        QVariantMap map;
+        qDebug() << i.key().username << " : " << i.value();
+        map.insert(i.key().username, i.value());
+        list << map;
+    }
+    return list;
 }
 
 /**
