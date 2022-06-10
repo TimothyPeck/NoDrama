@@ -242,9 +242,9 @@ void Party::createParty(){
  * @param id The id of the party
  * @return Party
  */
-Party* Party::getPartyById(int id)
+QObject* Party::getPartyById(int id)
 {
-    Party* part=nullptr;
+    //Party* part = nullptr;
     Database* db=db->getInstance();
 
     QSqlQuery query=QSqlQuery(db->getDatabase());
@@ -259,17 +259,20 @@ Party* Party::getPartyById(int id)
 
     if(query.size()==1){
         query.first();
-        part = new Party(
+        QList<User> guests = Party::getGuestsByPartyId(id);
+        User currHost=User::getUserById(query.value(5).toInt());
+        qDebug()<<currHost.getUsername();
+        return new Party(
                     query.value(1).toString(),
                     query.value(2).toDateTime(),
                     query.value(3).toInt(),
                     query.value(4).toInt(),
-                    Party::getGuestsByPartyId(id),
-                    *User::getUserById(query.value(5).toInt()),
+                    guests,
+                    currHost,
                     query.value(6).toString()
                     );
     }
-    return part;
+    return nullptr;
 }
 
 /**
@@ -290,7 +293,7 @@ QList<User> Party::getGuestsByPartyId(int id)
     query.exec();
 
     while(query.next()){
-        guests.append(*User::getUserById(query.value(1).toInt()));
+        guests.append(User::getUserById(query.value(1).toInt()));
     }
 
     return guests;
@@ -356,4 +359,121 @@ QList<int> Party::getPartyIdsForUser(User *user)
     }
 
     return parties;
+}
+
+/**
+ * @brief Party::determineGuests Determines the guests for this party, may take a while with larger parties
+ */
+void Party::determineGuests()
+{
+    QList<User> guests = this->guests;
+    //User *priorUser=nullptr;
+
+    bool canContinue = true;
+    guests.push_front(this->host);
+    //delete host;
+
+    // Boucle tant qu'on a pas le nombre d'invités requis sans compter l'hôte
+    //while (guests.length() < this->getMaxPeople() + 1 && canContinue)
+    //{
+    // Boucle sur chaque invité -> prendre un nouvel invité
+    for (int i = 0; i < guests.length(); i++)
+    {
+        if(guests.length() < maxPeople + 1)
+        {
+            User currentGuest = guests.at(i); // orga
+            QMap<User, int> friends = currentGuest.getFriendsByAffinity(minAffinity); //liste d'amis de orga
+            QMapIterator<User, int> friendsIterator(friends);
+
+
+            User *maxAverageUser=new User();
+            double maxAverage = 0;
+
+
+            // Boucle sur chaque ami de l'invité qui a l'affinité minimum
+            while (friendsIterator.hasNext())
+            {
+                friendsIterator.next();
+                User currentGuestFriend = friendsIterator.key(); // lui c'est A, premier ami de orga
+
+                //check si les l'ami qu'on check est déjà invité à la fête
+                // si pas cinfiance en contains
+                bool guestContainFriend = false;
+                for(int i = 0; guests.length() > i ; i++)
+                {
+                    if(guests.at(i) == currentGuestFriend)
+                    {
+                        guestContainFriend = true;
+                    }
+                }
+
+
+                // std::cout<<guests.contains(currentGuestFriend)<<std::endl;
+
+                // Si l'ami n'est pas déjà invité
+                if (guestContainFriend == false)
+                {
+                    int sum = friendsIterator.value(), count=1; // --> on va calculer la moyenne de A
+                    // Pour chaque invité -> calculer la moyenne de l'ami
+                    for (int i = 0; i < guests.length(); i++)
+                    {
+                        User currentFriend = guests.at(i);
+
+                        QMap<User, int> currentFriendFriends = currentFriend.getFriendsByAffinity(this->getMinAffinity()); //liste d'ami d'orga
+
+                        QMapIterator<User, int> currentFriendFriendsIterator(currentFriendFriends);
+
+                        while (currentFriendFriendsIterator.hasNext()) //boucle sur liste d'amis d'orga
+                        {
+                            currentFriendFriendsIterator.next();
+
+                            User thisFriend = currentFriendFriendsIterator.key();
+
+                            if(thisFriend!=currentGuestFriend){
+
+                                QMap<User, int> *thisFriendFriends = thisFriend.getFriends(); // list ami de thisFriendFriends
+
+                                //std::cout<<"\tKnown friends count for "<<thisFriend.getUsername()<<" : "<<thisFriendFriends->count()<<std::endl;
+
+                                //std::cout<<"\tthisFriend "<<thisFriend.getUsername()<< ", CurrentGuestFriend : "<<currentGuestFriend.getUsername()<<std::endl;
+
+                                QMapIterator<User, int> thisFriendFriendsIterator(*thisFriendFriends);
+
+                                if(thisFriend!=currentGuest)
+                                {
+                                    while(thisFriendFriendsIterator.hasNext()){
+                                        thisFriendFriendsIterator.next();
+                                        User thisFriendFriendsIteratorKey=thisFriendFriendsIterator.key();
+                                        if(thisFriendFriendsIteratorKey==currentGuestFriend ){
+                                            sum += thisFriendFriendsIterator.value();
+                                            count++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    double averageAffinity = count > 0 ? (double)sum / (double)count : 0; //sum > 0 ? sum / knownFriends.count() : 0;
+
+                    // Test si le current friend est plus un bon ami que le maxAverageUser
+                    if (averageAffinity > maxAverage)
+                    {
+                        maxAverage = averageAffinity;
+                        maxAverageUser = new User(currentGuestFriend);
+                    }
+                }
+            }
+            User testUser = User();
+
+            if (*maxAverageUser != testUser)
+            {
+                if (!guests.contains(*maxAverageUser))
+                    guests.append(*maxAverageUser);
+            }
+
+            delete maxAverageUser;
+        }
+    }
+    guests.removeOne(host);
+    this->guests=guests;
 }

@@ -16,6 +16,10 @@ ApplicationWindow {
         id: party
     }
 
+    User{
+        id: user
+    }
+
     ListModel {
 
         id: partyModel
@@ -23,23 +27,31 @@ ApplicationWindow {
         function createListParty(part){
             console.log("Current party id: " + part)
             currentParty.constructor(party.getPartyById(part))
-            console.log("Current party name: " + currentParty.getPartyName())
-            //tmpUser = currentParty.getHost()
             console.log(currentParty.getHost())
-            tmpUser.constructor(currentParty.getHost());
-            console.log(tmpUser.getUsername())
-            return{
-                name: currentParty.getPartyName(),
-                date: currentParty.getPartyDate(),
-                time: currentParty.getPartyDate(),
-                organiser: tmpUser.getUsername(),
-                place: currentParty.getPartyLocation()
-            };
+            if(currentParty.getHost() !== undefined){
+                console.log("Current party name: " + currentParty.getPartyName())
+                //tmpUser = currentParty.getHost()
+                console.log(currentParty.getHost())
+                return{
+                    name: currentParty.getPartyName(),
+                    date: currentParty.getPartyDate(),
+                    time: currentParty.getPartyDate(),
+                    organiser: tmpUser.getUsername(),
+                    place: currentParty.getPartyLocation()
+                };
+            }else{
+                return{
+                    name: "Error getting parties",
+                    date: "",
+                    time: "",
+                    organiser: "",
+                    place: ""
+                }
+            }
         }
 
         Component.onCompleted: {
             var parties = party.getPartyIdsForUser(currentUser)
-            console.log(parties.length)
             for(let i=0; i<parties.length; i++){
                 append(createListParty(parties[i]))
             }

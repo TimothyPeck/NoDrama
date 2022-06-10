@@ -50,11 +50,13 @@ public:
 
     void addGuest(User guest);
     Q_INVOKABLE void createParty();
-    Q_INVOKABLE static Party* getPartyById(int);
+    Q_INVOKABLE static QObject* getPartyById(int);
     //Q_INVOKABLE static Party getPartyByHost(User);
     Q_INVOKABLE static QList<User> getGuestsByPartyId(int);
     Q_INVOKABLE static QList<Party>* getPartiesForUser(User* user);
     Q_INVOKABLE static QList<int> getPartyIdsForUser(User* user);
+
+    Q_INVOKABLE void determineGuests();
 
     // Getters
     Q_INVOKABLE const QString &getPartyName() const;

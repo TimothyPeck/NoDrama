@@ -14,7 +14,7 @@ ApplicationWindow {
     width: 360
     height: 640
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("NoDrama Login")
     color: "#232323"
 
     User {
@@ -32,21 +32,17 @@ ApplicationWindow {
             id: inputs
             spacing: 6
 
-            Image {
-                id: logo
-                source: ":/images/images/NoDramaTranparent.PNG"
-            }
             Rectangle{
                 Layout.preferredHeight: 200
                 Layout.minimumWidth: 100
                 Layout.preferredWidth: 300
 
-                color: 'white'
+                color: '#232323'
                 Image {
                     id: logo_
-                    Layout.preferredWidth: 300
+                    width: 300
                     fillMode: Image.PreserveAspectFit
-                    source: ":/images/logo"
+                    source: "qrc:/images/logo"
                 }
             }
 
