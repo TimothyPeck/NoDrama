@@ -128,6 +128,7 @@ public:
     Q_INVOKABLE static int testLoginEmail(QString email, QString password);
 
     Q_INVOKABLE QMap<User, int> *getFriends();
+    Q_INVOKABLE QVariantList getFriendsForDisplay();
     //Q_INVOKABLE QList<User> getUsers();
     Q_INVOKABLE QMap<User, int> getFriendsByAffinity(int);
 };

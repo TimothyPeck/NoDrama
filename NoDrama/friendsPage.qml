@@ -25,7 +25,7 @@ ApplicationWindow {
     ListModel {
         id: usersListModel
         Component.onCompleted: {
-            update();
+            updateList();
         }
     }
     function createListElement(n, a){
@@ -43,13 +43,18 @@ ApplicationWindow {
             usersListModel.append(createListElement(n,a));
         }
     }
-    function update(){
+    function updateList(){
         console.log("update")
         usersListModel.clear();
-        var friends = currentUser.getFriends();
+        var friends = currentUser.getFriendsForDisplay();
         lineEdit.text = "";
-        for(var friend in friends){
-            console.log(friend);
+        for(var i = 0; i < friends.length; i++)
+        {
+            for(var friend in friends[i])
+            {
+                console.log(friend + " : " + friends[i][friend]);
+                usersListModel.append(createListElement(friend, friends[i][friend].toString()));
+            }
         }
     }
 
@@ -136,14 +141,15 @@ ApplicationWindow {
                                 id: affinity
                                 width: 40
                                 height: 40
+                                displayText: affi
                                 model: ['', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
                                 onActivated: {
-                                    console.log("label name : " + labelName.text)
-                                    console.log("value : " + currentValue)
+                                    //console.log("label name : " + labelName.text)
+                                    //console.log("value : " + currentValue)
 
                                     currentUser.addFriendOrUpdateAffinity(labelName.text, currentValue);
-                                    console.log("affinity added");
-                                    update();
+                                    console.log("now update");
+                                    updateList();
                                 }
                             }
                         }

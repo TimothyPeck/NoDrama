@@ -118,6 +118,7 @@ ApplicationWindow {
                 onClicked: {
                     var id = user.testLoginUsername(username.text, password.text);
                     if(id > -1){
+                        console.log("user id : " + id);
                         currentUser.constructor(user.getUserById(id));
 
                         var component = Qt.createComponent("./viewParties.qml")
