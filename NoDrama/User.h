@@ -98,7 +98,7 @@ private:
 
     QRegularExpression re;
 
-    bool userExists(QString);
+    static bool userExists(QString);
 
     void getDatabase();
 

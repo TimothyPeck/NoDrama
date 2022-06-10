@@ -192,6 +192,10 @@ User* User::createUser(QString username, QString password, QString email)
 
     QSqlQuery query = QSqlQuery(db->getDatabase());
 
+    if(User::userExists(username)){
+        return User::getUserByUsername(username);
+    }
+
     if (username != "" && password != "" && email != "")
     {
         db->getDatabase().transaction();
@@ -240,8 +244,14 @@ void User::addFriendOrUpdateAffinity(QString username, int affinity)
  */
 bool User::userExists(QString username)
 {
-    getDatabase();
-    this->query.prepare("SELECT * FROM users WHERE username = :username");
+    Database *db = Database::getInstance();
+
+    if (!db->isOpen())
+        db->openDatabase();
+
+    QSqlQuery query = QSqlQuery(db->getDatabase());
+
+    query.prepare("SELECT * FROM users WHERE username = :username");
     query.bindValue(":username", QVariant::fromValue((username)));
     query.exec();
 

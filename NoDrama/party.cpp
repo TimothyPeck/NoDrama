@@ -242,9 +242,9 @@ void Party::createParty(){
  * @param id The id of the party
  * @return Party
  */
-QObject* Party::getPartyById(int id)
+Party* Party::getPartyById(int id)
 {
-    //Party* part = nullptr;
+    Party* part = nullptr;
     Database* db=db->getInstance();
 
     QSqlQuery query=QSqlQuery(db->getDatabase());
@@ -261,8 +261,7 @@ QObject* Party::getPartyById(int id)
         query.first();
         QList<User> guests = Party::getGuestsByPartyId(id);
         User currHost=User::getUserById(query.value(5).toInt());
-        qDebug()<<currHost.getUsername();
-        return new Party(
+        part = new Party(
                     query.value(1).toString(),
                     query.value(2).toDateTime(),
                     query.value(3).toInt(),
@@ -272,7 +271,8 @@ QObject* Party::getPartyById(int id)
                     query.value(6).toString()
                     );
     }
-    return nullptr;
+    qDebug()<<part->getPartyName();
+    return part;
 }
 
 /**
