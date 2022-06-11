@@ -77,12 +77,20 @@ public:
     }
 
     /**
-     * @brief operator = same as @see operator==
+     * @brief operator= Assignement operator for the user class, returns reference to self
      * @param other
      * @return
      */
-    Q_INVOKABLE bool operator=(const User& other) const{
-        return username==other.username;
+    Q_INVOKABLE User& operator=(const User& other){
+        id=other.id;
+        username=other.username;
+        password=other.password;
+        email=other.email;
+        friends=other.friends;
+        friends->detach();
+        re=other.re;
+
+        return *this;
     }
 
 private:

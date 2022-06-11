@@ -53,7 +53,7 @@ Party::Party(QString name, QDateTime dateTime, int minAffinity, int maxPeople, Q
  * @param host The user obect of the host of the party
  * @param location The location at which the party will be held
  */
-Party::Party(int id, QString name, QDateTime dateTime, int minAffinity, int maxPeople, QList<User> predeterminedGuests, User host, QString location)
+Party::Party(int id, QString name, QDateTime dateTime, int minAffinity, int maxPeople, QList<User> predeterminedGuests, User futureHost, QString location)
 {
     this->partyID=id;
     this->partyName=name;
@@ -68,7 +68,10 @@ Party::Party(int id, QString name, QDateTime dateTime, int minAffinity, int maxP
         this->guests.append(predeterminedGuests.at(i));
     }
 
-    this->host = host;
+    this->host = futureHost;
+    User tmpHost = futureHost;
+    qDebug()<<this->host.getUsername() << " should be "<<futureHost.getUsername();
+    qDebug()<<tmpHost.getUsername() << " should be "<<futureHost.getUsername();
 }
 
 /**
@@ -262,6 +265,7 @@ Party* Party::getPartyById(int id)
         QList<User> guests = Party::getGuestsByPartyId(id);
         User currHost=User::getUserById(query.value(5).toInt());
         part = new Party(
+                    id,
                     query.value(1).toString(),
                     query.value(2).toDateTime(),
                     query.value(3).toInt(),

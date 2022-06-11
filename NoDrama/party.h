@@ -25,7 +25,7 @@ private:
     QDateTime partyDate;
     int minAffinity;
     int maxPeople;
-    User host;
+    User host = User();
     QString location;
     QList<User> guests;
 
