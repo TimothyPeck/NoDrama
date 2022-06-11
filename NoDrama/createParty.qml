@@ -6,6 +6,7 @@ import QtQuick.Layouts
 import com.myself 1.0
 
 ApplicationWindow {
+    id: createPartyWindow
     width: 360
     height: 640
     visible: true
@@ -125,6 +126,11 @@ ApplicationWindow {
             background: Rectangle {
                 radius: 10
                 color: addguest.down?'#b2a7f9':'#a8c6fa'
+            }
+            onClicked: {
+                var component=Qt.createComponent("./addGuest.qml");
+                var window = component.createObject(createPartyWindow);
+                window.show();
             }
         }
 

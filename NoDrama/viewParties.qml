@@ -95,9 +95,9 @@ ApplicationWindow {
             }
 
             onClicked: {
-                var component=Qt.createComponent("./createParty.qml")
-                var window = component.createObject(viewParties)
-                window.show()
+                var component=Qt.createComponent("./createParty.qml");
+                var window = component.createObject(viewParties);
+                window.show();
             }
         }
 

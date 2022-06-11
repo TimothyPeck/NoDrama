@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<User>("com.myself", 1, 0, "User");
     qmlRegisterType<Party>("com.myself", 1, 0, "Party");
     User *currentUser = new User();
+    QVariantList predeterminedGuests;
     Party *currentParty = new Party();
     User *tmpUser = new User();
 
@@ -51,6 +52,7 @@ int main(int argc, char *argv[])
 
     QQmlContext* rootContext = engine.rootContext();
     // Utilisé pour transmettre une instance d'un objet à la partie QML -> portée dans tous les fichiers
+    rootContext->setContextProperty("predeterminedGuests", predeterminedGuests);
     rootContext->setContextProperty("currentUser", currentUser);
     rootContext->setContextProperty("tmpUser", tmpUser);
     rootContext->setContextProperty("currentParty", currentParty);
