@@ -41,12 +41,31 @@ public:
     ~Party();
 
     /**
-     * @brief operator = overridden equality operator for the party class
+     * @brief operator == equality operator override fot the party class
      * @param lhs
-     * @return
+     * @return bool if equal
      */
-    bool operator=(const Party& lhs) const{
-        return this->partyName==lhs.partyName;
+    bool operator==(const Party& lhs) const{
+        return partyName==lhs.partyName;
+    }
+
+    /**
+     * @brief operator = overriden assignement operator for the Party class
+     * @param lhs
+     * @return Party object
+     */
+    Party& operator=(const Party& lhs) {
+        partyID=lhs.partyID;
+        partyName=lhs.partyName;
+        partyDate=lhs.partyDate;
+        minAffinity=lhs.minAffinity;
+        maxPeople=lhs.maxPeople;
+        host=lhs.host;
+        location=lhs.location;
+        guests=lhs.guests;
+        guests.detach();
+        db=lhs.db;
+        return *this;
     }
 
     void addGuest(User guest);

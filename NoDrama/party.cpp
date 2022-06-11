@@ -69,9 +69,6 @@ Party::Party(int id, QString name, QDateTime dateTime, int minAffinity, int maxP
     }
 
     this->host = futureHost;
-    User tmpHost = futureHost;
-    qDebug()<<this->host.getUsername() << " should be "<<futureHost.getUsername();
-    qDebug()<<tmpHost.getUsername() << " should be "<<futureHost.getUsername();
 }
 
 /**
@@ -264,7 +261,7 @@ Party* Party::getPartyById(int id)
         query.first();
         QList<User> guests = Party::getGuestsByPartyId(id);
         User currHost=User::getUserById(query.value(5).toInt());
-        part = new Party(
+        return new Party(
                     id,
                     query.value(1).toString(),
                     query.value(2).toDateTime(),
@@ -275,8 +272,7 @@ Party* Party::getPartyById(int id)
                     query.value(6).toString()
                     );
     }
-    qDebug()<<part->getPartyName();
-    return part;
+    return nullptr;
 }
 
 /**

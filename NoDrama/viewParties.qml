@@ -31,7 +31,7 @@ ApplicationWindow {
             currentParty.constructor(p)
             console.log(currentParty)
             //tmpUser=currentParty.getHost()
-            if(currentParty.getPartyName() !== undefined || currentParty.getPartyID() > 0){
+            if(currentParty.getPartyName() !== undefined){
                 console.log("Current party name: " + currentParty.getPartyName())
                 tmpUser = user.constructor(currentParty.getHost())
                 return{
