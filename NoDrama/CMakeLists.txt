@@ -63,6 +63,43 @@ if(QT_VERSION_MAJOR EQUAL 6)
 endif()
 
 ###############################################################################
+##########           GOOGLE
+###############################################################################
+
+set(CMAKE_CXX_STANDARD 17)
+
+# GoogleTest
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+    )
+
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+set(TESTS_SOURCES
+    tests.cpp
+)
+
+find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Sql Quick)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Sql Quick)
+
+message("Testing project")
+
+add_executable(tests ${TESTS_SOURCES})
+#add_executable(tests tests.cpp ${LibA_TESTS} ${LibB_TESTS} #${LibC_TESTS})
+target_include_directories(tests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(tests gtest_main)
+
+include(GoogleTest)
+gtest_discover_tests(tests)
+enable_testing()
+
+
+
+###############################################################################
 ##########           DOXYGEN
 ###############################################################################
 
