@@ -25,17 +25,15 @@ ApplicationWindow {
         id: partyModel
 
         function createListParty(part){
-            var p = party.getPartyById(part, function(n) {
-                console.log(" back in js with n="+n);
-            });
-            //var p = party.getPartyById(part)
+            var p = party.getPartyById(part)
             console.log(p)
+            console.log(p.getPartyName())
             currentParty.constructor(p)
             console.log(currentParty)
             //tmpUser=currentParty.getHost()
-            if(currentParty.getHost() !== undefined){
+            if(currentParty.getPartyName() !== undefined || currentParty.getPartyID() > 0){
                 console.log("Current party name: " + currentParty.getPartyName())
-                tmpUser = user.constructor(urrentParty.getHost())
+                tmpUser = user.constructor(currentParty.getHost())
                 return{
                     name: currentParty.getPartyName(),
                     date: currentParty.getPartyDate(),

@@ -17,6 +17,7 @@
 class Party : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(int partyID READ getPartyID() CONSTANT)
     QML_ELEMENT
 private:
     int partyID;
