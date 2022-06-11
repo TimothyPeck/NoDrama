@@ -3,6 +3,7 @@
         <file>images/NoDramaTranparent.PNG</file>
         <file alias="logo">images/NoDramaTranparent.PNG</file>
         <file alias="logo_arc">images/ARC_RGB_Logo_transp.png</file>
+        <file>images/NoDramaIcon.ico</file>
     </qresource>
     <qresource prefix="/">
         <file>infoPage.qml</file>

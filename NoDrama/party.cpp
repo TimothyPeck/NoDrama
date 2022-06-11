@@ -50,7 +50,7 @@ Party::Party(QString name, QDateTime dateTime, int minAffinity, int maxPeople, Q
  * @param minAffinity The minimum affinity required to be invited to the party
  * @param maxPeople The maximum number of people that can be invited to the party
  * @param predeterminedGuests The guests that the host has decided must be invited, does not follow the minAffinity of the party
- * @param host The user obect of the host of the party
+ * @param futureHost The user obect of the host of the party
  * @param location The location at which the party will be held
  */
 Party::Party(int id, QString name, QDateTime dateTime, int minAffinity, int maxPeople, QList<User> predeterminedGuests, User futureHost, QString location)
@@ -183,6 +183,10 @@ int Party::getPartyID() const
     return partyID;
 }
 
+/**
+ * @brief Party::getPartyLocation Returns the location a the party
+ * @return QString
+ */
 const QString &Party::getPartyLocation() const
 {
     return this->location;

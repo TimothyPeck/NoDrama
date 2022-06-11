@@ -16,6 +16,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Sql Quick)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Sql Quick)
 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    enable_language("RC")
+    set(icon_res "${CMAKE_CURRENT_SOURCE_DIR}/images/res.rc")
+endif()
+
 set(PROJECT_SOURCES
         resources.qrc
         main.cpp
@@ -35,23 +40,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(NoDrama
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ${icon_res}
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET NoDrama APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-else()
-    if(ANDROID)
-        add_library(NoDrama SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(NoDrama
-          ${PROJECT_SOURCES}
-        )
-    endif()
 endif()
 
 target_compile_definitions(NoDrama
@@ -79,7 +69,7 @@ endif()
 find_package(Doxygen)
 
 if(NOT DOXYGEN_FOUND)
-message(FATAL_ERROR "Doxygen is needed to build the documentation.")
+    message(FATAL_ERROR "Doxygen is needed to build the documentation.")
 endif()
 
 get_filename_component(PARENT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/.. ABSOLUTE)

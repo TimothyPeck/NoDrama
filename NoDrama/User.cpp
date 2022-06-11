@@ -231,6 +231,11 @@ User* User::createUser(QString username, QString password, QString email)
     return u;
 }
 
+/**
+ * @brief User::addFriendOrUpdateAffinity Adds the affinity to a user or updates it if the user already has an affinity
+ * @param username The username of the user whose affinity needs updating
+ * @param affinity The affinity to set
+ */
 void User::addFriendOrUpdateAffinity(QString username, int affinity)
 {
     User *u;
@@ -483,6 +488,10 @@ QMap<User, int> *User::getFriends()
     return friends;
 }
 
+/**
+ * @brief User::getFriendsForDisplay Returns the users in a way that QML can display them
+ * @return
+ */
 QVariantList User::getFriendsForDisplay()
 {
     QVariantList list;
