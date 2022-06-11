@@ -1,7 +1,5 @@
 #include "User.h"
-
 #include <iostream>
-
 #include <QSqlError>
 
 /**
@@ -12,9 +10,7 @@ void User::getDatabase()
     if (this->db == nullptr)
     {
         this->db = db->getInstance();
-
         this->query = QSqlQuery(db->getDatabase());
-
         this->db->openDatabase();
     }
 }
@@ -45,8 +41,7 @@ User::User(QString username, QString password, QString email)
     {
         getDatabase();
         /*if(!userExists(username) && db->openDatabase())
-            createUser(username, password, email);
-*/
+            createUser(username, password, email);*/
         this->username = username;
         this->password = password;
         this->email = email;

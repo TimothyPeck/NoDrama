@@ -10,6 +10,59 @@ ApplicationWindow {
     title: qsTr("Add guests")
     color: "#232323"
 
+    ListModel {
+        id: friendsListModel
+        Component.onCompleted: {
+            udpateList();
+        }
+
+    }
+    function createListElement(n,a)
+    {
+        return {
+            name : n,
+            isAdded : a
+        }
+    }
+
+    function justOneElement(n, a){
+        if(n !== null){
+            a = (a === null ? "" : a);
+            friendsListModel.clear();
+            friendsListModel.append(createListElement(n,a));
+        }
+    }
+
+    function updateList()
+    {
+        console.log("update friend list")
+        friendsListModel.clear();
+        lineEdit.text = "";
+
+        var friends = currentUser.getFriendsForDisplay();
+        var guests = predeterminedGuests;
+
+        for(var i = 0; i < friends.length; i++)
+        {
+            for(var friend in friends[i])
+            {
+                var isInList = false;
+                for(var j = 0; i < guests.length; j++)
+                {
+                    console.log(guests[j]);
+                    if(friend === guests[j])
+                    {
+                        console.log(friend + " " + guest);
+                        isInList = true;
+                        usersListModel.append(createListElement(friend, "-"));
+                    }
+                }
+                if(!isInList)
+                    usersListModel.append(createListElement(friend, "+"));
+            }
+        }
+    }
+
     ColumnLayout {
         id: mainLayout
         anchors.fill: parent
@@ -52,7 +105,7 @@ ApplicationWindow {
             ListView{
                 anchors.fill: parent
                 focus: true
-                model: UsersList { }
+                model: friendsListModel
                 delegate:
                     Item {
                     id: wrapper
@@ -61,6 +114,7 @@ ApplicationWindow {
 
                     Row{
                         Label {
+                            id: friendName
                             leftPadding: 15
                             verticalAlignment: Text.AlignVCenter
                             text: name;
@@ -81,9 +135,13 @@ ApplicationWindow {
                                 border.color: "lightsteelblue";
                                 border.width:0.5
                             }
-                            text: "+"
+                            text: isAdded
                             height: 40
                             width: 40
+                            onClicked: {
+                                predeterminedGuests.append(name);
+                                updateList();
+                            }
                         }
                     }
 
