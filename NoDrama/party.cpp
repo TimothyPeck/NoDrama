@@ -287,27 +287,33 @@ QVariantList Party::getGuestsForDisplay()
  *
  */
 void Party::createParty(){
-    this->db = db->getInstance();
+    //this->db = db->getInstance();
+    Database *db = Database::getInstance();
 
-    this->query = QSqlQuery(db->getDatabase());
+    if (!db->isOpen())
+        db->openDatabase();
+
+    //this->query = QSqlQuery(db->getDatabase());
+    QSqlQuery query = QSqlQuery(db->getDatabase());
 
     QString dateTime = this->partyDate.date().toString("yyyy-MM-dd") + " " + this->partyDate.time().toString("hh:mm:s");
     qDebug() << dateTime;
 
+    db->getDatabase().transaction();
 
-    this->query.prepare("INSERT INTO nodrama.Parties(name, date, affinity_grade, max_people, host_id, location) VALUES(:name, :date, :aff, :maxPeps, :host_id, :location");
-    this->query.bindValue(":name", this->partyName);
-    this->query.bindValue(":date", dateTime);
-    this->query.bindValue(":aff", this->minAffinity);
-    this->query.bindValue(":maxPeps", this->maxPeople);
-    this->query.bindValue(":host_id", this->host.getId());
-    this->query.bindValue(":location", this->location);
+    /*this->*/query.prepare("INSERT INTO nodrama.parties(name, date, affinity_grade, max_people, host_id, location) VALUES(:name, :date, :aff, :maxPeps, :host_id, :location");
+    query.bindValue(":name", this->partyName);
+    query.bindValue(":date", dateTime);
+    query.bindValue(":aff", this->minAffinity);
+    query.bindValue(":maxPeps", this->maxPeople);
+    query.bindValue(":host_id", this->host.getId());
+    query.bindValue(":location", this->location);
 
-    this->query.exec();
+    query.exec();
 
-    qDebug() << this->query.lastError();
+    qDebug() << query.lastError();
 
-    int partyId = this->query.lastInsertId().toInt();
+    int partyId = query.lastInsertId().toInt();
 
     this->partyID=partyId;
 
