@@ -61,10 +61,6 @@ ApplicationWindow {
                 radius: 10
                 color: "#c9f1fd"
             }
-            onEditingFinished:
-            {
-                currentParty.setName(partyname.text);
-            }
         }
 
         // Number of people
@@ -81,10 +77,6 @@ ApplicationWindow {
                 width: 20
                 id: nbpeople
                 from: 1
-                onValueChanged:
-                {
-                    currentParty.setMaxP(nbpeople.value);
-                }
             }
         }
 
@@ -101,9 +93,6 @@ ApplicationWindow {
                 model: 11
                 delegate: ItemDelegate {
                     text: index
-                }
-                onActivated: {
-                    currentParty.setMinAffi(currentValue);
                 }
             }
         }
@@ -122,10 +111,6 @@ ApplicationWindow {
                 background: Rectangle {
                     radius: 10
                     color: "#c9f1fd"
-                }
-                onEditingFinished:
-                {
-                    currentParty.setDate(date.text);
                 }
             }
             TextField {
@@ -155,9 +140,6 @@ ApplicationWindow {
             background: Rectangle {
                 radius: 10
                 color: "#c9f1fd"
-            }
-            onEditingFinished: {
-                currentParty.setLoc(location.text);
             }
         }
 
@@ -268,6 +250,12 @@ ApplicationWindow {
                 color: createParty.down?'#b2a7f9':'#a8c6fa'
             }
             onClicked: {
+                currentParty.setName(partyname.text);
+                currentParty.setMaxP(nbpeople.value);
+                currentParty.setMinAffi(minaffinity.currentValue);
+                currentParty.setDate(date.text);
+                currentParty.setLoc(location.text);
+
                 currentParty.createParty();
                 createPartyWindow.close();
             }
