@@ -291,9 +291,13 @@ void Party::createParty(){
 
     this->query = QSqlQuery(db->getDatabase());
 
+    QString dateTime = this->partyDate.date().toString("yyyy-MM-dd") + " " + this->partyDate.time().toString("hh:mm:s");
+    qDebug() << dateTime;
+
+
     this->query.prepare("INSERT INTO nodrama.Parties(name, date, affinity_grade, max_people, host_id, location) VALUES(:name, :date, :aff, :maxPeps, :host_id, :location");
     this->query.bindValue(":name", this->partyName);
-    this->query.bindValue(":date", this->partyDate);
+    this->query.bindValue(":date", dateTime);
     this->query.bindValue(":aff", this->minAffinity);
     this->query.bindValue(":maxPeps", this->maxPeople);
     this->query.bindValue(":host_id", this->host.getId());
