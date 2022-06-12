@@ -110,7 +110,7 @@ ApplicationWindow {
 
             Label {
                 id: guests
-                text: currentParty.guests
+                text: currentParty.maxPeople
                 Layout.minimumHeight: 20
                 Layout.minimumWidth: 100
                 Layout.preferredWidth: 300
@@ -121,6 +121,25 @@ ApplicationWindow {
                     radius: 3
                     height: 20
                     color: "lightgrey"
+                }
+            }
+
+            ListModel {
+
+                id: guestModelLocal
+
+                function createUsersList(user){
+                    return{
+                        name: user
+                    }
+                }
+
+                Component.onCompleted: {
+                    var users = currentParty.guestUsernames;
+                    console.log(users)
+                    for(let i=0;i<users.length;i++){
+                        append(createUsersList(users[i]))
+                    }
                 }
             }
 
@@ -140,7 +159,7 @@ ApplicationWindow {
                 ListView{
                     anchors.fill: parent
                     focus: true
-                    model: GuestList {} // guestModel
+                    model: guestModelLocal//GuestList {} // guestModel
                     delegate:
                         Item {
                         id: wrapper
@@ -156,7 +175,7 @@ ApplicationWindow {
                                     color: "white"
                                     //color: wrapper.ListView.isCurrentItem ? "lightsteelblue" : "white"
                                     border.color: "#cccccc";
-                                    border.width:0.5
+                                    border.width: 0.5
                                 }
                                 width: 280
                                 height: 40

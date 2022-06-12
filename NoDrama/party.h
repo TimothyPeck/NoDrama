@@ -22,10 +22,12 @@ class Party : public QObject
     Q_PROPERTY(QString partyDate READ getPartyDateString() CONSTANT)
     Q_PROPERTY(QString partyTime READ getPartyTimeString() CONSTANT)
     Q_PROPERTY(int minAffinity READ getMinAffinity() CONSTANT)
+    Q_PROPERTY(int maxPeople READ getMaxPeople() CONSTANT)
     Q_PROPERTY(User host READ getHost() CONSTANT)
     Q_PROPERTY(int hostID READ getHostID() CONSTANT)
     Q_PROPERTY(QString location READ getPartyLocation() CONSTANT)
     Q_PROPERTY(QList<User> guests READ getGuests() CONSTANT)
+    Q_PROPERTY(QList<QString> guestUsernames READ getGuestUsernames() CONSTANT)
     QML_ELEMENT
 private:
     /**
@@ -131,6 +133,7 @@ public:
     Q_INVOKABLE const int getHostID();
     //Q_INVOKABLE const User* getHost() const;
     Q_INVOKABLE const QList<User> &getGuests() const;
+    Q_INVOKABLE const QList<QString> getGuestUsernames();
     Q_INVOKABLE int getPartyID() const;
     Q_INVOKABLE const QString &getPartyLocation() const;
 };

@@ -31,7 +31,7 @@ Party::Party(QString name, QDateTime dateTime, int minAffinity, int maxPeople, Q
     this->maxPeople=maxPeople;
     this->location=location;
 
-    this->guests=QList<User>(maxPeople);
+    this->guests=QList<User>();
 
     for(qsizetype i=0;i<predeterminedGuests.size();++i){
         this->guests.append(predeterminedGuests.at(i));
@@ -62,7 +62,7 @@ Party::Party(int id, QString name, QDateTime dateTime, int minAffinity, int maxP
     this->maxPeople=maxPeople;
     this->location=location;
 
-    this->guests=QList<User>(maxPeople);
+    this->guests=QList<User>();
 
     for(qsizetype i=0;i<predeterminedGuests.size();++i){
         this->guests.append(predeterminedGuests.at(i));
@@ -198,6 +198,19 @@ const int Party::getHostID()
 const QList<User> &Party::getGuests() const
 {
     return guests;
+}
+
+/**
+ * @brief Party::getGuestUsernames REtruns all the usernames of the guests
+ * @return
+ */
+const QList<QString> Party::getGuestUsernames()
+{
+    QList<QString> usernames=QList<QString>();
+    for(User& u : guests){
+        usernames.append(u.getUsername());
+    }
+    return usernames;
 }
 
 /**
@@ -356,12 +369,14 @@ QList<User> Party::getGuestsByPartyId(int id)
 
     QSqlQuery query=QSqlQuery(db->getDatabase());
 
-    query.prepare("SELECT * FROM nodrama.Guests WHERE fk_party = :id");
+    query.prepare("SELECT nodrama.Guests.fk_user FROM nodrama.Guests WHERE fk_party = :id");
+
+    query.bindValue(":id", id);
 
     query.exec();
 
     while(query.next()){
-        guests.append(User::getUserById(query.value(1).toInt()));
+        guests.append(User::getUserById(query.value(0).toInt()));
     }
 
     return guests;
