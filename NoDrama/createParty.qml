@@ -236,6 +236,21 @@ ApplicationWindow {
                 color: createParty.down?'#b2a7f9':'#a8c6fa'
             }
             onClicked: {
+                currentParty.setHost(currentUser);
+
+                console.log(partyname.text)
+                currentParty.setName(partyname.text);
+                console.log(nbpeople.value);
+                currentParty.setMaxP(nbpeople.value);
+                console.log(minaffinity.currentValue);
+                currentParty.setMinAffi(minaffinity.currentValue);
+                console.log(date.text);
+                currentParty.setDate(date.text);
+                console.log(time.text);
+                currentParty.setTime(time.text);
+                console.log(location.text);
+                currentParty.setLoc(location.text);
+
                 currentParty.determineGuests();
                 updateList();
             }
@@ -254,10 +269,19 @@ ApplicationWindow {
                 color: createParty.down?'#b2a7f9':'#a8c6fa'
             }
             onClicked: {
+                currentParty.setHost(currentUser);
+
+                console.log(partyname.text)
                 currentParty.setName(partyname.text);
+                console.log(nbpeople.value);
                 currentParty.setMaxP(nbpeople.value);
+                console.log(minaffinity.currentValue);
                 currentParty.setMinAffi(minaffinity.currentValue);
+                console.log(date.text);
                 currentParty.setDate(date.text);
+                console.log(time.text);
+                currentParty.setTime(time.text);
+                console.log(location.text);
                 currentParty.setLoc(location.text);
 
                 currentParty.createParty();

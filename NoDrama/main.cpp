@@ -37,11 +37,13 @@ int main(int argc, char *argv[])
     // -> utilisé pour créer une instance d'un objet qml du type "User" -> portée seulement le fichier ou l'objet est instancié
     qmlRegisterType<User>("com.myself", 1, 0, "User");
     qmlRegisterType<Party>("com.myself", 1, 0, "Party");
-    User *currentUser = new User();
+
     //QVariantList predeterminedGuests;
     //predeterminedGuests.append(QVariant::fromValue(new QString("Dorian")));
     //predeterminedGuests.append("Dorian");
     Party *currentParty = new Party();
+    User *currentUser = new User();
+    currentParty->setHost(currentUser);
     User *tmpUser = new User();
 
     const QUrl url(u"qrc:/main.qml"_qs);

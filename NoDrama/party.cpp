@@ -288,6 +288,8 @@ void Party::createParty(){
 
     this->query.exec();
 
+    qDebug() << this->query.lastError();
+
     int partyId = this->query.lastInsertId().toInt();
 
     this->partyID=partyId;
@@ -301,6 +303,7 @@ void Party::createParty(){
         this->query.bindValue(":guestID", guest.getId());
 
         query.exec();
+        qDebug() << this->query.lastError();
     }
 }
 
@@ -439,6 +442,7 @@ void Party::determineGuests()
 
     bool canContinue = true;
     guests.push_front(this->host);
+    qDebug() << "Host : " << this->host.getUsername();
     //delete host;
 
     // Boucle tant qu'on a pas le nombre d'invités requis sans compter l'hôte
