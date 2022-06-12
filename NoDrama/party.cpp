@@ -134,6 +134,24 @@ const QDateTime &Party::getPartyDate() const
 }
 
 /**
+ * @brief Party::getPartyDateString Returns a string of the date part of the party
+ * @return  QString The date part of the party
+ */
+const QString Party::getPartyDateString() const
+{
+    return this->partyDate.date().toString("ddd dd MMMM yyyy");
+}
+
+/**
+ * @brief Party::getPartyTimeString Returns a string of the time part of the party
+ * @return QString The time of the party
+ */
+const QString Party::getPartyTimeString() const
+{
+    return this->partyDate.time().toString("hh:mm ap");
+}
+
+/**
  * @brief Returns the minimum affinity required to be invited to the party
  *
  * @return int
@@ -161,6 +179,15 @@ int Party::getMaxPeople() const
 const User &Party::getHost() const
 {
     return host;
+}
+
+/**
+ * @brief Party::getHostID Returns the id of the host of the party
+ * @return  int Party host id
+ */
+const int Party::getHostID()
+{
+    return this->host.getId();
 }
 
 /**

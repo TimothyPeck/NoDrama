@@ -18,15 +18,46 @@ class Party : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int partyID READ getPartyID() CONSTANT)
+    Q_PROPERTY(QString partyName READ getPartyName() CONSTANT)
+    Q_PROPERTY(QString partyDate READ getPartyDateString() CONSTANT)
+    Q_PROPERTY(QString partyTime READ getPartyTimeString() CONSTANT)
+    Q_PROPERTY(int minAffinity READ getMinAffinity() CONSTANT)
+    Q_PROPERTY(User host READ getHost() CONSTANT)
+    Q_PROPERTY(int hostID READ getHostID() CONSTANT)
+    Q_PROPERTY(QString location READ getPartyLocation() CONSTANT)
     QML_ELEMENT
 private:
+    /**
+     * @brief partyID Id of the party
+     */
     int partyID;
+    /**
+     * @brief partyName Name of the party
+     */
     QString partyName;
+    /**
+     * @brief partyDate Date of the party
+     */
     QDateTime partyDate;
+    /**
+     * @brief minAffinity The minimum affinity required to be invited to the party
+     */
     int minAffinity;
+    /**
+     * @brief maxPeople The maximum number of people qho can be invited to the party
+     */
     int maxPeople;
+    /**
+     * @brief host The host of the party
+     */
     User host = User();
+    /**
+     * @brief location The location of the party
+     */
     QString location;
+    /**
+     * @brief guests The guests of the party
+     */
     QList<User> guests;
 
     Database* db;
@@ -90,9 +121,12 @@ public:
     // Getters
     Q_INVOKABLE const QString &getPartyName() const;
     Q_INVOKABLE const QDateTime &getPartyDate() const;
+    Q_INVOKABLE const QString getPartyDateString() const;
+    Q_INVOKABLE const QString getPartyTimeString() const;
     Q_INVOKABLE int getMinAffinity() const;
     Q_INVOKABLE int getMaxPeople() const;
     Q_INVOKABLE const User &getHost() const;
+    Q_INVOKABLE const int getHostID();
     //Q_INVOKABLE const User* getHost() const;
     Q_INVOKABLE const QList<User> &getGuests() const;
     Q_INVOKABLE int getPartyID() const;

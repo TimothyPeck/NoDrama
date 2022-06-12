@@ -18,6 +18,7 @@ class User : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString username READ getUsername() CONSTANT)
+    Q_PROPERTY(QString email READ getEmail() CONSTANT)
     QML_ELEMENT
 public:
 
@@ -94,9 +95,21 @@ public:
     }
 
 private:
+    /**
+     * @brief id Id of the user in the database
+     */
     int id;
+    /**
+     * @brief username Username of the user
+     */
     QString username;
+    /**
+     * @brief password The password of the user
+     */
     QString password;
+    /**
+     * @brief email The email of the user
+     */
     QString email;
 
     Database* db;
