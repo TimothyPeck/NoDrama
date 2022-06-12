@@ -26,20 +26,15 @@ ApplicationWindow {
 
         function createListParty(part){
             var p = party.getPartyById(part)
-            console.log(p)
-            console.log(p.getPartyName())
             currentParty.constructor(p)
-            console.log(currentParty)
-            //tmpUser=currentParty.getHost()
-            if(currentParty.getPartyName() !== undefined){
-                console.log("Current party name: " + currentParty.getPartyName())
-                tmpUser = user.constructor(currentParty.getHost())
+            if(currentParty.partyName !== undefined){
+                tmpUser = user.getUserById(currentParty.hostID)
                 return{
-                    name: currentParty.getPartyName(),
-                    date: currentParty.getPartyDate(),
-                    time: currentParty.getPartyDate(),
-                    organiser: tmpUser.getUsername(),
-                    place: currentParty.getPartyLocation()
+                    name: currentParty.partyName,
+                    date: currentParty.partyDate,
+                    time: currentParty.partyTime,
+                    organiser: tmpUser.username !== undefined ? tmpUser.username : "Unknown",
+                    place: currentParty.location
                 };
             }
             return{

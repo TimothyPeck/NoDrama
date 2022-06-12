@@ -18,6 +18,7 @@ class User : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString username READ getUsername() CONSTANT)
+    Q_PROPERTY(QString email READ getEmail() CONSTANT)
     QML_ELEMENT
 public:
 
