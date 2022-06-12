@@ -205,6 +205,43 @@ void Party::addGuest(User guest){
     this->guests.append(guest);
 }
 
+void Party::addOrRemoveGuest(QString name)
+{
+    for(int i = 0; i < this->guests.size(); ++i)
+    {
+        if(guests.at(i).getUsername() == name)
+        {
+            guests.remove(i);
+            return;
+        }
+    }
+    this->guests.append(User::getUserByUsername(name));
+}
+
+bool Party::isFriendInGuest(QString name)
+{
+    for(int i = 0; i < this->guests.size(); ++i)
+    {
+        if(guests.at(i).getUsername() == name)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+QVariantList Party::getGuestsForDisplay()
+{
+    QVariantList *list = new QVariantList();
+
+    for(int i = 0; i < this->guests.size(); ++i)
+    {
+        *list << guests.at(i).getUsername();
+    }
+
+    return *list;
+}
+
 /**
  * @brief Uses the current party object to create a new party in the database
  *

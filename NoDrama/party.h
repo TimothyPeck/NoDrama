@@ -68,7 +68,16 @@ public:
         return *this;
     }
 
+    Q_INVOKABLE void setName(QString n) { this->partyName = n;}
+    Q_INVOKABLE void setDate(QString d) { this->partyDate = QDateTime::fromString(d);}
+    Q_INVOKABLE void setMinAffi(QString a) { this->minAffinity = a.toInt(); }
+    Q_INVOKABLE void setMaxP(QString p) { this->maxPeople = p.toInt(); }
+    Q_INVOKABLE void setLoc(QString l) { this->location = l; }
+
     void addGuest(User guest);
+    Q_INVOKABLE void addOrRemoveGuest(QString name);
+    Q_INVOKABLE bool isFriendInGuest(QString name);
+    Q_INVOKABLE QVariantList getGuestsForDisplay();
     Q_INVOKABLE void createParty();
     Q_INVOKABLE static Party* getPartyById(int);
     //Q_INVOKABLE static Party getPartyByHost(User);

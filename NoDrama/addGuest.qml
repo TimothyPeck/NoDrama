@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
     width: 360
@@ -10,10 +11,14 @@ ApplicationWindow {
     title: qsTr("Add guests")
     color: "#232323"
 
+    User {
+        id: user
+    }
+
     ListModel {
         id: friendsListModel
         Component.onCompleted: {
-            udpateList();
+            updateList();
         }
 
     }
@@ -25,14 +30,6 @@ ApplicationWindow {
         }
     }
 
-    function justOneElement(n, a){
-        if(n !== null){
-            a = (a === null ? "" : a);
-            friendsListModel.clear();
-            friendsListModel.append(createListElement(n,a));
-        }
-    }
-
     function updateList()
     {
         console.log("update friend list")
@@ -40,25 +37,19 @@ ApplicationWindow {
         lineEdit.text = "";
 
         var friends = currentUser.getFriendsForDisplay();
-        var guests = predeterminedGuests;
 
         for(var i = 0; i < friends.length; i++)
         {
             for(var friend in friends[i])
             {
                 var isInList = false;
-                for(var j = 0; i < guests.length; j++)
+                if(currentParty.isFriendInGuest(friend))
                 {
-                    console.log(guests[j]);
-                    if(friend === guests[j])
-                    {
-                        console.log(friend + " " + guest);
-                        isInList = true;
-                        usersListModel.append(createListElement(friend, "-"));
-                    }
+                    friendsListModel.append(createListElement(friend, "-"));
+                } else
+                {
+                    friendsListModel.append(createListElement(friend, "+"));
                 }
-                if(!isInList)
-                    usersListModel.append(createListElement(friend, "+"));
             }
         }
     }
@@ -139,12 +130,12 @@ ApplicationWindow {
                             height: 40
                             width: 40
                             onClicked: {
-                                predeterminedGuests.append(name);
+                                console.log("name : " + name);
+                                currentParty.addOrRemoveGuest(name);
                                 updateList();
                             }
                         }
                     }
-
                 }
             }
         }

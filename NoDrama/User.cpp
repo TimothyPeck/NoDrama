@@ -507,6 +507,20 @@ QVariantList User::getFriendsForDisplay()
     return list;
 }
 
+QVariantList User::pushElement(QVariantList l, QString n)
+{
+    l << n;
+    return l;
+}
+
+void User::printList(QVariantList l)
+{
+    for(int i = 0; i < l.length(); i++)
+    {
+        qDebug() << l[i].toString();
+    }
+}
+
 /**
  * @brief User::getFriendsByAffinity Returns all the friends of the current user where the affinity is greater or equal to the minimum affinity provided.
  * @param minAffinity The minimum affinity for the users to be returned
@@ -543,7 +557,7 @@ int User::getId()
  *
  * @return QString The username
  */
-QString User::getUsername()
+QString User::getUsername() const
 {
     return this->username;
 }

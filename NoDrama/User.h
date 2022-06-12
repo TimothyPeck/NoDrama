@@ -120,7 +120,7 @@ public:
     ~User();
 
     Q_INVOKABLE int getId();
-    Q_INVOKABLE QString getUsername();
+    Q_INVOKABLE QString getUsername() const;
     Q_INVOKABLE QString getEmail();
 
 
@@ -137,6 +137,8 @@ public:
 
     Q_INVOKABLE QMap<User, int> *getFriends();
     Q_INVOKABLE QVariantList getFriendsForDisplay();
+    Q_INVOKABLE QVariantList pushElement(QVariantList l, QString n);
+    Q_INVOKABLE void printList(QVariantList l);
     //Q_INVOKABLE QList<User> getUsers();
     Q_INVOKABLE QMap<User, int> getFriendsByAffinity(int);
 };

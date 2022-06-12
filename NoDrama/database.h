@@ -16,9 +16,9 @@ private:
 
     QString dbDriver = "QPSQL"; //
     QString dbHostname="localhost"; //
-    QString dbName = "nodrama"; // NoDrama
+    QString dbName = "NoDrama"; // NoDrama
     QString dbUsername="postgres"; //
-    QString dbPassword="pass"; //postgres
+    QString dbPassword="postgres"; //postgres
     int dbPort = 5432; //
 
     QSqlDatabase db;

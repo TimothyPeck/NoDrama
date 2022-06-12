@@ -13,6 +13,33 @@ ApplicationWindow {
     title: qsTr("Create party")
     color: "#232323"
 
+    ListModel {
+        id: guestsListModel
+        Component.onCompleted: {
+            updateList();
+        }
+
+    }
+    function createListElement(n)
+    {
+        return {
+            name : n
+        }
+    }
+
+    function updateList()
+    {
+        guestsListModel.clear();
+
+        var guests = currentParty.getGuestsForDisplay();
+
+        for(var i = 0; i < guests.length; i++)
+        {
+            console.log(guests[i]);
+            guestsListModel.append(createListElement(guests[i]));
+        }
+    }
+
     ColumnLayout{
         spacing: 8
         anchors.topMargin: 30
@@ -34,6 +61,10 @@ ApplicationWindow {
                 radius: 10
                 color: "#c9f1fd"
             }
+            onEditingFinished:
+            {
+                currentParty.setName(partyname.text);
+            }
         }
 
         // Number of people
@@ -50,6 +81,10 @@ ApplicationWindow {
                 width: 20
                 id: nbpeople
                 from: 1
+                onValueChanged:
+                {
+                    currentParty.setMaxP(nbpeople.value);
+                }
             }
         }
 
@@ -67,6 +102,9 @@ ApplicationWindow {
                 delegate: ItemDelegate {
                     text: index
                 }
+                onActivated: {
+                    currentParty.setMinAffi(currentValue);
+                }
             }
         }
 
@@ -80,10 +118,14 @@ ApplicationWindow {
                 horizontalAlignment: TextInput.AlignHCenter
                 verticalAlignment: TextInput.AlignVCenter
                 Layout.alignment: Qt.AlignHCenter
-                placeholderText: qsTr("Date")
+                placeholderText: qsTr("Date et heure")
                 background: Rectangle {
                     radius: 10
                     color: "#c9f1fd"
+                }
+                onEditingFinished:
+                {
+                    currentParty.setDate(date.text);
                 }
             }
             TextField {
@@ -114,6 +156,9 @@ ApplicationWindow {
                 radius: 10
                 color: "#c9f1fd"
             }
+            onEditingFinished: {
+                currentParty.setLoc(location.text);
+            }
         }
 
         Button {
@@ -129,7 +174,7 @@ ApplicationWindow {
             }
             onClicked: {
                 var component=Qt.createComponent("./addGuest.qml");
-                var window = component.createObject(createPartyWindow);
+                var window = component.createObject(viewParties);
                 window.show();
             }
         }
@@ -147,10 +192,10 @@ ApplicationWindow {
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
             Layout.alignment: Qt.AlignHCenter
 
-            ListView{
+            ListView {
                 anchors.fill: parent
                 focus: true
-                model: GuestList {} // guestModel
+                model: guestsListModel
                 delegate:
                     Item {
                     id: wrapper
@@ -182,6 +227,10 @@ ApplicationWindow {
                             //Layout.alignment: Qt.AlignLeft
                             height: 40
                             width: 40
+                            onClicked: {
+                                currentParty.addOrRemoveGuest(name);
+                                updateList();
+                            }
                         }
                     }
                 }
@@ -195,13 +244,32 @@ ApplicationWindow {
             Layout.preferredWidth: 280
             Layout.minimumHeight: 30
             Layout.alignment: Qt.AlignHCenter
-            text: qsTr("Create party")
+            text: qsTr("Calculate")
             background: Rectangle {
                 radius: 10
                 color: createParty.down?'#b2a7f9':'#a8c6fa'
             }
             onClicked: {
+                currentParty.determineGuests();
+                updateList();
+            }
+        }
 
+        Button
+        {
+            id: validateParty
+            //Layout.minimumWidth: 150
+            Layout.preferredWidth: 280
+            Layout.minimumHeight: 30
+            Layout.alignment: Qt.AlignHCenter
+            text: qsTr("Validate party")
+            background: Rectangle {
+                radius: 10
+                color: createParty.down?'#b2a7f9':'#a8c6fa'
+            }
+            onClicked: {
+                currentParty.createParty();
+                createPartyWindow.close();
             }
         }
     }
