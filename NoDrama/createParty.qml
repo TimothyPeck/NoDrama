@@ -140,6 +140,10 @@ ApplicationWindow {
                     radius: 10
                     color: "#c9f1fd"
                 }
+                onEditingFinished:
+                {
+                    currentParty.setTime(time.text);
+                }
             }
         }
 

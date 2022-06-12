@@ -101,7 +101,8 @@ public:
     }
 
     Q_INVOKABLE void setName(QString n) { this->partyName = n;}
-    Q_INVOKABLE void setDate(QString d) { this->partyDate = QDateTime::fromString(d);}
+    Q_INVOKABLE void setDate(QString d) { this->partyDate.date() = QDate::fromString(d); }
+    Q_INVOKABLE void setTime(QString t) { this->partyDate.time()=QTime::fromString(t); }
     Q_INVOKABLE void setMinAffi(QString a) { this->minAffinity = a.toInt(); }
     Q_INVOKABLE void setMaxP(QString p) { this->maxPeople = p.toInt(); }
     Q_INVOKABLE void setLoc(QString l) { this->location = l; }
