@@ -31,6 +31,7 @@ ApplicationWindow {
                 tmpUser = user.getUserById(currentParty.hostID)
                 console.log(tmpUser.username)
                 return{
+                    id: currentParty.partyID,
                     name: currentParty.partyName,
                     date: currentParty.partyDate,
                     time: currentParty.partyTime,
@@ -39,6 +40,7 @@ ApplicationWindow {
                 };
             }
             return{
+                id: -1,
                 name: "Error getting parties",
                 date: "",
                 time: "",
@@ -146,6 +148,16 @@ ApplicationWindow {
                     width: 360;
                     height: 110
 
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            currentParty = party.getPartyById(id)
+                            var component=Qt.createComponent("./viewParty.qml")
+                            var window = component.createObject(viewParties)
+                            window.show()
+                        }
+                    }
+
                     Column {
                         Rectangle
                         {
@@ -195,6 +207,7 @@ ApplicationWindow {
                                 }
                             }
                         }
+
                     }
                 }
             }
