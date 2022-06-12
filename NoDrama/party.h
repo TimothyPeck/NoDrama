@@ -25,7 +25,6 @@ class Party : public QObject
     Q_PROPERTY(User host READ getHost() CONSTANT)
     Q_PROPERTY(int hostID READ getHostID() CONSTANT)
     Q_PROPERTY(QString location READ getPartyLocation() CONSTANT)
-    //Q_PROPERTY(int partyID READ getPartyID() CONSTANT)
     QML_ELEMENT
 private:
     /**

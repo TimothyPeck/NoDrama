@@ -29,6 +29,7 @@ ApplicationWindow {
             currentParty.constructor(p)
             if(currentParty.partyName !== undefined){
                 tmpUser = user.getUserById(currentParty.hostID)
+                console.log(tmpUser.username)
                 return{
                     name: currentParty.partyName,
                     date: currentParty.partyDate,
