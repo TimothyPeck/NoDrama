@@ -415,7 +415,7 @@ QList<Party>* Party::getPartiesForUser(User *user)
     if(!db->isOpen())
         db->openDatabase();
     //                          0     1         2               3       4           5
-    query.prepare("SELECT name, date, affinity_grade, max_people, host_id, location FROM nodrama.Parties, nodrama.Guests WHERE Parties.id_party=Guests.fk_party AND Guests.fk_user = :id");
+    query.prepare("SELECT DISTINCT name, date, affinity_grade, max_people, host_id, location, id_party FROM nodrama.Parties, nodrama.Guests WHERE Parties.id_party=Guests.fk_party AND (Guests.fk_user = :id OR Parties.host_id = :id)");
 
     query.bindValue(":id", userID);
 
@@ -423,8 +423,8 @@ QList<Party>* Party::getPartiesForUser(User *user)
 
     while(query.next()){
         QDateTime partyDate = query.value(1).toDateTime();
-        QList<User> guests = QList<User>();
-        parties->append(Party(query.value(0).toString(),partyDate, query.value(2).toInt(), query.value(3).toInt(), guests, User::getUserById(query.value(4).toInt()), query.value(5).toString()));
+        QList<User> guests = Party::getGuestsByPartyId(query.value(6).toInt());
+        parties->append(Party(query.value(0).toString(), partyDate, query.value(2).toInt(), query.value(3).toInt(), guests, User::getUserById(query.value(4).toInt()), query.value(5).toString()));
     }
 
     return parties;
@@ -438,7 +438,7 @@ QList<Party>* Party::getPartiesForUser(User *user)
 QList<int> Party::getPartyIdsForUser(User *user)
 {
     int userID=user->getId();
-    QList<int> parties = QList<int>();
+    QList<int> partyIDs = QList<int>();
 
     Database* db=db->getInstance();
 
@@ -447,17 +447,18 @@ QList<int> Party::getPartyIdsForUser(User *user)
     if(!db->isOpen())
         db->openDatabase();
 
-    query.prepare("SELECT id_party FROM nodrama.Parties, nodrama.Guests WHERE Parties.id_party=Guests.fk_party AND Guests.fk_user = :id");
+    query.prepare("SELECT DISTINCT id_party FROM nodrama.Parties, nodrama.Guests WHERE Parties.id_party=Guests.fk_party AND (Guests.fk_user = :id OR Parties.host_id = :id)");
 
     query.bindValue(":id", userID);
 
     query.exec();
 
     while(query.next()){
-        parties.append(query.value(0).toInt());
+        qDebug()<<"Current party id: "<<query.value(0).toInt();
+        partyIDs.append(query.value(0).toInt());
     }
 
-    return parties;
+    return partyIDs;
 }
 
 /**
