@@ -291,7 +291,7 @@ ApplicationWindow {
                 currentParty.setLoc(location.text);
 
                 currentParty.createParty();
-                //viewPartiesId.updatePartiesList();
+                viewPartiesId.updatePartiesList();
                 createPartyWindow.close();
             }
         }
