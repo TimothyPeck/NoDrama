@@ -9,6 +9,7 @@ import com.myself 1.0
 
 ApplicationWindow {
     id: loginWindow
+    property alias loginWindowId : loginWindow
     //width: 640
     //height: 480
     width: 360
@@ -93,7 +94,8 @@ ApplicationWindow {
                  onClicked: {
                      var component = Qt.createComponent("./createAccount.qml")
                      var window = component.createObject(loginWindow)
-                     window.show()
+                     window.show();
+                     //loginWindow.hide();
                      //loginWindow.close()
                  }
              }
@@ -123,7 +125,8 @@ ApplicationWindow {
 
                         var component = Qt.createComponent("./viewParties.qml")
                         var window = component.createObject(loginWindow)
-                        window.show()
+                        window.show();
+                        //loginWindow.hide();
                         //loginWindow.close()
                     }else {
                         console.log("error");

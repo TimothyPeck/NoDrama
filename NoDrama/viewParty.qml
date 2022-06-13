@@ -12,6 +12,10 @@ ApplicationWindow {
     title: qsTr("Party")
     color: "#232323"
 
+    onClosing: {
+        viewPartiesId.show();
+    }
+
     RowLayout
     {
         id: gridLayout
@@ -30,6 +34,7 @@ ApplicationWindow {
             }
 
             onClicked: {
+                viewPartiesId.show();
                 viewParty.close()
             }
         }

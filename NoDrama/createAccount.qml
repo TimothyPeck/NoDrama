@@ -6,6 +6,7 @@ import com.myself 1.0
 
 ApplicationWindow {
     id: createAccount
+    property alias createAccountId : createAccount
     width: 360
     height: 640
     visible: true
@@ -105,7 +106,9 @@ ApplicationWindow {
                             /*var component = Qt.createComponent("./main.qml")
                             var window = component.createObject(loginWindow)
                             window.show()*/
-                            createAccount.close()
+                            //loginWindowId.show();
+                            createAccount.close();
+
                         } else {
                             console.log("error");
                         }

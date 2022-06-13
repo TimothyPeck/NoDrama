@@ -12,6 +12,9 @@ ApplicationWindow {
     title: qsTr("Information page")
     color: "#232323"
 
+    onClosing: {
+    }
+
     User{
         id: user
     }

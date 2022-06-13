@@ -6,6 +6,7 @@ import com.myself 1.0
 
 ApplicationWindow {
     id: viewParties
+    property alias viewPartiesId : viewParties
     width: 360
     height: 640
     visible: true
@@ -24,38 +25,43 @@ ApplicationWindow {
 
         id: partyModel
 
-        function createListParty(part){
-            var p = party.getPartyById(part)
-            currentParty.constructor(p)
-            if(currentParty.partyName !== undefined){
-                tmpUser = user.getUserById(currentParty.hostID)
-                console.log(tmpUser.username)
-                return{
-                    id: currentParty.partyID,
-                    name: currentParty.partyName,
-                    date: currentParty.partyDate,
-                    time: currentParty.partyTime,
-                    organiser: tmpUser.username !== undefined ? tmpUser.username : "Unknown",
-                    place: currentParty.location
-                };
-            }
-            return{
-                id: -1,
-                name: "Error getting parties",
-                date: "",
-                time: "",
-                organiser: "",
-                place: ""
-            }
-
-        }
-
         Component.onCompleted: {
-            var parties = party.getPartyIdsForUser(currentUser)
-            for(let i=0; i<parties.length; i++){
-                append(createListParty(parties[i]))
-            }
+            updatePartiesList();
         }
+    }
+
+    function updatePartiesList()
+    {
+        var parties = party.getPartyIdsForUser(currentUser)
+        for(let i=0; i<parties.length; i++){
+            partyModel.append(createListParty(parties[i]))
+        }
+    }
+
+    function createListParty(part){
+        var p = party.getPartyById(part)
+        currentParty.constructor(p)
+        if(currentParty.partyName !== undefined){
+            tmpUser = user.getUserById(currentParty.hostID)
+            console.log(tmpUser.username)
+            return{
+                id: currentParty.partyID,
+                name: currentParty.partyName,
+                date: currentParty.partyDate,
+                time: currentParty.partyTime,
+                organiser: tmpUser.username !== undefined ? tmpUser.username : "Unknown",
+                place: currentParty.location
+            };
+        }
+        return{
+            id: -1,
+            name: "Error getting parties",
+            date: "",
+            time: "",
+            organiser: "",
+            place: ""
+        }
+
     }
 
     RowLayout
@@ -78,7 +84,8 @@ ApplicationWindow {
             onClicked: {
                 var component = Qt.createComponent("./friendsPage.qml")
                 var window = component.createObject(viewParties)
-                window.show()
+                window.show();
+                //viewParties.hide();
             }
         }
 
@@ -98,6 +105,7 @@ ApplicationWindow {
                 var component=Qt.createComponent("./createParty.qml");
                 var window = component.createObject(viewParties);
                 window.show();
+                //viewParties.hide();
             }
         }
 
@@ -118,6 +126,7 @@ ApplicationWindow {
                 var component=Qt.createComponent("./infoPage.qml")
                 var window = component.createObject(viewParties)
                 window.show()
+                //viewParties.hide();
             }
         }
     }
@@ -155,6 +164,7 @@ ApplicationWindow {
                             var component=Qt.createComponent("./viewParty.qml")
                             var window = component.createObject(viewParties)
                             window.show()
+                            //viewParties.hide();
                         }
                     }
 

@@ -6,12 +6,17 @@ import QtQuick.Layouts
 import com.myself 1.0
 
 ApplicationWindow {
+    property alias createPartyId : createPartyWindow
     id: createPartyWindow
     width: 360
     height: 640
     visible: true
     title: qsTr("Create party")
     color: "#232323"
+    onClosing: {
+        //viewPartiesId.show();
+
+    }
 
     ListModel {
         id: guestsListModel
@@ -161,6 +166,7 @@ ApplicationWindow {
             onClicked: {
                 var component=Qt.createComponent("./addGuest.qml");
                 var window = component.createObject(viewParties);
+                createPartyWindow.hide();
                 window.show();
             }
         }
@@ -285,6 +291,7 @@ ApplicationWindow {
                 currentParty.setLoc(location.text);
 
                 currentParty.createParty();
+                //viewPartiesId.updatePartiesList();
                 createPartyWindow.close();
             }
         }

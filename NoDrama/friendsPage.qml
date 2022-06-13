@@ -13,9 +13,10 @@ ApplicationWindow {
     color: "#232323"
 
     onClosing: {
-        var component = Qt.createComponent("./viewParties.qml")
-        var window = component.createObject(friendsPage)
-        window.show()
+        //var component = Qt.createComponent("./viewParties.qml")
+        //var window = component.createObject(friendsPage)
+        //window.show()
+        viewPartiesId.show();
     }
 
     User {

@@ -3,6 +3,7 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
 import com.myself 1.0
+//import "createParty.qml"
 
 ApplicationWindow {
     width: 360
@@ -10,6 +11,10 @@ ApplicationWindow {
     visible: true
     title: qsTr("Add guests")
     color: "#232323"
+    onClosing: {
+        createPartyId.updateList();
+        createPartyId.show();
+    }
 
     User {
         id: user
