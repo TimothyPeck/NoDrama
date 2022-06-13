@@ -294,30 +294,31 @@ void Party::createParty(){
         db->openDatabase();
 
     //this->query = QSqlQuery(db->getDatabase());
-    QSqlQuery query = QSqlQuery(db->getDatabase());
+    //QSqlQuery query = QSqlQuery(db->getDatabase());
 
     QString dateTime = this->partyDate.date().toString("yyyy-MM-dd") + " " + this->partyDate.time().toString("hh:mm:s");
     qDebug() << dateTime;
 
     db->getDatabase().transaction();
 
-    /*this->*/query.prepare("INSERT INTO nodrama.parties(name, date, affinity_grade, max_people, host_id, location) VALUES(:name, :date, :aff, :maxPeps, :host_id, :location");
-    query.bindValue(":name", this->partyName);
-    query.bindValue(":date", dateTime);
-    query.bindValue(":aff", this->minAffinity);
-    query.bindValue(":maxPeps", this->maxPeople);
-    query.bindValue(":host_id", this->host.getId());
-    query.bindValue(":location", this->location);
+    this->query.prepare("INSERT INTO nodrama.parties (name,date,affinity_grade,max_people,host_id,location) VALUES (:name,:date, :aff, :maxPers, :host_id, :loc);");
+    //this->query.prepare("INSERT INTO nodrama.parties(name, date, affinity_grade, max_people, host_id, location) VALUES(:name, :date, :aff, :maxPeps, :host_id, :location");
+    this->query.bindValue(":name", this->partyName);
+    this->query.bindValue(":date", dateTime);
+    this->query.bindValue(":aff", this->minAffinity);
+    this->query.bindValue(":maxPers", this->maxPeople);
+    this->query.bindValue(":host_id", this->host.getId());
+    this->query.bindValue(":loc", this->location);
 
-    query.exec();
+    this->query.exec();
 
-    qDebug() << query.lastError();
+    qDebug() << this->query.lastError();
 
-    int partyId = query.lastInsertId().toInt();
+    int partyId = this->query.lastInsertId().toInt();
 
     this->partyID=partyId;
 
-    this->query.prepare("INSERT INTO nodrama.Guests(fk_party, fk_user) VALUES(:partyID, :guestID)");
+    this->query.prepare("INSERT INTO nodrama.guests (fk_party, fk_user) VALUES (:partyID, :guestID)");
 
     this->query.bindValue(":partyID", partyId);
 
@@ -326,8 +327,10 @@ void Party::createParty(){
         this->query.bindValue(":guestID", guest.getId());
 
         query.exec();
+
         qDebug() << this->query.lastError();
     }
+    db->getDatabase().commit();
 }
 
 /**
