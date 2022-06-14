@@ -14,14 +14,37 @@ private:
 
     Database();
 
+    /**
+     * @brief dbDriver The database driver
+     */
     QString dbDriver = "QPSQL"; //
+    /**
+     * @brief dbHostname The host name of the database
+     */
     QString dbHostname="localhost"; //
+    /**
+     * @brief dbName The name of the database
+     */
     QString dbName = "nodrama"; // NoDrama
+    /**
+     * @brief dbUsername The username of the database
+     */
     QString dbUsername="postgres"; //
+    /**
+     * @brief dbPassword The password of the database
+     */
     QString dbPassword="pass"; //postgres
+
+    /**
+     * @brief dbPort The post number of the database
+     */
     int dbPort = 5432; //
 
+    /**
+     * @brief db The database
+     */
     QSqlDatabase db;
+
 public:
     static Database* getInstance();
     QSqlDatabase getDatabase();

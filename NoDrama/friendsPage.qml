@@ -12,13 +12,6 @@ ApplicationWindow {
     title: qsTr("Friends")
     color: "#232323"
 
-    onClosing: {
-        //var component = Qt.createComponent("./viewParties.qml")
-        //var window = component.createObject(friendsPage)
-        //window.show()
-        viewPartiesId.show();
-    }
-
     User {
         id: user
     }
@@ -38,8 +31,6 @@ ApplicationWindow {
     function justOneElement(n, a){
         if(n !== null){
             a = (a === null ? "" : a);
-            //console.log(n);
-            //console.log(a);
             usersListModel.clear();
             usersListModel.append(createListElement(n,a));
         }
@@ -51,7 +42,6 @@ ApplicationWindow {
         var friends = currentUser.getFriendsForDisplay();
         for(var i = 0; i < friends.length; i++) {
             for(var friend in friends[i]) {
-                console.log(friend + " : " + friends[i][friend]);
                 usersListModel.append(createListElement(friend, friends[i][friend].toString()));
             }
         }
@@ -81,7 +71,6 @@ ApplicationWindow {
                 font.bold: false
                 onEditingFinished: {
                     var user_ = user.getUserByUsername(lineEdit.text);
-                    //console.log(user_.getUsername());
                     if(user_ !== null)
                     {
                         justOneElement(user_.getUsername(), null);
@@ -96,8 +85,6 @@ ApplicationWindow {
             width: 360
             height: 610
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            //anchors.left: searchBar.left
-            //anchors.top: searchBar.bottom
             contentWidth: 360
             contentHeight: 610
             Layout.alignment: Qt.AlignHCenter
@@ -143,11 +130,7 @@ ApplicationWindow {
                                 displayText: affi
                                 model: ['', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
                                 onActivated: {
-                                    //console.log("label name : " + labelName.text)
-                                    //console.log("value : " + currentValue)
-
                                     currentUser.addFriendOrUpdateAffinity(labelName.text, currentValue);
-                                    console.log("now update");
                                     updateList();
                                 }
                             }

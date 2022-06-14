@@ -1,8 +1,7 @@
 #include "database.h"
 
 /**
- * @brief Construct a new Database singleton object
- * 
+ * @brief Database::Database Construct a new Database singleton object
  */
 Database::Database()
 {
@@ -15,9 +14,8 @@ Database::Database()
 }
 
 /**
- * @brief Returns the Database singleton object, or creates one if it doesn't exist
- * 
- * @return Database* 
+ * @brief Database::getInstance Returns the Database singleton object, or creates one if it doesn't exist
+ * @return Database* Returns the Database singleton object
  */
 Database* Database::getInstance(){
     if(!instance){
@@ -27,9 +25,8 @@ Database* Database::getInstance(){
 }
 
 /**
- * @brief returns the database obect
- * 
- * @return QSqlDatabase 
+ * @brief Database::getDatabase returns the database obect
+ * @return QSqlDatabase returns the database obect
  */
  QSqlDatabase Database::getDatabase(){
     return db;

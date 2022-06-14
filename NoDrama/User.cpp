@@ -3,7 +3,7 @@
 #include <QSqlError>
 
 /**
- * @brief Creates the database object if it doesn't exist. Also creates the query object. Opens the database.
+ * @brief  User::getDatabase Creates the database object if it doesn't exist. Also creates the query object. Opens the database.
  */
 void User::getDatabase()
 {
@@ -16,8 +16,7 @@ void User::getDatabase()
 }
 
 /**
- * @brief Construct a new empty User object
- *
+ * @brief User::User Construct a new empty User object
  */
 User::User()
 {
@@ -29,8 +28,7 @@ User::User()
 }
 
 /**
- * @brief OBSOLETE. Construct a new User object with the given username and password. Does not add to the database.
- *
+ * @brief User::User OBSOLETE. Construct a new User object with the given username and password. Does not add to the database.
  * @param username The username of the user
  * @param password  The user's password
  * @param email The user's email
@@ -40,8 +38,6 @@ User::User(QString username, QString password, QString email)
     if (username != "" && password != "" && email != "")
     {
         getDatabase();
-        /*if(!userExists(username) && db->openDatabase())
-            createUser(username, password, email);*/
         this->username = username;
         this->password = password;
         this->email = email;
@@ -50,8 +46,7 @@ User::User(QString username, QString password, QString email)
 }
 
 /**
- * @brief Construct a new User object with the id, username, password, and email.
- *
+ * @brief User::User Construct a new User object with the id, username, password, and email.
  * @param id The user's id in the database
  * @param username The username of the user
  * @param password The user's password
@@ -69,8 +64,7 @@ User::User(int id, QString username, QString password, QString email)
 }
 
 /**
- * @brief Copy constructor for User
- *
+ * @brief User::User Copy constructor for User
  * @param user The User to copy
  */
 User::User(const User &user)
@@ -102,7 +96,7 @@ User::User(User* u)
 
 /**
  * @brief User::constructor Same as copy constructor @see User(User* u)
- * @param u
+ * @param u The user to be copied
  */
 void User::constructor(User* u)
 {
@@ -116,8 +110,7 @@ void User::constructor(User* u)
 }
 
 /**
- * @brief Sets the affinity in the database for the user and the given friend.
- *
+ * @brief User::setAffinity Sets the affinity in the database for the user and the given friend.
  * @param user The friend whose affinity is to be updated
  * @param affinity The affinity to set
  */
@@ -132,7 +125,6 @@ void User::setAffinity(User user, int affinity)
                 qDebug() << i.key().username << " : " << i.value();
             }
         }
-        //this->friends->find(user).value() = affinity;
     }
 
     Database *db = Database::getInstance();
@@ -152,8 +144,7 @@ void User::setAffinity(User user, int affinity)
 }
 
 /**
- * @brief Adds a frind to the user and the database with the given affinity.
- *
+ * @brief User::addFriend Adds a frind to the user and the database with the given affinity.
  * @param user The user to add as a friend
  * @param affinity The affinity of the friend
  */
@@ -189,8 +180,6 @@ void User::addFriend(User user, int affinity)
 User* User::createUser(QString username, QString password, QString email)
 {
     qDebug()<<"username: "<<username;
-    // QString expression=R"([a-zA-Z0-9!#$%&'*+-/?^_`{|}~]+@[a-zA-Z0-9!#$%&'*+-/?^_`{|}~]+(\.[a-zA-Z0-9!#$%&'*+-/?^_`{|}~]{2,})+)";
-    // QRegularExpression re = QRegularExpression(expression, QRegularExpression::CaseInsensitiveOption);
 
     email = email.toLower();
 
@@ -254,8 +243,7 @@ void User::addFriendOrUpdateAffinity(QString username, int affinity)
 }
 
 /**
- * @brief Checks if the user exists in the database
- *
+ * @brief User::userExists Checks if the user exists in the database
  * @param username The username to of the user to check
  * @return true If user exists
  * @return false If user doesn't exist
@@ -280,8 +268,7 @@ bool User::userExists(QString username)
 }
 
 /**
- * @brief Finds a user by their id
- *
+ * @brief User::getUserById Finds a user by their id
  * @param id The id of the user to find
  * @return User The found user
  */
@@ -296,21 +283,14 @@ User *User::getUserById(int id)
     if (!db->isOpen())
         db->openDatabase();
 
-    //if (std::isdigit(id))
-    {
         // find user in database by id
         query.prepare("SELECT * FROM nodrama.users WHERE id_user = :id");
         query.bindValue(":id", QVariant::fromValue(id));
         query.exec();
 
         while(query.next()){
-            //qDebug() << query.value(0).toInt();
             ret = new User(query.value(0).toInt(), query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
         }
-
-        //        if (query.size() == 1){
-        //            ret = new User(query.value(0).toInt(), query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
-        //        }
 
         query.prepare("SELECT * FROM nodrama.affinities WHERE fk_user1 = :user_one_id");
         query.bindValue(":user_one_id", id);
@@ -321,14 +301,12 @@ User *User::getUserById(int id)
             qDebug() << query.value(1).toInt() << query.value(2).toInt();
             ret->friends->insert(*getUserById(query.value(1).toInt()), query.value(2).toInt());
         }
-    }
 
     return ret;
 }
 
 /**
- * @brief Finds a user by their username
- *
+ * @brief User::getUserByUsername Finds a user by their username
  * @param username The username of the user to find
  * @return User The found user
  */
@@ -355,9 +333,6 @@ User *User::getUserByUsername(QString username)
             ret = new User(query.value(0).toInt() ,query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
         }
 
-        //        if (query.size() == 1)
-        //            ret = new User(query.value(1).toString(), query.value(3).toString(), query.value(2).toString());
-
         query.prepare("SELECT * FROM nodrama.affinities WHERE fk_user1 = :user_one_id");
         query.bindValue(":user_one_id", ret->getId());
         query.exec();
@@ -372,8 +347,7 @@ User *User::getUserByUsername(QString username)
 }
 
 /**
- * @brief Finds a user by their email
- *
+ * @brief User::getUserByEmail Finds a user by their email
  * @param email The email of the user to find
  * @return User The found user
  */
@@ -411,8 +385,7 @@ User *User::getUserByEmail(QString email)
 }
 
 /**
- * @brief Attempts to login with the given username and password, returns the id of the user if the atttempt was successful, -1 otherwise
- *
+ * @brief User::testLoginUsername Attempts to login with the given username and password, returns the id of the user if the atttempt was successful, -1 otherwise
  * @param username The username to try
  * @param password The password of the user
  * @return int Id of the user if exists, -1 otherwise
@@ -442,8 +415,7 @@ int User::testLoginUsername(QString username, QString password)
 }
 
 /**
- * @brief Attempts to login with the given email and password, returns the id of the user if the atttempt was successful, -1 otherwise
- *
+ * @brief User::testLoginEmail Attempts to login with the given email and password, returns the id of the user if the atttempt was successful, -1 otherwise
  * @param email The email of the user to try
  * @param password The password of the user
  * @return int Id of the user if exists, -1 otherwise
@@ -477,8 +449,7 @@ int User::testLoginEmail(QString email, QString password)
 }
 
 /**
- * @brief Returns the friends of the user
- *
+ * @brief User::getFriends Returns the friends of the user
  * @return QMap<User, int>* A pointer to the friends of the user
  */
 QMap<User, int> *User::getFriends()
@@ -488,8 +459,8 @@ QMap<User, int> *User::getFriends()
 }
 
 /**
- * @brief User::getFriendsForDisplay Returns the users in a way that QML can display them
- * @return
+ * @brief User::getFriendsForDisplay Returns the friends of the user in a way that QML can display them
+ * @return QVariantList The list containing the friends of the user
  */
 QVariantList User::getFriendsForDisplay()
 {
@@ -506,18 +477,16 @@ QVariantList User::getFriendsForDisplay()
     return list;
 }
 
+/**
+ * @brief User::pushElement push an element in a QVariantList. Used in UI because JS function push() doesnt't work.
+ * @param l The QVariantList to add the element to
+ * @param n The string to add in the list
+ * @return QVariantList A list with the new element added
+ */
 QVariantList User::pushElement(QVariantList l, QString n)
 {
     l << n;
     return l;
-}
-
-void User::printList(QVariantList l)
-{
-    for(int i = 0; i < l.length(); i++)
-    {
-        qDebug() << l[i].toString();
-    }
 }
 
 /**
@@ -525,7 +494,6 @@ void User::printList(QVariantList l)
  * @param minAffinity The minimum affinity for the users to be returned
  * @return A QMap of the <user, affinity> pairs.
  */
-
 QMap<User, int> User::getFriendsByAffinity(int minAffinity)
 {
     QMap<User, int> friendsWithAffinity;
@@ -542,8 +510,7 @@ QMap<User, int> User::getFriendsByAffinity(int minAffinity)
 }
 
 /**
- * @brief Returns the id of the user
- *
+ * @brief User::getId Returns the id of the user
  * @return int The id
  */
 int User::getId()
@@ -552,8 +519,7 @@ int User::getId()
 }
 
 /**
- * @brief Returns the username of the user
- *
+ * @brief User::getUsername Returns the username of the user
  * @return QString The username
  */
 QString User::getUsername() const
@@ -562,8 +528,7 @@ QString User::getUsername() const
 }
 
 /**
- * @brief Returns the email of the user
- *
+ * @brief User::getEmail Returns the email of the user
  * @return QString The email
  */
 QString User::getEmail()
@@ -572,8 +537,7 @@ QString User::getEmail()
 }
 
 /**
- * @brief Destroy the User:: User object
- *
+ * @brief User::~User Destroy the User object
  */
 User::~User()
 {

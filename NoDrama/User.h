@@ -115,6 +115,9 @@ private:
     Database* db;
     QSqlQuery query;
 
+    /**
+     * @brief friends The friends of the user with corresponding affinity
+     */
     QMap<User, int> *friends;
 
     QRegularExpression re;
@@ -151,8 +154,6 @@ public:
     Q_INVOKABLE QMap<User, int> *getFriends();
     Q_INVOKABLE QVariantList getFriendsForDisplay();
     Q_INVOKABLE QVariantList pushElement(QVariantList l, QString n);
-    Q_INVOKABLE void printList(QVariantList l);
-    //Q_INVOKABLE QList<User> getUsers();
     Q_INVOKABLE QMap<User, int> getFriendsByAffinity(int);
 };
 

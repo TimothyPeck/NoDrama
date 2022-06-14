@@ -40,7 +40,6 @@ ApplicationWindow {
                     Image {
                         id: logo_
                         width: 100
-                        //Layout.fillWidth: true
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/images/logo"
                     }
@@ -55,7 +54,6 @@ ApplicationWindow {
                     Image {
                         id: logo_arc
                         width: 200
-                        //Layout.fillWidth: true
                         fillMode: Image.PreserveAspectFit
                         source: "qrc:/images/logo_arc"
                     }
@@ -75,10 +73,6 @@ ApplicationWindow {
                     text: currentUser.getUsername()
                     font.pointSize: 20
                     color: 'white'
-                }
-
-                onParentChanged: {
-                    //console.log(loggedUser.username)
                 }
             }
 

@@ -10,8 +10,6 @@ import com.myself 1.0
 ApplicationWindow {
     id: loginWindow
     property alias loginWindowId : loginWindow
-    //width: 640
-    //height: 480
     width: 360
     height: 640
     visible: true
@@ -118,14 +116,10 @@ ApplicationWindow {
                 onClicked: {
                     var id = user.testLoginUsername(username.text, password.text);
                     if(id > -1){
-                        console.log("user id : " + id);
                         currentUser.constructor(user.getUserById(id));
-
                         var component = Qt.createComponent("./viewParties.qml")
                         var window = component.createObject(loginWindow)
                         window.show();
-                        //loginWindow.hide();
-                        //loginWindow.close()
                     }else {
                         console.log("error");
                     }

@@ -37,7 +37,6 @@ ApplicationWindow {
 
     function updateList()
     {
-        console.log("update friend list")
         friendsListModel.clear();
         lineEdit.text = "";
 
@@ -62,8 +61,6 @@ ApplicationWindow {
     ColumnLayout {
         id: mainLayout
         anchors.fill: parent
-        //Layout.alignment: Qt.AlignHCenter
-        //spacing: 5
 
         // Search bar
         Rectangle {
@@ -92,8 +89,6 @@ ApplicationWindow {
             width: 360
             height: 610
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            //anchors.left: searchBar.left
-            //anchors.top: searchBar.bottom
             contentWidth: 360
             contentHeight: 610
             Layout.alignment: Qt.AlignHCenter
@@ -135,7 +130,6 @@ ApplicationWindow {
                             height: 40
                             width: 40
                             onClicked: {
-                                console.log("name : " + name);
                                 currentParty.addOrRemoveGuest(name);
                                 updateList();
                             }

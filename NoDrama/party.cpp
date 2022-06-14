@@ -5,16 +5,14 @@
  */
 
 /**
- * @brief Construct a new empty Party object
- *
+ * @brief Party::Party Construct a new empty Party object
  */
 Party::Party(){
 
 }
 
 /**
- * @brief Construct a new Party object
- *
+ * @brief Party::Party Construct a new Party object
  * @param name The name of the party
  * @param dateTime The date and time of the party
  * @param minAffinity The minimum affinity required to be invited to the party
@@ -43,8 +41,7 @@ Party::Party(QString name, QDateTime dateTime, int minAffinity, int maxPeople, Q
 }
 
 /**
- * @brief Construct a new Party object
- *
+ * @brief Party::Party Construct a new Party object
  * @param name The name of the party
  * @param dateTime The date and time of the party
  * @param minAffinity The minimum affinity required to be invited to the party
@@ -72,8 +69,7 @@ Party::Party(int id, QString name, QDateTime dateTime, int minAffinity, int maxP
 }
 
 /**
- * @brief Construct a new Party object from another Party object
- *
+ * @brief Party::Party Construct a new Party object from another Party object
  * @param party The party to copy
  */
 Party::Party(const Party& party){
@@ -88,7 +84,7 @@ Party::Party(const Party& party){
 
 /**
  * @brief Party::constructor Same as copy constructor @see Party(const Party&)
- * @param party
+ * @param party The party to copy
  */
 void Party::constructor(Party *party)
 {
@@ -102,8 +98,7 @@ void Party::constructor(Party *party)
 }
 
 /**
- * @brief Destroy the Party object
- *
+ * @brief Party::~Party Destroy the Party object
  */
 Party::~Party(){
     //free(db);
@@ -114,9 +109,8 @@ Party::~Party(){
  */
 
 /**
- * @brief Returns the name of the party
- *
- * @return const QString&
+ * @brief Party::getPartyName Returns the name of the party
+ * @return const QString& The name of the party
  */
 const QString &Party::getPartyName() const
 {
@@ -124,9 +118,8 @@ const QString &Party::getPartyName() const
 }
 
 /**
- * @brief returns the date and time of the party
- *
- * @return const QDateTime&
+ * @brief Party::getPartyDate returns the date and time of the party
+ * @return const QDateTime& The date and time of the party
  */
 const QDateTime &Party::getPartyDate() const
 {
@@ -152,9 +145,8 @@ const QString Party::getPartyTimeString() const
 }
 
 /**
- * @brief Returns the minimum affinity required to be invited to the party
- *
- * @return int
+ * @brief Party::getMinAffinity Returns the minimum affinity required to be invited to the party
+ * @return int The minimum affinity required to be invited to the party
  */
 int Party::getMinAffinity() const
 {
@@ -162,9 +154,8 @@ int Party::getMinAffinity() const
 }
 
 /**
- * @brief Returns the maximum number of people that can be invited to the party
- *
- * @return int
+ * @brief Party::getMaxPeople Returns the maximum number of people that can be invited to the party
+ * @return int The maximum number of people that can be invited to the party
  */
 int Party::getMaxPeople() const
 {
@@ -172,9 +163,8 @@ int Party::getMaxPeople() const
 }
 
 /**
- * @brief Returns the user object of the host of the party
- *
- * @return const User*
+ * @brief Party::getHost Returns the user object of the host of the party
+ * @return const User* The user object of the host of the party
  */
 const User &Party::getHost() const
 {
@@ -191,9 +181,8 @@ const int Party::getHostID()
 }
 
 /**
- * @brief returns the guests of the party
- *
- * @return const QList<User>&
+ * @brief Party::getGuests Returns the guests of the party
+ * @return const QList<User>& The guests of the party
  */
 const QList<User> &Party::getGuests() const
 {
@@ -201,8 +190,8 @@ const QList<User> &Party::getGuests() const
 }
 
 /**
- * @brief Party::getGuestUsernames REtruns all the usernames of the guests
- * @return
+ * @brief Party::getGuestUsernames Returns all the usernames of the guests
+ * @return QList<QString> The usernames of the guests
  */
 const QList<QString> Party::getGuestUsernames()
 {
@@ -214,9 +203,8 @@ const QList<QString> Party::getGuestUsernames()
 }
 
 /**
- * @brief Returns the ID of the party
- *
- * @return int
+ * @brief Party::getPartyId Returns the ID of the party
+ * @return int Party id
  */
 int Party::getPartyID() const
 {
@@ -225,7 +213,7 @@ int Party::getPartyID() const
 
 /**
  * @brief Party::getPartyLocation Returns the location a the party
- * @return QString
+ * @return QString The location of the party
  */
 const QString &Party::getPartyLocation() const
 {
@@ -237,14 +225,17 @@ const QString &Party::getPartyLocation() const
  */
 
 /**
- * @brief Adds a guest to the party
- *
- * @param guest
+ * @brief Party::addGuest Adds a guest to the party
+ * @param guest User to add to the guests
  */
 void Party::addGuest(User guest){
     this->guests.append(guest);
 }
 
+/**
+ * @brief Party::addOrRemoveGuest If the guest is in the guest list, it will be removed. Otherwise it will be added to the guest list. Function used by the GUI.
+ * @param name Name of the guest
+ */
 void Party::addOrRemoveGuest(QString name)
 {
     for(int i = 0; i < this->guests.size(); ++i)
@@ -258,6 +249,11 @@ void Party::addOrRemoveGuest(QString name)
     this->guests.append(User::getUserByUsername(name));
 }
 
+/**
+ * @brief Party::isFriendInGuest Determine if a friend is also a guest
+ * @param name Name of the guest
+ * @return bool Return is a friend is in the guests of the party
+ */
 bool Party::isFriendInGuest(QString name)
 {
     for(int i = 0; i < this->guests.size(); ++i)
@@ -270,6 +266,10 @@ bool Party::isFriendInGuest(QString name)
     return false;
 }
 
+/**
+ * @brief Party::getGuestsForDisplay Return a list of the guests to display in GUI
+ * @return QVariantList Returns a QVariantList of the guests usernames
+ */
 QVariantList Party::getGuestsForDisplay()
 {
     QVariantList *list = new QVariantList();
@@ -283,18 +283,13 @@ QVariantList Party::getGuestsForDisplay()
 }
 
 /**
- * @brief Uses the current party object to create a new party in the database
- *
+ * @brief Party::createParty Uses the current party object to create a new party in the database
  */
 void Party::createParty(){
-    //this->db = db->getInstance();
     Database *db = Database::getInstance();
 
     if (!db->isOpen())
         db->openDatabase();
-
-    //this->query = QSqlQuery(db->getDatabase());
-    //QSqlQuery query = QSqlQuery(db->getDatabase());
 
     QString dateTime = this->partyDate.date().toString("yyyy-MM-dd") + " " + this->partyDate.time().toString("hh:mm:s");
     qDebug() << dateTime;
@@ -302,7 +297,6 @@ void Party::createParty(){
     db->getDatabase().transaction();
 
     this->query.prepare("INSERT INTO nodrama.parties (name,date,affinity_grade,max_people,host_id,location) VALUES (:name,:date, :aff, :maxPers, :host_id, :loc);");
-    //this->query.prepare("INSERT INTO nodrama.parties(name, date, affinity_grade, max_people, host_id, location) VALUES(:name, :date, :aff, :maxPeps, :host_id, :location");
     this->query.bindValue(":name", this->partyName);
     this->query.bindValue(":date", dateTime);
     this->query.bindValue(":aff", this->minAffinity);
@@ -334,10 +328,9 @@ void Party::createParty(){
 }
 
 /**
- * @brief returns the party with the given ID in the database
- *
+ * @brief Party::getPartyById returns the party with the given ID in the database
  * @param id The id of the party
- * @return Party
+ * @return Party The party corresponding to the if
  */
 Party* Party::getPartyById(int id)
 {
@@ -373,10 +366,9 @@ Party* Party::getPartyById(int id)
 }
 
 /**
- * @brief Returns the users of the party with the given ID
- *
- * @param id
- * @return QList<User>
+ * @brief Party::getGuestsByPartyId Returns the users of the party with the given ID
+ * @param id The id of the party
+ * @return QList<User> The list of the party's guests
  */
 QList<User> Party::getGuestsByPartyId(int id)
 {
@@ -467,12 +459,10 @@ QList<int> Party::getPartyIdsForUser(User *user)
 void Party::determineGuests()
 {
     QList<User> guests = this->guests;
-    //User *priorUser=nullptr;
 
     bool canContinue = true;
     guests.push_front(this->host);
     qDebug() << "Host : " << this->host.getUsername();
-    //delete host;
 
     // Boucle tant qu'on a pas le nombre d'invités requis sans compter l'hôte
     //while (guests.length() < this->getMaxPeople() + 1 && canContinue)
@@ -508,9 +498,6 @@ void Party::determineGuests()
                     }
                 }
 
-
-                // std::cout<<guests.contains(currentGuestFriend)<<std::endl;
-
                 // Si l'ami n'est pas déjà invité
                 if (guestContainFriend == false)
                 {
@@ -533,10 +520,6 @@ void Party::determineGuests()
                             if(thisFriend!=currentGuestFriend){
 
                                 QMap<User, int> *thisFriendFriends = thisFriend.getFriends(); // list ami de thisFriendFriends
-
-                                //std::cout<<"\tKnown friends count for "<<thisFriend.getUsername()<<" : "<<thisFriendFriends->count()<<std::endl;
-
-                                //std::cout<<"\tthisFriend "<<thisFriend.getUsername()<< ", CurrentGuestFriend : "<<currentGuestFriend.getUsername()<<std::endl;
 
                                 QMapIterator<User, int> thisFriendFriendsIterator(*thisFriendFriends);
 

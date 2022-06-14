@@ -141,7 +141,6 @@ ApplicationWindow {
 
                 Component.onCompleted: {
                     var users = currentParty.guestUsernames;
-                    console.log(users)
                     for(let i=0;i<users.length;i++){
                         append(createUsersList(users[i]))
                     }
@@ -164,7 +163,7 @@ ApplicationWindow {
                 ListView{
                     anchors.fill: parent
                     focus: true
-                    model: guestModelLocal//GuestList {} // guestModel
+                    model: guestModelLocal
                     delegate:
                         Item {
                         id: wrapper
@@ -178,13 +177,11 @@ ApplicationWindow {
                                 text: name;
                                 background: Rectangle {
                                     color: "white"
-                                    //color: wrapper.ListView.isCurrentItem ? "lightsteelblue" : "white"
                                     border.color: "#cccccc";
                                     border.width: 0.5
                                 }
                                 width: 280
                                 height: 40
-                                //Layout.alignment: Qt.AlignCenter
                             }
                         }
                     }

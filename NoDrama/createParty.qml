@@ -13,10 +13,6 @@ ApplicationWindow {
     visible: true
     title: qsTr("Create party")
     color: "#232323"
-    onClosing: {
-        //viewPartiesId.show();
-
-    }
 
     ListModel {
         id: guestsListModel
@@ -40,7 +36,6 @@ ApplicationWindow {
 
         for(var i = 0; i < guests.length; i++)
         {
-            console.log(guests[i]);
             guestsListModel.append(createListElement(guests[i]));
         }
     }
@@ -55,8 +50,6 @@ ApplicationWindow {
         // Party name
         TextField {
             id: partyname
-            //width: 280
-            //Layout.minimumWidth: 100
             Layout.preferredWidth: 280
             horizontalAlignment: TextInput.AlignHCenter
             verticalAlignment: TextInput.AlignVCenter
@@ -73,7 +66,6 @@ ApplicationWindow {
             Layout.alignment: Qt.AlignHCenter
             Label {
                 anchors.leftMargin: 40
-                //Layout.alignment: Qt.AlignLeft
                 text: "Max number of people"
                 color: "#c9f1fd"
             }
@@ -107,7 +99,6 @@ ApplicationWindow {
             Layout.alignment: Qt.AlignHCenter
             TextField {
                 id: date
-                //Layout.minimumWidth: 100
                 Layout.preferredWidth: 210
                 horizontalAlignment: TextInput.AlignHCenter
                 verticalAlignment: TextInput.AlignVCenter
@@ -120,7 +111,6 @@ ApplicationWindow {
             }
             TextField {
                 id: time
-                //Layout.minimumWidth: 50
                 Layout.preferredWidth: 70
                 horizontalAlignment: TextInput.AlignHCenter
                 verticalAlignment: TextInput.AlignVCenter
@@ -140,7 +130,6 @@ ApplicationWindow {
         // Location
         TextField {
             id: location
-            //Layout.minimumWidth: 100
             Layout.preferredWidth: 280
             horizontalAlignment: TextInput.AlignHCenter
             verticalAlignment: TextInput.AlignVCenter
@@ -154,7 +143,6 @@ ApplicationWindow {
 
         Button {
             id: addguest
-            //Layout.minimumWidth: 150
             Layout.preferredWidth: 280
             Layout.minimumHeight: 30
             Layout.alignment: Qt.AlignHCenter
@@ -206,7 +194,6 @@ ApplicationWindow {
                             }
                             width: 240
                             height: 40
-                            //Layout.alignment: Qt.AlignCenter
                         }
 
                         Button {
@@ -216,7 +203,6 @@ ApplicationWindow {
                                 border.width:0.5
                             }
                             text: qsTr("-")
-                            //Layout.alignment: Qt.AlignLeft
                             height: 40
                             width: 40
                             onClicked: {
@@ -232,7 +218,6 @@ ApplicationWindow {
         // Create party button
         Button {
             id: createParty
-            //Layout.minimumWidth: 150
             Layout.preferredWidth: 280
             Layout.minimumHeight: 30
             Layout.alignment: Qt.AlignHCenter
@@ -243,18 +228,11 @@ ApplicationWindow {
             }
             onClicked: {
                 currentParty.setHost(currentUser);
-
-                console.log(partyname.text)
                 currentParty.setName(partyname.text);
-                console.log(nbpeople.value);
                 currentParty.setMaxP(nbpeople.value);
-                console.log(minaffinity.currentValue);
                 currentParty.setMinAffi(minaffinity.currentValue);
-                console.log(date.text);
                 currentParty.setDate(date.text);
-                console.log(time.text);
                 currentParty.setTime(time.text);
-                console.log(location.text);
                 currentParty.setLoc(location.text);
 
                 currentParty.determineGuests();
@@ -265,7 +243,6 @@ ApplicationWindow {
         Button
         {
             id: validateParty
-            //Layout.minimumWidth: 150
             Layout.preferredWidth: 280
             Layout.minimumHeight: 30
             Layout.alignment: Qt.AlignHCenter
@@ -276,18 +253,11 @@ ApplicationWindow {
             }
             onClicked: {
                 currentParty.setHost(currentUser);
-
-                console.log(partyname.text)
                 currentParty.setName(partyname.text);
-                console.log(nbpeople.value);
                 currentParty.setMaxP(nbpeople.value);
-                console.log(minaffinity.currentValue);
                 currentParty.setMinAffi(minaffinity.currentValue);
-                console.log(date.text);
                 currentParty.setDate(date.text);
-                console.log(time.text);
                 currentParty.setTime(time.text);
-                console.log(location.text);
                 currentParty.setLoc(location.text);
 
                 currentParty.createParty();

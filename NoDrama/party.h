@@ -102,12 +102,42 @@ public:
         return *this;
     }
 
+    /**
+     * @brief setName Set the party name
+     * @param n New party name
+     */
     Q_INVOKABLE void setName(QString n) { this->partyName = n;}
+
+    /**
+     * @brief setDate Set the party date
+     * @param d New party date
+     */
     Q_INVOKABLE void setDate(QString d) { this->partyDate.setDate(QDate::fromString(d, "dd.MM.yyyy")); }
+
+    /**
+     * @brief setTime Set the party time
+     * @param t New party time
+     */
     Q_INVOKABLE void setTime(QString t) { this->partyDate.setTime(QTime::fromString(t, "h:m")); }
+    /**
+     * @brief setMinAffi Set the party minimum affinity
+     * @param a New minimum affinity
+     */
     Q_INVOKABLE void setMinAffi(QString a) { this->minAffinity = a.toInt(); }
+    /**
+     * @brief setMaxP Set the party max guests
+     * @param p The new max guests
+     */
     Q_INVOKABLE void setMaxP(QString p) { this->maxPeople = p.toInt(); }
+    /**
+     * @brief setLoc Set the party location
+     * @param l The new party location
+     */
     Q_INVOKABLE void setLoc(QString l) { this->location = l; }
+    /**
+     * @brief setHost Set the party host
+     * @param u New party host
+     */
     Q_INVOKABLE void setHost(User* u) { this->host = u; }
 
     void addGuest(User guest);

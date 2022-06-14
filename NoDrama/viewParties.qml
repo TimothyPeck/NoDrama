@@ -43,7 +43,6 @@ ApplicationWindow {
         currentParty.constructor(p)
         if(currentParty.partyName !== undefined){
             tmpUser = user.getUserById(currentParty.hostID)
-            console.log(tmpUser.username)
             return{
                 id: currentParty.partyID,
                 name: currentParty.partyName,
@@ -85,7 +84,6 @@ ApplicationWindow {
                 var component = Qt.createComponent("./friendsPage.qml")
                 var window = component.createObject(viewParties)
                 window.show();
-                //viewParties.hide();
             }
         }
 
@@ -105,7 +103,6 @@ ApplicationWindow {
                 var component=Qt.createComponent("./createParty.qml");
                 var window = component.createObject(viewParties);
                 window.show();
-                //viewParties.hide();
             }
         }
 
@@ -126,7 +123,6 @@ ApplicationWindow {
                 var component=Qt.createComponent("./infoPage.qml")
                 var window = component.createObject(viewParties)
                 window.show()
-                //viewParties.hide();
             }
         }
     }
@@ -164,7 +160,6 @@ ApplicationWindow {
                             var component=Qt.createComponent("./viewParty.qml")
                             var window = component.createObject(viewParties)
                             window.show()
-                            //viewParties.hide();
                         }
                     }
 
@@ -206,14 +201,12 @@ ApplicationWindow {
                                     leftPadding: 15
                                     verticalAlignment: Text.AlignVCenter
                                     text: organiser;
-                                    //Layout.alignment: Qt.AlignCenter
                                 }
                                 Label {
                                     topPadding: 4
                                     leftPadding: 15
                                     verticalAlignment: Text.AlignVCenter
                                     text: place;
-                                    //Layout.alignment: Qt.AlignCenter
                                 }
                             }
                         }

@@ -102,11 +102,6 @@ ApplicationWindow {
                     if(username.text != "" && email.text !="" && password.text!="" && passwordVerif.text!="" && password.text==passwordVerif.text){
                         currentUser.constructor(user.createUser(username.text, password.text, email.text))
                         if(currentUser.getId() > -1){
-                            //currentUser.constructor(newUser);
-                            /*var component = Qt.createComponent("./main.qml")
-                            var window = component.createObject(loginWindow)
-                            window.show()*/
-                            //loginWindowId.show();
                             createAccount.close();
 
                         } else {
