@@ -188,6 +188,7 @@ void User::addFriend(User user, int affinity)
  */
 User* User::createUser(QString username, QString password, QString email)
 {
+    qDebug()<<"username: "<<username;
     // QString expression=R"([a-zA-Z0-9!#$%&'*+-/?^_`{|}~]+@[a-zA-Z0-9!#$%&'*+-/?^_`{|}~]+(\.[a-zA-Z0-9!#$%&'*+-/?^_`{|}~]{2,})+)";
     // QRegularExpression re = QRegularExpression(expression, QRegularExpression::CaseInsensitiveOption);
 
@@ -200,10 +201,6 @@ User* User::createUser(QString username, QString password, QString email)
 
     QSqlQuery query = QSqlQuery(db->getDatabase());
 
-    if(User::userExists(username)){
-        return User::getUserByUsername(username);
-    }
-
     if (username != "" && password != "" && email != "")
     {
         db->getDatabase().transaction();
@@ -215,6 +212,8 @@ User* User::createUser(QString username, QString password, QString email)
         query.exec();
 
         int id = query.lastInsertId().toInt();
+
+        qDebug()<<query.lastError();
 
         if (query.lastError().type() == 0)
         {
