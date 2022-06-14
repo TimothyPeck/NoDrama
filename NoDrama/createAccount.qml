@@ -100,9 +100,9 @@ ApplicationWindow {
 
                 onClicked: {
                     if(username.text != "" && email.text !="" && password.text!="" && passwordVerif.text!="" && password.text==passwordVerif.text){
-                        var newUser = user.createUser(username.text, password.text, email.text)
-                        if(newUser.getId() > -1){
-                            currentUser.constructor(newUser);
+                        currentUser.constructor(user.createUser(username.text, password.text, email.text))
+                        if(currentUser.getId() > -1){
+                            //currentUser.constructor(newUser);
                             /*var component = Qt.createComponent("./main.qml")
                             var window = component.createObject(loginWindow)
                             window.show()*/
