@@ -2,13 +2,20 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
-    width: 640
-    height: 480
+    id: createAccount
+    property alias createAccountId : createAccount
+    width: 360
+    height: 640
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("NoDrama - Create account")
     color: "#232323"
+
+    User{
+        id: user
+    }
 
     RowLayout{
         id: rowLayout
@@ -42,7 +49,7 @@ ApplicationWindow {
                 horizontalAlignment: TextInput.AlignHCenter
                 verticalAlignment: TextInput.AlignVCenter
                 Layout.alignment: Qt.AlignHCenter
-                placeholderText: qsTr("Username")
+                placeholderText: qsTr("EMail")
                 background: Rectangle {
                             radius: 10
                             color: "#c9f1fd"
@@ -90,6 +97,18 @@ ApplicationWindow {
                             radius: 10
                             color: createAccountButton.down?'#b2a7f9':'#a8c6fa'
                         }
+
+                onClicked: {
+                    if(username.text != "" && email.text !="" && password.text!="" && passwordVerif.text!="" && password.text==passwordVerif.text){
+                        currentUser.constructor(user.createUser(username.text, password.text, email.text))
+                        if(currentUser.getId() > -1){
+                            createAccount.close();
+
+                        } else {
+                            console.log("error");
+                        }
+                    }
+                }
             }
         }
     }

@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
+//import "createParty.qml"
 
 ApplicationWindow {
     width: 360
@@ -9,12 +11,56 @@ ApplicationWindow {
     visible: true
     title: qsTr("Add guests")
     color: "#232323"
+    onClosing: {
+        createPartyId.updateList();
+    }
+
+    User {
+        id: user
+    }
+
+    ListModel {
+        id: friendsListModel
+        Component.onCompleted: {
+            updateList();
+        }
+    }
+
+
+    function createListElement(n,a)
+    {
+        return {
+            name : n,
+            isAdded : a
+        }
+    }
+
+    function updateList()
+    {
+        friendsListModel.clear();
+        lineEdit.text = "";
+
+        var friends = currentUser.getFriendsForDisplay();
+
+        for(var i = 0; i < friends.length; i++)
+        {
+            for(var friend in friends[i])
+            {
+                var isInList = false;
+                if(currentParty.isFriendInGuest(friend))
+                {
+                    friendsListModel.append(createListElement(friend, "-"));
+                } else
+                {
+                    friendsListModel.append(createListElement(friend, "+"));
+                }
+            }
+        }
+    }
 
     ColumnLayout {
         id: mainLayout
         anchors.fill: parent
-        //Layout.alignment: Qt.AlignHCenter
-        //spacing: 5
 
         // Search bar
         Rectangle {
@@ -43,8 +89,6 @@ ApplicationWindow {
             width: 360
             height: 610
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            //anchors.left: searchBar.left
-            //anchors.top: searchBar.bottom
             contentWidth: 360
             contentHeight: 610
             Layout.alignment: Qt.AlignHCenter
@@ -52,7 +96,7 @@ ApplicationWindow {
             ListView{
                 anchors.fill: parent
                 focus: true
-                model: UsersList { }
+                model: friendsListModel
                 delegate:
                     Item {
                     id: wrapper
@@ -61,6 +105,7 @@ ApplicationWindow {
 
                     Row{
                         Label {
+                            id: friendName
                             leftPadding: 15
                             verticalAlignment: Text.AlignVCenter
                             text: name;
@@ -81,12 +126,15 @@ ApplicationWindow {
                                 border.color: "lightsteelblue";
                                 border.width:0.5
                             }
-                            text: "+"
+                            text: isAdded
                             height: 40
                             width: 40
+                            onClicked: {
+                                currentParty.addOrRemoveGuest(name);
+                                updateList();
+                            }
                         }
                     }
-
                 }
             }
         }

@@ -1,15 +1,67 @@
 import QtQuick
-import QtQuick.Window 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
+import QtQuick.Window
+import QtQuick.Controls
+import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
-    id: loginWindow
+    id: viewParties
+    property alias viewPartiesId : viewParties
     width: 360
     height: 640
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("My parties")
     color: "#232323"
+
+    Party{
+        id: party
+    }
+
+    User{
+        id: user
+    }
+
+    ListModel {
+
+        id: partyModel
+
+        Component.onCompleted: {
+            updatePartiesList();
+        }
+    }
+
+    function updatePartiesList()
+    {
+        var parties = party.getPartyIdsForUser(currentUser)
+        for(let i=0; i<parties.length; i++){
+            partyModel.append(createListParty(parties[i]))
+        }
+    }
+
+    function createListParty(part){
+        var p = party.getPartyById(part)
+        currentParty.constructor(p)
+        if(currentParty.partyName !== undefined){
+            tmpUser = user.getUserById(currentParty.hostID)
+            return{
+                id: currentParty.partyID,
+                name: currentParty.partyName,
+                date: currentParty.partyDate,
+                time: currentParty.partyTime,
+                organiser: tmpUser.username !== undefined ? tmpUser.username : "Unknown",
+                place: currentParty.location
+            };
+        }
+        return{
+            id: -1,
+            name: "Error getting parties",
+            date: "",
+            time: "",
+            organiser: "",
+            place: ""
+        }
+
+    }
 
     RowLayout
     {
@@ -27,6 +79,12 @@ ApplicationWindow {
                 radius: 10
                 color: friends.down?'#b2a7f9':'#a8c6fa'
             }
+
+            onClicked: {
+                var component = Qt.createComponent("./friendsPage.qml")
+                var window = component.createObject(viewParties)
+                window.show();
+            }
         }
 
         Button {
@@ -38,7 +96,33 @@ ApplicationWindow {
             text: qsTr("Create party")
             background: Rectangle {
                 radius: 10
-                color: friends.down?'#b2a7f9':'#a8c6fa'
+                color: createParty.down?'#b2a7f9':'#a8c6fa'
+            }
+
+            onClicked: {
+                var component=Qt.createComponent("./createParty.qml");
+                var window = component.createObject(viewParties);
+                window.show();
+            }
+        }
+
+        Button{
+            id: viewInfo
+            Layout.minimumWidth: 25
+            Layout.preferredWidth: 25
+            Layout.minimumHeight: 25
+            Layout.alignment: Qt.AlignRight
+            text: qsTr("?")
+
+            background: Rectangle {
+                radius: 10
+                color: viewInfo.down?'#b2a7f9':'#a8c6fa'
+            }
+
+            onClicked: {
+                var component=Qt.createComponent("./infoPage.qml")
+                var window = component.createObject(viewParties)
+                window.show()
             }
         }
     }
@@ -62,12 +146,22 @@ ApplicationWindow {
                 anchors.topMargin: 10
                 anchors.fill: parent
                 focus: true
-                model: PartiesList {}
+                model: partyModel
                 delegate:
                     Item {
                     id: wrapper
                     width: 360;
                     height: 110
+
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            currentParty = party.getPartyById(id)
+                            var component=Qt.createComponent("./viewParty.qml")
+                            var window = component.createObject(viewParties)
+                            window.show()
+                        }
+                    }
 
                     Column {
                         Rectangle
@@ -107,17 +201,16 @@ ApplicationWindow {
                                     leftPadding: 15
                                     verticalAlignment: Text.AlignVCenter
                                     text: organiser;
-                                    //Layout.alignment: Qt.AlignCenter
                                 }
                                 Label {
                                     topPadding: 4
                                     leftPadding: 15
                                     verticalAlignment: Text.AlignVCenter
                                     text: place;
-                                    //Layout.alignment: Qt.AlignCenter
                                 }
                             }
                         }
+
                     }
                 }
             }

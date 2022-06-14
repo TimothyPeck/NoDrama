@@ -1,0 +1,6 @@
+set(WINDEPLOYQT "C:/Qt/6.2.4/mingw_64/bin/windeployqt.exe")
+set(COMPONENT_NAME_MAIN "NoDrama")
+set(CMAKE_CURRENT_SOURCE_DIR "D:/HES/p2/g4/NoDrama")
+
+
+execute_process(COMMAND ${WINDEPLOYQT} --qmldir ${CMAKE_CURRENT_SOURCE_DIR} ${COMPONENT_NAME_MAIN}/data/bin WORKING_DIRECTORY ${CPACK_TEMPORARY_INSTALL_DIRECTORY}/packages)

@@ -3,13 +3,42 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
+    property alias createPartyId : createPartyWindow
+    id: createPartyWindow
     width: 360
     height: 640
     visible: true
     title: qsTr("Create party")
     color: "#232323"
+
+    ListModel {
+        id: guestsListModel
+        Component.onCompleted: {
+            updateList();
+        }
+
+    }
+    function createListElement(n)
+    {
+        return {
+            name : n
+        }
+    }
+
+    function updateList()
+    {
+        guestsListModel.clear();
+
+        var guests = currentParty.getGuestsForDisplay();
+
+        for(var i = 0; i < guests.length; i++)
+        {
+            guestsListModel.append(createListElement(guests[i]));
+        }
+    }
 
     ColumnLayout{
         spacing: 8
@@ -21,8 +50,6 @@ ApplicationWindow {
         // Party name
         TextField {
             id: partyname
-            //width: 280
-            //Layout.minimumWidth: 100
             Layout.preferredWidth: 280
             horizontalAlignment: TextInput.AlignHCenter
             verticalAlignment: TextInput.AlignVCenter
@@ -39,8 +66,7 @@ ApplicationWindow {
             Layout.alignment: Qt.AlignHCenter
             Label {
                 anchors.leftMargin: 40
-                //Layout.alignment: Qt.AlignLeft
-                text: "Number of people"
+                text: "Max number of people"
                 color: "#c9f1fd"
             }
             SpinBox {
@@ -73,12 +99,11 @@ ApplicationWindow {
             Layout.alignment: Qt.AlignHCenter
             TextField {
                 id: date
-                //Layout.minimumWidth: 100
                 Layout.preferredWidth: 210
                 horizontalAlignment: TextInput.AlignHCenter
                 verticalAlignment: TextInput.AlignVCenter
                 Layout.alignment: Qt.AlignHCenter
-                placeholderText: qsTr("Date")
+                placeholderText: qsTr("Date et heure")
                 background: Rectangle {
                     radius: 10
                     color: "#c9f1fd"
@@ -86,7 +111,6 @@ ApplicationWindow {
             }
             TextField {
                 id: time
-                //Layout.minimumWidth: 50
                 Layout.preferredWidth: 70
                 horizontalAlignment: TextInput.AlignHCenter
                 verticalAlignment: TextInput.AlignVCenter
@@ -96,13 +120,16 @@ ApplicationWindow {
                     radius: 10
                     color: "#c9f1fd"
                 }
+                onEditingFinished:
+                {
+                    currentParty.setTime(time.text);
+                }
             }
         }
 
         // Location
         TextField {
             id: location
-            //Layout.minimumWidth: 100
             Layout.preferredWidth: 280
             horizontalAlignment: TextInput.AlignHCenter
             verticalAlignment: TextInput.AlignVCenter
@@ -116,7 +143,6 @@ ApplicationWindow {
 
         Button {
             id: addguest
-            //Layout.minimumWidth: 150
             Layout.preferredWidth: 280
             Layout.minimumHeight: 30
             Layout.alignment: Qt.AlignHCenter
@@ -124,6 +150,12 @@ ApplicationWindow {
             background: Rectangle {
                 radius: 10
                 color: addguest.down?'#b2a7f9':'#a8c6fa'
+            }
+            onClicked: {
+                var component=Qt.createComponent("./addGuest.qml");
+                var window = component.createObject(viewParties);
+                createPartyWindow.hide();
+                window.show();
             }
         }
 
@@ -140,10 +172,10 @@ ApplicationWindow {
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
             Layout.alignment: Qt.AlignHCenter
 
-            ListView{
+            ListView {
                 anchors.fill: parent
                 focus: true
-                model: GuestList {} // guestModel
+                model: guestsListModel
                 delegate:
                     Item {
                     id: wrapper
@@ -162,7 +194,6 @@ ApplicationWindow {
                             }
                             width: 240
                             height: 40
-                            //Layout.alignment: Qt.AlignCenter
                         }
 
                         Button {
@@ -172,9 +203,12 @@ ApplicationWindow {
                                 border.width:0.5
                             }
                             text: qsTr("-")
-                            //Layout.alignment: Qt.AlignLeft
                             height: 40
                             width: 40
+                            onClicked: {
+                                currentParty.addOrRemoveGuest(name);
+                                updateList();
+                            }
                         }
                     }
                 }
@@ -184,14 +218,51 @@ ApplicationWindow {
         // Create party button
         Button {
             id: createParty
-            //Layout.minimumWidth: 150
             Layout.preferredWidth: 280
             Layout.minimumHeight: 30
             Layout.alignment: Qt.AlignHCenter
-            text: qsTr("Create party")
+            text: qsTr("Calculate")
             background: Rectangle {
                 radius: 10
                 color: createParty.down?'#b2a7f9':'#a8c6fa'
+            }
+            onClicked: {
+                currentParty.setHost(currentUser);
+                currentParty.setName(partyname.text);
+                currentParty.setMaxP(nbpeople.value);
+                currentParty.setMinAffi(minaffinity.currentValue);
+                currentParty.setDate(date.text);
+                currentParty.setTime(time.text);
+                currentParty.setLoc(location.text);
+
+                currentParty.determineGuests();
+                updateList();
+            }
+        }
+
+        Button
+        {
+            id: validateParty
+            Layout.preferredWidth: 280
+            Layout.minimumHeight: 30
+            Layout.alignment: Qt.AlignHCenter
+            text: qsTr("Validate party")
+            background: Rectangle {
+                radius: 10
+                color: createParty.down?'#b2a7f9':'#a8c6fa'
+            }
+            onClicked: {
+                currentParty.setHost(currentUser);
+                currentParty.setName(partyname.text);
+                currentParty.setMaxP(nbpeople.value);
+                currentParty.setMinAffi(minaffinity.currentValue);
+                currentParty.setDate(date.text);
+                currentParty.setTime(time.text);
+                currentParty.setLoc(location.text);
+
+                currentParty.createParty();
+                viewPartiesId.updatePartiesList();
+                createPartyWindow.close();
             }
         }
     }

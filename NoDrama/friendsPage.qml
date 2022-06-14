@@ -2,13 +2,50 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
+    id: friendsPage
     width: 360
     height: 640
     visible: true
     title: qsTr("Friends")
     color: "#232323"
+
+    User {
+        id: user
+    }
+
+    ListModel {
+        id: usersListModel
+        Component.onCompleted: {
+            updateList();
+        }
+    }
+    function createListElement(n, a){
+        return {
+            name: n,
+            affi: a
+        }
+    }
+    function justOneElement(n, a){
+        if(n !== null){
+            a = (a === null ? "" : a);
+            usersListModel.clear();
+            usersListModel.append(createListElement(n,a));
+        }
+    }
+    function updateList() {
+        usersListModel.clear();
+        lineEdit.text = "";
+
+        var friends = currentUser.getFriendsForDisplay();
+        for(var i = 0; i < friends.length; i++) {
+            for(var friend in friends[i]) {
+                usersListModel.append(createListElement(friend, friends[i][friend].toString()));
+            }
+        }
+    }
 
     ColumnLayout {
         id: mainLayout
@@ -32,6 +69,13 @@ ApplicationWindow {
                 background: Item {}
                 font.pixelSize: 14
                 font.bold: false
+                onEditingFinished: {
+                    var user_ = user.getUserByUsername(lineEdit.text);
+                    if(user_ !== null)
+                    {
+                        justOneElement(user_.getUsername(), null);
+                    }
+                }
             }
         }
 
@@ -41,8 +85,6 @@ ApplicationWindow {
             width: 360
             height: 610
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            //anchors.left: searchBar.left
-            //anchors.top: searchBar.bottom
             contentWidth: 360
             contentHeight: 610
             Layout.alignment: Qt.AlignHCenter
@@ -50,7 +92,7 @@ ApplicationWindow {
             ListView{
                 anchors.fill: parent
                 focus: true
-                model: UsersList { }
+                model: usersListModel
                 delegate:
                     Item {
                     id: wrapper
@@ -59,6 +101,7 @@ ApplicationWindow {
 
                     Row{
                         Label {
+                            id: labelName
                             leftPadding: 15
                             verticalAlignment: Text.AlignVCenter
                             text: name;
@@ -84,16 +127,15 @@ ApplicationWindow {
                                 id: affinity
                                 width: 40
                                 height: 40
-                                model: 11
-                                //Layout.alignment: Qt.AlignCenter
-                                delegate: ItemDelegate {
-                                    text: index
+                                displayText: affi
+                                model: ['', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                onActivated: {
+                                    currentUser.addFriendOrUpdateAffinity(labelName.text, currentValue);
+                                    updateList();
                                 }
                             }
                         }
-
                     }
-
                 }
             }
         }

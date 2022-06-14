@@ -2,14 +2,22 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
     id: loginWindow
-    //width: 640
-    //height: 480
+    width: 640
+    height: 640
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Information page")
     color: "#232323"
+
+    onClosing: {
+    }
+
+    User{
+        id: user
+    }
 
     RowLayout{
         id: rowLayout
@@ -21,9 +29,35 @@ ApplicationWindow {
             id: inputs
             spacing: 6
 
-            Image {
-                id: logo
-                source: ":/images/images/NoDramaTranparent.PNG"
+            RowLayout{
+                Rectangle{
+                    Layout.preferredHeight: 100
+                    Layout.minimumWidth: 100
+                    Layout.preferredWidth: 100
+
+                    color: "#232323"
+
+                    Image {
+                        id: logo_
+                        width: 100
+                        fillMode: Image.PreserveAspectFit
+                        source: "qrc:/images/logo"
+                    }
+                }
+                Rectangle{
+                    Layout.preferredHeight: 100
+                    Layout.minimumWidth: 100
+                    Layout.preferredWidth: 200
+
+                    color: "#232323"
+
+                    Image {
+                        id: logo_arc
+                        width: 200
+                        fillMode: Image.PreserveAspectFit
+                        source: "qrc:/images/logo_arc"
+                    }
+                }
             }
 
             RowLayout{
@@ -36,7 +70,7 @@ ApplicationWindow {
 
                 Text {
                     id: userActive
-                    text: qsTr(" blablabla")
+                    text: currentUser.getUsername()
                     font.pointSize: 20
                     color: 'white'
                 }
@@ -51,14 +85,14 @@ ApplicationWindow {
 
             Text {
                 id: memberOne
-                text: qsTr("Michel Jeanne Thèrèse")
+                text: qsTr("Michel Jeanne")
                 font.pointSize: 25
                 color: 'white'
             }
 
             Text {
                 id: memberTwo
-                text: qsTr("Peck Timothy Roy")
+                text: qsTr("Peck Timothy")
                 font.pointSize: 25
                 color: 'white'
             }

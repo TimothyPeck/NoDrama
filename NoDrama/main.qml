@@ -5,14 +5,20 @@ import QtQuick.Layouts 1.3
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.myself 1.0
 
 ApplicationWindow {
     id: loginWindow
-    //width: 640
-    //height: 480
+    property alias loginWindowId : loginWindow
+    width: 360
+    height: 640
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("NoDrama Login")
     color: "#232323"
+
+    User {
+        id: user
+    }
 
     RowLayout{
         id: rowLayout
@@ -25,20 +31,17 @@ ApplicationWindow {
             id: inputs
             spacing: 6
 
-            Image {
-                id: logo
-                source: ":/images/images/NoDramaTranparent.PNG"
             Rectangle{
                 Layout.preferredHeight: 200
                 Layout.minimumWidth: 100
                 Layout.preferredWidth: 300
 
-                color: 'white'
+                color: '#232323'
                 Image {
                     id: logo_
-                    Layout.preferredWidth: 300
+                    width: 300
                     fillMode: Image.PreserveAspectFit
-                    source: ":/images/logo"
+                    source: "qrc:/images/logo"
                 }
             }
 
@@ -75,25 +78,8 @@ ApplicationWindow {
                 }
             }
 
-           Button {
-                id: createAccountButton
-                Layout.minimumWidth: 150
-                Layout.preferredWidth: 150
-                Layout.minimumHeight: 45
-                Layout.alignment: Qt.AlignHCenter
-                text: qsTr("Create Account")
-                background: Rectangle {
-                    radius: 10
-                    color: createAccountButton.down?'#b2a7f9':'#a8c6fa'
-                }
-                onClicked: {
-                    var component = Qt.createComponent("./createAccount.qml")
-                    var window = component.createObject(loginWindow)
-                    window.show()
-                }
-            }
             Button {
-                 id: createAccountButton_
+                 id: createAccountButton
                  Layout.minimumWidth: 150
                  Layout.preferredWidth: 150
                  Layout.minimumHeight: 45
@@ -106,7 +92,7 @@ ApplicationWindow {
                  onClicked: {
                      var component = Qt.createComponent("./createAccount.qml")
                      var window = component.createObject(loginWindow)
-                     window.show()
+                     window.show();
                  }
              }
 
@@ -128,12 +114,18 @@ ApplicationWindow {
                     color: loginButton.down?'#b2a7f9':'#a8c6fa'
                 }
                 onClicked: {
-                    var component = Qt.createComponent("./viewParty.qml")
-                    var window = component.createObject(loginWindow)
-                    window.show()
+                    var id = user.testLoginUsername(username.text, password.text);
+                    if(id > -1){
+                        currentUser.constructor(user.getUserById(id));
+                        var component = Qt.createComponent("./viewParties.qml")
+                        var window = component.createObject(loginWindow)
+                        window.show();
+                    }else {
+                        console.log("error");
+                    }
                 }
             }
         }
     }
 }
-}
+
