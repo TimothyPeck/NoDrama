@@ -8,15 +8,11 @@
     <qresource prefix="/">
         <file>infoPage.qml</file>
         <file>createAccount.qml</file>
-        <file>GuestList.qml</file>
-        <file>FrigoModel.qml</file>
         <file>main.qml</file>
         <file>createParty.qml</file>
         <file>addGuest.qml</file>
-        <file>UsersList.qml</file>
         <file>friendsPage.qml</file>
         <file>viewParties.qml</file>
         <file>viewParty.qml</file>
-        <file>PartiesList.qml</file>
     </qresource>
 </RCC>

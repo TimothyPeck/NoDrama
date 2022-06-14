@@ -95,8 +95,6 @@ ApplicationWindow {
                      var component = Qt.createComponent("./createAccount.qml")
                      var window = component.createObject(loginWindow)
                      window.show();
-                     //loginWindow.hide();
-                     //loginWindow.close()
                  }
              }
 

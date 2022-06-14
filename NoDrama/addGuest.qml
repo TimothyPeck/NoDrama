@@ -13,7 +13,6 @@ ApplicationWindow {
     color: "#232323"
     onClosing: {
         createPartyId.updateList();
-        createPartyId.show();
     }
 
     User {
@@ -25,8 +24,9 @@ ApplicationWindow {
         Component.onCompleted: {
             updateList();
         }
-
     }
+
+
     function createListElement(n,a)
     {
         return {

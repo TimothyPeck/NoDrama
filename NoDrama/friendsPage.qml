@@ -44,15 +44,13 @@ ApplicationWindow {
             usersListModel.append(createListElement(n,a));
         }
     }
-    function updateList(){
-        console.log("update")
+    function updateList() {
         usersListModel.clear();
-        var friends = currentUser.getFriendsForDisplay();
         lineEdit.text = "";
-        for(var i = 0; i < friends.length; i++)
-        {
-            for(var friend in friends[i])
-            {
+
+        var friends = currentUser.getFriendsForDisplay();
+        for(var i = 0; i < friends.length; i++) {
+            for(var friend in friends[i]) {
                 console.log(friend + " : " + friends[i][friend]);
                 usersListModel.append(createListElement(friend, friends[i][friend].toString()));
             }

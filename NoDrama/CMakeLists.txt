@@ -24,10 +24,6 @@ endif()
 set(PROJECT_SOURCES
         resources.qrc
         main.cpp
-        createaccount.cpp
-        createaccount.h
-        infopage.cpp
-        infopage.h
         User.h
         User.cpp
         party.h
